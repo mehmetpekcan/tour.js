@@ -1,0 +1,9 @@
+{
+  "name": "tour.js",
+  "version": "1.0.0",
+  "description": "A walkthrough maker for your web apps",
+  "main": "index.js",
+  "repository": "https://github.com/mehmetpekcan/tour.js.git",
+  "author": "pekcanmehmett@gmail.com",
+  "license": "MIT"
+}
