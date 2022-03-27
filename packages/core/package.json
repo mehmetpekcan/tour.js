@@ -7,7 +7,7 @@
   "private": false,
   "version": "0.0.1",
   "scripts": {
-    "build": "rm -rf ./dist && node src/build.js"
+    "build": "rm -rf ./dist && node build.js"
   },
   "devDependencies": {
     "esbuild": "^0.14.28"
