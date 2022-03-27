@@ -1,17 +1,16 @@
 {
+  "private": true,
   "name": "tour.js",
-  "description": "A walkthrough maker for your web apps",
-  "repository": "https://github.com/mehmetpekcan/tour.js.git",
-  "author": "pekcanmehmett@gmail.com",
+  "version": "0.0.1",
   "license": "MIT",
-  "private": false,
-  "version": "0.0.0",
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
+    "dev-dashboard": "concurrently \"yarn workspace @tour.js/core build watch=true\" \"yarn workspace @tour.js/dashboard dev\"",
+    "start-dashboard": "concurrently \"yarn workspace @tour.js/core build\" \"yarn workspace @tour.js/dashboard dev\""
   },
   "devDependencies": {
-    "vite": "^2.8.0"
+    "concurrently": "^7.0.0"
   }
 }
