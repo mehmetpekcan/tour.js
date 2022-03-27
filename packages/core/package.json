@@ -1,0 +1,16 @@
+{
+  "name": "@tour.js/core",
+  "description": "A walkthrough maker for your web apps",
+  "repository": "https://github.com/mehmetpekcan/tour.js.git",
+  "author": "pekcanmehmett@gmail.com",
+  "license": "MIT",
+  "private": false,
+  "version": "0.0.1",
+  "scripts": {
+    "build": "rm -rf ./dist && node src/build.js"
+  },
+  "devDependencies": {
+    "esbuild": "^0.14.28"
+  },
+  "main": "dist/index.js"
+}
