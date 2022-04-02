@@ -33,7 +33,7 @@ const Home = () => {
       <div className="box box-1">First Box</div>
       <div className="box box-2">Second Box</div>
       <div className="box box-3">Third Box</div>
-      <button onClick={tour.startTour}>Start Tour</button>
+      <button onClick={tour.start}>Start Tour</button>
     </div>
   );
 };

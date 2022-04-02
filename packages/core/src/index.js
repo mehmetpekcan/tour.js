@@ -19,7 +19,7 @@ const Tour = ({ steps = [] }) => {
     );
   };
 
-  const startTour = () => {
+  const initialize = () => {
     const overlayHTML = `<div class="tour-worker-overlay" style='${styles.TOUR_WORKER_OVERLAY}'></div>`;
     const highlighterHTML = `<div class="tour-worker-highlighter" style='${styles.TOUR_WORKER_HIGHLIGHTER}'></div>`;
     const tooltipHTML = `<div class='tour-worker-tooltip' style='${styles.TOUR_WORKER_TOOLTIP}'></div>`;
@@ -27,10 +27,11 @@ const Tour = ({ steps = [] }) => {
     overlayElement = createElementFromHTML(overlayHTML);
     tooltipElement = createElementFromHTML(tooltipHTML);
     highlighterElement = createElementFromHTML(highlighterHTML);
+  };
 
-    document.body.append(overlayElement, highlighterElement, tooltipElement);
-
+  const start = () => {
     const targetElement = document.querySelector(steps[0].element);
+    document.body.append(overlayElement, highlighterElement, tooltipElement);
     window.addEventListener("resize", () => onWindowResize(targetElement));
 
     console.log(getElementMeta(targetElement));
@@ -47,8 +48,8 @@ const Tour = ({ steps = [] }) => {
 
   return {
     steps,
-    startTour,
-    restartTour: () => {},
+    start,
+    restart: () => {},
   };
 };
 
