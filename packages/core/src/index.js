@@ -1,48 +1,55 @@
-import { insertElement, createElementFromHTML } from "./helpers";
+import styles from "./constants/styles.js";
+import { CSS_MIXINS, createElementFromHTML } from "./helpers";
 
-const walkthroughElementHTML = `
-  <div tab-index='0'>
-    Simple walkthrough
-  </div>
-`;
+const getElementMeta = (element) => element.getBoundingClientRect();
+const addStyles = (element, styles) =>
+  (element.style.cssText = `${element.style.cssText}${styles}`);
 
-const getWalkthroughElementCSS = (target) => `
-  position: absolute;
-  top: ${target.offsetTop + target.clientHeight + 24}px;
-  border: 1px solid #2c3e50;
-  padding: 12px 24px;
-  background-color: #fff;
-  box-shadow: 0 5px 20px 0 rgba(0, 0, 0, .1);
-  transition: 300ms all ease;
-`;
+const Tour = ({ steps = [] }) => {
+  if (steps.length === 0) {
+    throw new Error("Steps cannot be empty");
+  }
 
-const createWalkthrough = (target) => {
-  const walkthroughElement = createElementFromHTML(walkthroughElementHTML);
-  insertElement(walkthroughElement, target);
+  let overlayElement, highlighterElement, tooltipElement;
 
-  walkthroughElement.setAttribute("style", getWalkthroughElementCSS(target));
-};
+  const onWindowResize = (element) => {
+    addStyles(
+      highlighterElement,
+      `${CSS_MIXINS.visible}${CSS_MIXINS.position(getElementMeta(element))}`
+    );
+  };
 
-const documentListener = (e) => {
-  e.preventDefault();
-  e.stopPropagation();
+  const startTour = () => {
+    const overlayHTML = `<div class="tour-worker-overlay" style='${styles.TOUR_WORKER_OVERLAY}'></div>`;
+    const highlighterHTML = `<div class="tour-worker-highlighter" style='${styles.TOUR_WORKER_HIGHLIGHTER}'></div>`;
+    const tooltipHTML = `<div class='tour-worker-tooltip' style='${styles.TOUR_WORKER_TOOLTIP}'></div>`;
 
-  createWalkthrough(e.target);
-};
+    overlayElement = createElementFromHTML(overlayHTML);
+    tooltipElement = createElementFromHTML(tooltipHTML);
+    highlighterElement = createElementFromHTML(highlighterHTML);
 
-const addWorker = () => {
-  document.body.addEventListener("click", documentListener);
-};
+    document.body.append(overlayElement, highlighterElement, tooltipElement);
 
-const removeWorker = () => {
-  document.body.removeEventListener("click", documentListener);
-};
+    const targetElement = document.querySelector(steps[0].element);
+    window.addEventListener("resize", () => onWindowResize(targetElement));
 
-const Tour = () => {
+    console.log(getElementMeta(targetElement));
+
+    addStyles(overlayElement, CSS_MIXINS.visible);
+    addStyles(targetElement, "z-index: 999;");
+    addStyles(
+      highlighterElement,
+      `${CSS_MIXINS.visible}${CSS_MIXINS.position(
+        getElementMeta(targetElement)
+      )}`
+    );
+  };
+
   return {
-    addWorker,
-    removeWorker,
+    steps,
+    startTour,
+    restartTour: () => {},
   };
 };
 
-export default Tour();
+export default Tour;
