@@ -5,19 +5,19 @@ import Tour from "@tour.js/core";
 const tour = Tour({
   steps: [
     {
-      element: ".box-1",
+      selector: ".box-1",
       title: "Box 1",
       content: "Here box 1 content",
       position: "center",
     },
     {
-      element: ".box-2",
+      selector: ".box-2",
       title: "Box 1",
       content: "Here box 1 content",
       position: "center",
     },
     {
-      element: ".box-3",
+      selector: ".box-3",
       title: "Box 1",
       content: "Here box 1 content",
       position: "center",

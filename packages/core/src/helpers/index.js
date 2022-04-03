@@ -3,7 +3,7 @@ export const insertElement = (newNode, existingNode) => {
 };
 
 export const createElementFromHTML = (html) => {
-  const template = document.createElement("template");
+  const template = document.createElement('template');
   template.innerHTML = html;
 
   return template.content.childNodes[1];
@@ -11,8 +11,9 @@ export const createElementFromHTML = (html) => {
 
 export const getElementMeta = (element) => element.getBoundingClientRect();
 
-export const addStyles = (element, styles) =>
-  (element.style.cssText = `${element.style.cssText}${styles}`);
+export const addStyles = (element, styles) => {
+  element.style.cssText = `${element.style.cssText}${styles}`;
+};
 
 export const CSS_MIXINS = {
   visible: `

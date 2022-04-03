@@ -1,21 +1,22 @@
-import * as templates from "./constants/templates";
-import { HIGHLIGHTER_PADDING } from "./constants/styles";
+import * as templates from './constants/templates';
+import { HIGHLIGHTER_PADDING } from './constants/styles';
 import {
   CSS_MIXINS,
   createElementFromHTML,
   getElementMeta,
   addStyles,
-} from "./helpers";
+} from './helpers';
 
 const Tour = ({ steps = [] }) => {
   if (steps.length === 0) {
-    throw new Error("Steps cannot be empty");
+    throw new Error('Steps cannot be empty');
   }
 
+  let [activeElement] = steps;
   let overlayElement, highlighterElement, tooltipElement;
 
-  const onWindowResize = (element) => {
-    const targetMeta = getElementMeta(element);
+  const onWindowResize = () => {
+    const targetMeta = getElementMeta(activeElement);
 
     placeHighlighter(targetMeta);
     placeTooltip(targetMeta);
@@ -57,14 +58,14 @@ const Tour = ({ steps = [] }) => {
   const start = () => {
     initialize();
 
-    const targetElement = document.querySelector(steps[0].element);
+    activeElement = document.querySelector(activeElement.selector);
     document.body.append(overlayElement, highlighterElement, tooltipElement);
-    window.addEventListener("resize", () => onWindowResize(targetElement));
+    window.addEventListener('resize', () => onWindowResize(activeElement));
 
-    const targetMeta = getElementMeta(targetElement);
+    const targetMeta = getElementMeta(activeElement);
 
     addStyles(overlayElement, CSS_MIXINS.visible);
-    addStyles(targetElement, "z-index: 999;");
+    addStyles(activeElement, 'z-index: 999;');
 
     placeHighlighter(targetMeta);
     placeTooltip(targetMeta);
