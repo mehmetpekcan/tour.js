@@ -1,9 +1,10 @@
-import styles from "./constants/styles.js";
-import { CSS_MIXINS, createElementFromHTML } from "./helpers";
-
-const getElementMeta = (element) => element.getBoundingClientRect();
-const addStyles = (element, styles) =>
-  (element.style.cssText = `${element.style.cssText}${styles}`);
+import { HIGHLIGHTER_PADDING } from "./constants/js";
+import {
+  CSS_MIXINS,
+  createElementFromHTML,
+  getElementMeta,
+  addStyles,
+} from "./helpers";
 
 const Tour = ({ steps = [] }) => {
   if (steps.length === 0) {
@@ -13,37 +14,59 @@ const Tour = ({ steps = [] }) => {
   let overlayElement, highlighterElement, tooltipElement;
 
   const onWindowResize = (element) => {
-    addStyles(
-      highlighterElement,
-      `${CSS_MIXINS.visible}${CSS_MIXINS.position(getElementMeta(element))}`
-    );
+    const targetMeta = getElementMeta(element);
+
+    placeHighlighter(targetMeta);
+    placeTooltip(targetMeta);
   };
 
   const initialize = () => {
-    const overlayHTML = `<div class="tour-worker-overlay" style='${styles.TOUR_WORKER_OVERLAY}'></div>`;
-    const highlighterHTML = `<div class="tour-worker-highlighter" style='${styles.TOUR_WORKER_HIGHLIGHTER}'></div>`;
-    const tooltipHTML = `<div class='tour-worker-tooltip' style='${styles.TOUR_WORKER_TOOLTIP}'></div>`;
-
     overlayElement = createElementFromHTML(overlayHTML);
     tooltipElement = createElementFromHTML(tooltipHTML);
     highlighterElement = createElementFromHTML(highlighterHTML);
   };
 
+  const placeHighlighter = ({ width, height, top, left }) => {
+    addStyles(
+      highlighterElement,
+      `
+        ${CSS_MIXINS.visible}
+        ${CSS_MIXINS.dimension({ width, height })}
+        ${CSS_MIXINS.position({
+          top: top - HIGHLIGHTER_PADDING,
+          left: left - HIGHLIGHTER_PADDING,
+        })}
+      `
+    );
+  };
+
+  const placeTooltip = ({ height, top, left }) => {
+    addStyles(
+      tooltipElement,
+      `
+        ${CSS_MIXINS.visible}
+        ${CSS_MIXINS.position({
+          top: top + height + HIGHLIGHTER_PADDING,
+          left: left - HIGHLIGHTER_PADDING,
+        })}
+      `
+    );
+  };
+
   const start = () => {
+    initialize();
+
     const targetElement = document.querySelector(steps[0].element);
     document.body.append(overlayElement, highlighterElement, tooltipElement);
     window.addEventListener("resize", () => onWindowResize(targetElement));
 
-    console.log(getElementMeta(targetElement));
+    const targetMeta = getElementMeta(targetElement);
 
     addStyles(overlayElement, CSS_MIXINS.visible);
     addStyles(targetElement, "z-index: 999;");
-    addStyles(
-      highlighterElement,
-      `${CSS_MIXINS.visible}${CSS_MIXINS.position(
-        getElementMeta(targetElement)
-      )}`
-    );
+
+    placeHighlighter(targetMeta);
+    placeTooltip(targetMeta);
   };
 
   return {

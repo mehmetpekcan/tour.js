@@ -9,6 +9,11 @@ export const createElementFromHTML = (html) => {
   return template.content.childNodes[0];
 };
 
+export const getElementMeta = (element) => element.getBoundingClientRect();
+
+export const addStyles = (element, styles) =>
+  (element.style.cssText = `${element.style.cssText}${styles}`);
+
 export const CSS_MIXINS = {
   visible: `
     visibility: visible;
@@ -18,9 +23,11 @@ export const CSS_MIXINS = {
     visibility: none;
     opacity: 0;
   `,
-  position: ({ top, left, width, height }) => `
+  position: ({ top, left }) => `
     top: ${top}px;
-    left: ${left - 16}px;
+    left: ${left}px;
+  `,
+  dimension: ({ width, height }) => `
     width: ${width}px;
     height: ${height}px;
   `,
