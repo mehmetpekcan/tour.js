@@ -1,7 +1,7 @@
 export const HIGHLIGHTER_PADDING = 16;
 export const TRANSITION_DURATION = 300;
 
-export const TOUR_WORKER_OVERLAY = `
+export const OVERLAY = `
   position: fixed;
   top: 0;
   left: 0;
@@ -16,7 +16,7 @@ export const TOUR_WORKER_OVERLAY = `
   transition: all ${TRANSITION_DURATION}ms;
 `;
 
-export const TOUR_WORKER_TOOLTIP = `
+export const TOOLTIP = `
   position: absolute;
   width: 200px;
   height: 200px;
@@ -26,7 +26,7 @@ export const TOUR_WORKER_TOOLTIP = `
   transition: all ${TRANSITION_DURATION}ms;
 `;
 
-export const TOUR_WORKER_HIGHLIGHTER = `
+export const HIGHLIGHTER = `
   position: absolute;
   background-color: rgba(255, 255, 255, 0.8);
   z-index: 998;

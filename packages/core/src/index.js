@@ -1,4 +1,5 @@
-import { HIGHLIGHTER_PADDING } from "./constants/js";
+import * as templates from "./constants/templates";
+import { HIGHLIGHTER_PADDING } from "./constants/styles";
 import {
   CSS_MIXINS,
   createElementFromHTML,
@@ -21,9 +22,9 @@ const Tour = ({ steps = [] }) => {
   };
 
   const initialize = () => {
-    overlayElement = createElementFromHTML(overlayHTML);
-    tooltipElement = createElementFromHTML(tooltipHTML);
-    highlighterElement = createElementFromHTML(highlighterHTML);
+    overlayElement = createElementFromHTML(templates.OVERLAY);
+    tooltipElement = createElementFromHTML(templates.TOOLTIP);
+    highlighterElement = createElementFromHTML(templates.HIGHLIGHTER);
   };
 
   const placeHighlighter = ({ width, height, top, left }) => {
@@ -72,7 +73,6 @@ const Tour = ({ steps = [] }) => {
   return {
     steps,
     start,
-    restart: () => {},
   };
 };
 

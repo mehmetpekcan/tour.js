@@ -1,11 +1,17 @@
-import {
-  TOUR_WORKER_OVERLAY,
-  TOUR_WORKER_HIGHLIGHTER,
-  TOUR_WORKER_TOOLTIP,
-} from "./styles";
+import * as styles from "./styles";
 
-export const overlayHTML = `<div class="tour-worker-overlay" style='${TOUR_WORKER_OVERLAY}'></div>`;
+export const OVERLAY = `
+  <div class="tour--overlay-wrapper" style='${styles.OVERLAY}'></div>
+`;
 
-export const highlighterHTML = `<div class="tour-worker-highlighter" style='${TOUR_WORKER_HIGHLIGHTER}'></div>`;
+export const HIGHLIGHTER = `
+  <div class="tour--highlighter-wrapper" style='${styles.HIGHLIGHTER}'></div>
+`;
 
-export const tooltipHTML = `<div class='tour-worker-tooltip' style='${TOUR_WORKER_TOOLTIP}'></div>`;
+export const TOOLTIP = `
+  <div class='tour--tooltip-wrapper' style='${styles.TOOLTIP}'>
+    <div class='tour--tooltip-header'></div>
+    <div class='tour--tooltip-body'></div>
+    <div class='tour--tooltip-footer'></div>
+  </div>
+`;
