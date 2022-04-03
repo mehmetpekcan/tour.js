@@ -12,14 +12,14 @@ const Tour = ({ steps = [] }) => {
     throw new Error('Steps cannot be empty');
   }
 
-  let [activeElement] = steps;
-  let overlayElement, highlighterElement, tooltipElement;
+  let overlayElement;
+  let highlighterElement;
+  let tooltipElement;
 
-  const onWindowResize = () => {
-    const targetMeta = getElementMeta(activeElement);
-
-    placeHighlighter(targetMeta);
-    placeTooltip(targetMeta);
+  const worker = {
+    previous: null,
+    current: steps[0],
+    next: steps.length > 1 ? steps[1] : null,
   };
 
   const initialize = () => {
@@ -28,7 +28,9 @@ const Tour = ({ steps = [] }) => {
     highlighterElement = createElementFromHTML(templates.HIGHLIGHTER);
   };
 
-  const placeHighlighter = ({ width, height, top, left }) => {
+  const placeHighlighter = () => {
+    const { width, height, top, left } = worker.current.meta;
+
     addStyles(
       highlighterElement,
       `
@@ -42,33 +44,47 @@ const Tour = ({ steps = [] }) => {
     );
   };
 
-  const placeTooltip = ({ height, top, left }) => {
+  const placeTooltip = () => {
+    const { height, top, left } = worker.current.meta;
+
     addStyles(
       tooltipElement,
       `
         ${CSS_MIXINS.visible}
         ${CSS_MIXINS.position({
-          top: top + height + HIGHLIGHTER_PADDING,
+          top: top + height + HIGHLIGHTER_PADDING + 16,
           left: left - HIGHLIGHTER_PADDING,
         })}
       `
     );
   };
 
+  const onWindowResize = () => {
+    worker.current.meta = getElementMeta(worker.current.element);
+
+    placeHighlighter();
+    placeTooltip();
+  };
+
   const start = () => {
     initialize();
 
-    activeElement = document.querySelector(activeElement.selector);
-    document.body.append(overlayElement, highlighterElement, tooltipElement);
-    window.addEventListener('resize', () => onWindowResize(activeElement));
+    worker.current.element = document.querySelector(worker.current.selector);
 
-    const targetMeta = getElementMeta(activeElement);
+    if (worker.next) {
+      worker.next.element = document.querySelector(worker.next.selector);
+    }
+
+    document.body.append(overlayElement, highlighterElement, tooltipElement);
+    window.addEventListener('resize', onWindowResize);
 
     addStyles(overlayElement, CSS_MIXINS.visible);
-    addStyles(activeElement, 'z-index: 999;');
+    addStyles(worker.current.element, 'z-index: 999;');
 
-    placeHighlighter(targetMeta);
-    placeTooltip(targetMeta);
+    worker.current.meta = getElementMeta(worker.current.element);
+
+    placeHighlighter();
+    placeTooltip();
   };
 
   return {
