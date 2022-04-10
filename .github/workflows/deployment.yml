@@ -11,22 +11,15 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [14.x, 16.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-
     steps:
       - uses: actions/checkout@v3
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node-version }}
-          cache: "npm"
-      - run: npm ci
-      - run: npm run workspace:build
 
-      - name: Deploy 🚀
+      - name: Build 🚀
+        uses: borales/actions-yarn@v2.3.0
+        with:
+          cmd: "dashboard:build"
+
+      - name: Deploy 🔥
         uses: JamesIves/github-pages-deploy-action@v4.3.0
         with:
           branch: gh-pages # The branch the action should deploy to.
