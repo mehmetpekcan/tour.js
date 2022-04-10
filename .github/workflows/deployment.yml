@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directiory: ./packages/dashboard
+        working-directory: ./packages/dashboard
     steps:
       - uses: actions/checkout@v2
         with:
