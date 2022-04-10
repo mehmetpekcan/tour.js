@@ -1,5 +1,5 @@
 export const HIGHLIGHTER_PADDING = 16;
-export const TRANSITION_DURATION = 2000;
+export const TRANSITION_DURATION = 300;
 
 export const OVERLAY = `
   position: fixed;
@@ -19,7 +19,8 @@ export const OVERLAY = `
 export const TOOLTIP = `
   position: absolute;
   width: 200px;
-  height: 200px;
+  padding: 24px;
+  min-height: 200px;
   z-index: 99;
   opacity: 0;
   background-color: rgba(255, 255,255, .9);

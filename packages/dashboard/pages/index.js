@@ -6,24 +6,27 @@ const tour = Tour({
   steps: [
     {
       selector: ".box-1",
-      title: "Box 1",
-      content: "Here box 1 content",
+      title: "First Title 🚀",
+      content:
+        "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
       position: "center",
     },
     {
       selector: ".box-2",
-      title: "Box 1123",
-      content: "Here box 112312313 content",
+      title: "Second Title 🔥",
+      content:
+        "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
       position: "center",
-      next: "AAA",
-      prev: "UHUHU",
+      next: "Custom neeext ⛈",
+      prev: "Custom previous 🐺",
     },
     {
       selector: ".box-3",
-      title: "Box 112312",
-      content: "Here box 1123123123 content",
+      title: "Third Title ✨",
+      content:
+        "but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of",
       position: "center",
-      finish: "Done",
+      finish: "Custom Finish 👍🏻",
     },
   ],
 });
