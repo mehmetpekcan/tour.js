@@ -5,6 +5,8 @@ import {
   createElementFromHTML,
   getElementMeta,
   addStyles,
+  injectDefaultStyles,
+  removeDefaultStyles,
 } from './helpers';
 
 const defaultTooltipOptions = {
@@ -76,15 +78,14 @@ const Tooltip = ({ onNext, onPrev, onFinish }) => {
 
     setTimeout(() => {
       const { height, top, left } = getElementMeta(targetElement);
+      tooltipElement.classList.add('visible');
 
       addStyles(
         tooltipElement,
-        `
-          ${CSS_MIXINS.visible}
-          ${CSS_MIXINS.position({
-            top: top + height + HIGHLIGHTER_PADDING + 16,
-            left: left - HIGHLIGHTER_PADDING,
-          })}
+        `${CSS_MIXINS.position({
+          top: top + height + HIGHLIGHTER_PADDING + 16,
+          left: left - HIGHLIGHTER_PADDING,
+        })}
         `
       );
     }, 0);
@@ -107,7 +108,7 @@ const Overlay = () => {
       document.body.append(overlayElement);
 
       setTimeout(() => {
-        addStyles(overlayElement, CSS_MIXINS.visible);
+        overlayElement.classList.add('visible');
       }, 0);
     }
   };
@@ -135,11 +136,11 @@ const Highlighter = () => {
 
     setTimeout(() => {
       const { width, height, top, left } = getElementMeta(targetElement);
+      highlighterElement.classList.add('visible');
 
       addStyles(
         highlighterElement,
         `
-        ${CSS_MIXINS.visible}
         ${CSS_MIXINS.dimension({ width, height })}
         ${CSS_MIXINS.position({
           top: top - HIGHLIGHTER_PADDING,
@@ -176,20 +177,6 @@ const Tour = ({ steps = [] }) => {
   const overlay = Overlay();
   const highlighter = Highlighter();
 
-  const initialize = async () => {
-    elements = steps.map((step) => document.querySelector(step.selector));
-
-    tooltip.render(
-      elements[currentIndex],
-      steps[currentIndex],
-      currentIndex,
-      steps.length
-    );
-    highlighter.render(elements[currentIndex]);
-    overlay.render();
-    addStyles(elements[currentIndex], 'z-index: 999;');
-  };
-
   const placeWorker = () => {
     tooltip.render(
       elements[currentIndex],
@@ -199,7 +186,13 @@ const Tour = ({ steps = [] }) => {
     );
     highlighter.render(elements[currentIndex]);
     overlay.render();
-    addStyles(elements[currentIndex], 'z-index: 999;');
+    elements[currentIndex].classList.add('tour--js-target');
+  };
+
+  const initialize = () => {
+    injectDefaultStyles();
+    elements = steps.map((step) => document.querySelector(step.selector));
+    placeWorker();
   };
 
   function handleFinishButton() {
@@ -207,6 +200,7 @@ const Tour = ({ steps = [] }) => {
     overlay.remove();
     highlighter.remove();
     currentIndex = 0;
+    removeDefaultStyles();
   }
 
   function handleNextButton() {

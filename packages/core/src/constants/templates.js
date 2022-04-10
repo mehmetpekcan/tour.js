@@ -1,11 +1,11 @@
 import * as styles from './styles';
 
 export const OVERLAY = () => `
-  <div class="tour--overlay-wrapper" style='${styles.OVERLAY}'></div>
+  <div class='${styles.OVERLAY.class}'></div>
 `;
 
 export const HIGHLIGHTER = () => `
-  <div class="tour--highlighter-wrapper" style='${styles.HIGHLIGHTER}'></div>
+  <div class='${styles.HIGHLIGHTER.class}'></div>
 `;
 
 export const INNER_TOOLTIP = ({ title, content, next, prev, finish }) => `
@@ -16,10 +16,11 @@ export const INNER_TOOLTIP = ({ title, content, next, prev, finish }) => `
     ${next ? `<button class='tour--tooltip-next'>${next}</button>` : ''}
     ${finish ? `<button class='tour--tooltip-finish'>${finish}</button>` : ''}
   </div>
+
 `;
 
 export const TOOLTIP = ({ prev, next, title, content }) => `
-  <div class='tour--tooltip-wrapper' style='${styles.TOOLTIP}'>
+  <div class='${styles.TOOLTIP.class}'>
     ${INNER_TOOLTIP({ prev, next, title, content })}
   </div>
 `;
