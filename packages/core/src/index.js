@@ -187,6 +187,7 @@ const Tour = ({ steps = [] }) => {
     );
     highlighter.render(elements[currentIndex]);
     overlay.render();
+    addStyles(elements[currentIndex], 'z-index: 999;');
   };
 
   const placeWorker = () => {
@@ -198,7 +199,6 @@ const Tour = ({ steps = [] }) => {
     );
     highlighter.render(elements[currentIndex]);
     overlay.render();
-
     addStyles(elements[currentIndex], 'z-index: 999;');
   };
 
