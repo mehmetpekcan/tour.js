@@ -8,7 +8,8 @@
   ],
   "scripts": {
     "dashboard:dev": "concurrently \"yarn workspace @tour.js/core build watch=true\" \"yarn workspace @tour.js/dashboard dev\"",
-    "dashboard:start": "concurrently \"yarn workspace @tour.js/core build\" \"yarn workspace @tour.js/dashboard dev\""
+    "dashboard:start": "concurrently \"yarn workspace @tour.js/core build\" \"yarn workspace @tour.js/dashboard dev\"",
+    "dashboard:deploy": "yarn workspace @tour.js/dashboard build && yarn workspace @tour.js/dashboard export"
   },
   "devDependencies": {
     "concurrently": "^7.0.0"
