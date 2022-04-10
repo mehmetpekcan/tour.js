@@ -25,6 +25,13 @@ export const injectDefaultStyles = () => {
   style.innerHTML = `
     .${styles.HIGHLIGHTER.class} { ${styles.HIGHLIGHTER.css} }
     .${styles.TOOLTIP.class} { ${styles.TOOLTIP.css} }
+    .${styles.TOOLTIP_BUTTON.class} { ${styles.TOOLTIP_BUTTON.css} }
+    .${styles.TOOLTIP_NEXT_BUTTON.class} { ${styles.TOOLTIP_NEXT_BUTTON.css} }
+    .${styles.TOOLTIP_PREV_BUTTON.class} { ${styles.TOOLTIP_PREV_BUTTON.css} }
+    .${styles.TOOLTIP_FINISH_BUTTON.class} { ${styles.TOOLTIP_FINISH_BUTTON.css} }
+    .${styles.TOOLTIP_FOOTER.class} { ${styles.TOOLTIP_FOOTER.css} }
+    .${styles.TOOLTIP_CONTENT.class} { ${styles.TOOLTIP_CONTENT.css} }
+    .${styles.TOOLTIP_TITLE.class} { ${styles.TOOLTIP_TITLE.css} }
     .visible { visibility: visible; opacity: 1; }
     .hidden { visibility: none; opacity: 0; }
     .tour--js-target { z-index: 99999; transition: z-index 300ms; }

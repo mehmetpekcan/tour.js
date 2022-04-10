@@ -17,8 +17,8 @@ const tour = Tour({
       content:
         "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
       position: "center",
-      next: "Custom neeext ⛈",
-      prev: "Custom previous 🐺",
+      next: "Custom next ",
+      prev: "Custom prev",
     },
     {
       selector: ".box-3",
@@ -26,7 +26,7 @@ const tour = Tour({
       content:
         "but also the leasp into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of",
       position: "center",
-      finish: "Custom Finish 👍🏻",
+      finish: "Custom Finish",
     },
   ],
 });

@@ -5,12 +5,28 @@ export const HIGHLIGHTER = () => `
 `;
 
 export const INNER_TOOLTIP = ({ title, content, next, prev, finish }) => `
-  ${title ? `<div class='tour--tooltip-title'>${title}</div>` : ''}
-  ${content ? `<div class='tour--tooltip-content'>${content}</div>` : ''}
-  <div class="tour--tooltip-footer">
-    ${prev ? `<button class='tour--tooltip-prev'>${prev}</button>` : ''}
-    ${next ? `<button class='tour--tooltip-next'>${next}</button>` : ''}
-    ${finish ? `<button class='tour--tooltip-finish'>${finish}</button>` : ''}
+  ${title ? `<div class='${styles.TOOLTIP_TITLE.class}'>${title}</div>` : ''}
+  ${
+    content
+      ? `<div class='${styles.TOOLTIP_CONTENT.class}'>${content}</div>`
+      : ''
+  }
+  <div class='${styles.TOOLTIP_FOOTER.class}'>
+    ${
+      prev
+        ? `<button class='${styles.TOOLTIP_BUTTON.class} ${styles.TOOLTIP_PREV_BUTTON.class}'>${prev}</button>`
+        : ''
+    }
+    ${
+      next
+        ? `<button class='${styles.TOOLTIP_BUTTON.class} ${styles.TOOLTIP_NEXT_BUTTON.class}'>${next}</button>`
+        : ''
+    }
+    ${
+      finish
+        ? `<button class='${styles.TOOLTIP_BUTTON.class} ${styles.TOOLTIP_FINISH_BUTTON.class}'>${finish}</button>`
+        : ''
+    }
   </div>
 
 `;
