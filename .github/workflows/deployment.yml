@@ -17,8 +17,7 @@ jobs:
         uses: ./
         with:
           working-directory: packages/dashboard
-          run: yarn install --frozen-lockfile
-          run: yarn dashboard:deploy
+          run: yarn install --frozen-lockfile && yarn dashboard:deploy
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4.3.0
