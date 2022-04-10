@@ -12,15 +12,18 @@ const tour = Tour({
     },
     {
       selector: ".box-2",
-      title: "Box 1",
-      content: "Here box 1 content",
+      title: "Box 1123",
+      content: "Here box 112312313 content",
       position: "center",
+      next: "AAA",
+      prev: "UHUHU",
     },
     {
       selector: ".box-3",
-      title: "Box 1",
-      content: "Here box 1 content",
+      title: "Box 112312",
+      content: "Here box 1123123123 content",
       position: "center",
+      finish: "Done",
     },
   ],
 });

@@ -25,7 +25,8 @@ body,
   height: 100%;
   display: grid;
   place-items: center;
-  background-color: #eee;
+  background-color: #333;
+  color: #fff;
   border-radius: 4px;
 }
 

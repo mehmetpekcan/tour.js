@@ -1,5 +1,5 @@
 export const HIGHLIGHTER_PADDING = 16;
-export const TRANSITION_DURATION = 300;
+export const TRANSITION_DURATION = 2000;
 
 export const OVERLAY = `
   position: fixed;
