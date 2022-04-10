@@ -186,7 +186,7 @@ const Tour = ({ steps = [] }) => {
     }
 
     placeWorker();
-    // clearPreviousWorker(oldIndex);
+    clearPreviousWorker(oldIndex);
   };
 
   const start = () => {
