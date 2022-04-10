@@ -16,8 +16,6 @@ const defaultTooltipOptions = {
   body: 'Hulog',
 };
 
-const defaultOverlayOptions = {};
-
 const defaultHighlighterOptions = {};
 
 const Tooltip = ({ onNext, onPrev, onFinish }) => {
@@ -94,32 +92,6 @@ const Tooltip = ({ onNext, onPrev, onFinish }) => {
   return { render, remove };
 };
 
-const Overlay = () => {
-  let overlayElement;
-
-  const render = (options = {}) => {
-    overlayElement = document.querySelector('.tour--overlay-wrapper');
-
-    if (!overlayElement) {
-      const args = { ...defaultOverlayOptions, ...options };
-      const overlayHTML = templates.OVERLAY(args);
-
-      overlayElement = createElementFromHTML(overlayHTML);
-      document.body.append(overlayElement);
-
-      setTimeout(() => {
-        overlayElement.classList.add('visible');
-      }, 0);
-    }
-  };
-
-  const remove = () => {
-    overlayElement.outerHTML = null;
-  };
-
-  return { render, remove };
-};
-
 const Highlighter = () => {
   let highlighterElement;
 
@@ -168,13 +140,12 @@ const Tour = ({ steps = [] }) => {
 
   const tooltip = Tooltip({
     // eslint-disable-next-line no-use-before-define
-    onNext: handleNextButton,
+    onNext: () => changeStep('NEXT'),
     // eslint-disable-next-line no-use-before-define
-    onPrev: handlePreviousButton,
+    onPrev: () => changeStep('PREV'),
     // eslint-disable-next-line no-use-before-define
     onFinish: handleFinishButton,
   });
-  const overlay = Overlay();
   const highlighter = Highlighter();
 
   const placeWorker = () => {
@@ -185,7 +156,6 @@ const Tour = ({ steps = [] }) => {
       steps.length
     );
     highlighter.render(elements[currentIndex]);
-    overlay.render();
     elements[currentIndex].classList.add('tour--js-target');
   };
 
@@ -197,21 +167,27 @@ const Tour = ({ steps = [] }) => {
 
   function handleFinishButton() {
     tooltip.remove();
-    overlay.remove();
     highlighter.remove();
     currentIndex = 0;
     removeDefaultStyles();
   }
 
-  function handleNextButton() {
-    currentIndex += 1;
-    placeWorker();
-  }
+  const clearPreviousWorker = (oldIndex) => {
+    elements[oldIndex].classList.remove('tour--js-target');
+  };
 
-  function handlePreviousButton() {
-    currentIndex -= 1;
+  const changeStep = (move) => {
+    const oldIndex = currentIndex;
+
+    if (move === 'NEXT') {
+      currentIndex += 1;
+    } else if (move === 'PREV') {
+      currentIndex -= 1;
+    }
+
     placeWorker();
-  }
+    // clearPreviousWorker(oldIndex);
+  };
 
   const start = () => {
     initialize();

@@ -24,11 +24,10 @@ export const injectDefaultStyles = () => {
   style.id = 'tour--js-styles';
   style.innerHTML = `
     .${styles.HIGHLIGHTER.class} { ${styles.HIGHLIGHTER.css} }
-    .${styles.OVERLAY.class} { ${styles.OVERLAY.css} }
     .${styles.TOOLTIP.class} { ${styles.TOOLTIP.css} }
     .visible { visibility: visible; opacity: 1; }
     .hidden { visibility: none; opacity: 0; }
-    .tour--js-target { z-index: 99999; }
+    .tour--js-target { z-index: 99999; transition: z-index 300ms; }
   `;
 
   document.body.appendChild(style);

@@ -1,9 +1,5 @@
 import * as styles from './styles';
 
-export const OVERLAY = () => `
-  <div class='${styles.OVERLAY.class}'></div>
-`;
-
 export const HIGHLIGHTER = () => `
   <div class='${styles.HIGHLIGHTER.class}'></div>
 `;
