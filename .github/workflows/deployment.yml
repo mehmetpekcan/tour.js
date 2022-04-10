@@ -12,12 +12,14 @@ jobs:
     name: Setup
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-        with:
-          node-version: "16.8.0"
+      - name: Checkout
+        uses: actions/checkout@v2
 
       - name: Create production build 🔥
-        run: yarn dashboard:deploy
+        uses: ./
+        with:
+          working-directory: packages/dashboard
+          build: yarn dashboard:deploy
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4.3.0
