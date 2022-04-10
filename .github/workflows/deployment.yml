@@ -11,9 +11,6 @@ jobs:
   release:
     name: Setup
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./packages/dashboard
     steps:
       - uses: actions/checkout@v2
         with:
