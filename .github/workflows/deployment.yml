@@ -16,7 +16,6 @@ jobs:
       - name: Create production build 🔥
         uses: ./
         with:
-          working-directory: packages/dashboard
           run: yarn install --frozen-lockfile && yarn dashboard:deploy
 
       - name: Deploy 🚀
