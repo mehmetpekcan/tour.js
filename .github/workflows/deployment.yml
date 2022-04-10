@@ -14,10 +14,11 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Build 🚀
-        uses: actions/setup-node@v3
+      - uses: actions/setup-node@v3
         with:
           node-version: "14"
+
+      - name: Build 🚀
         run: yarn dashboard:build
 
       - name: Deploy 🔥
