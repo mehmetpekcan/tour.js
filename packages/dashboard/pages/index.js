@@ -24,7 +24,7 @@ const tour = Tour({
       selector: ".box-3",
       title: "Third Title ✨",
       content:
-        "but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of",
+        "but also the leasp into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of",
       position: "center",
       finish: "Custom Finish 👍🏻",
     },
