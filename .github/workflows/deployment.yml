@@ -14,7 +14,7 @@ jobs:
       - name: Deployment
         uses: ./
         with:
-          working-directory: packages/dashboard
+          working-directory: ./
           build: yarn run build
           start: yarn start
           wait-on: "http://localhost:3000"
