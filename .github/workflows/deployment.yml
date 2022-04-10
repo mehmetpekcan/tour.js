@@ -15,9 +15,9 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Build 🚀
-        uses: borales/actions-yarn@v2.3.0
+        uses: ./
         with:
-          cmd: "dashboard:build"
+          build: "dashboard:build"
 
       - name: Deploy 🔥
         uses: JamesIves/github-pages-deploy-action@v4.3.0
