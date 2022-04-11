@@ -128,6 +128,7 @@ const Tour = ({ steps = [] }) => {
   let elements;
   let currentIndex = 0;
 
+  const highlighter = Highlighter();
   const tooltip = Tooltip({
     // eslint-disable-next-line no-use-before-define
     onNext: () => changeStep(currentIndex + 1),
@@ -136,7 +137,6 @@ const Tour = ({ steps = [] }) => {
     // eslint-disable-next-line no-use-before-define
     onFinish: handleFinishButton,
   });
-  const highlighter = Highlighter();
 
   const placeWorker = () => {
     tooltip.render(

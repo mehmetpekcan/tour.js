@@ -29,7 +29,7 @@ export const injectDefaultStyles = () => {
     .${styles.TOOLTIP_TITLE.class} { ${styles.TOOLTIP_TITLE.css} }
     .visible { visibility: visible; opacity: 1; }
     .hidden { visibility: none; opacity: 0; }
-    .tour--js-target { z-index: 99999; transition: z-index 300ms; }
+    .tour--js-target { z-index: 99999; }
   `;
 
   document.head.appendChild(style);
