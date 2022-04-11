@@ -1,5 +1,5 @@
 import * as templates from './constants/templates';
-import { HIGHLIGHTER_PADDING } from './constants/styles';
+import { HIGHLIGHTER_BORDER } from './constants/styles';
 import {
   CSS_MIXINS,
   createElementFromHTML,
@@ -81,8 +81,8 @@ const Tooltip = ({ onNext, onPrev, onFinish }) => {
       addStyles(
         tooltipElement,
         `${CSS_MIXINS.position({
-          top: top + height + HIGHLIGHTER_PADDING + 16,
-          left: left - HIGHLIGHTER_PADDING,
+          top: top + height + HIGHLIGHTER_BORDER + 16,
+          left: left - HIGHLIGHTER_BORDER,
         })}
         `
       );
@@ -115,8 +115,8 @@ const Highlighter = () => {
         `
         ${CSS_MIXINS.dimension({ width, height })}
         ${CSS_MIXINS.position({
-          top: top - HIGHLIGHTER_PADDING,
-          left: left - HIGHLIGHTER_PADDING,
+          top: top - HIGHLIGHTER_BORDER,
+          left: left - HIGHLIGHTER_BORDER,
         })}
       `
       );

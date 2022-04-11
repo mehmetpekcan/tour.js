@@ -1,5 +1,21 @@
-export const HIGHLIGHTER_PADDING = 8;
+export const HIGHLIGHTER_BORDER = 8;
 export const TRANSITION_DURATION = 300;
+
+export const HIGHLIGHTER = {
+  class: 'tour--highlighter-wrapper',
+  css: `
+    box-sizing: content-box;
+    position: absolute;
+    z-index: 998;
+    opacity: 0;
+    visibility: hidden;
+    border: ${HIGHLIGHTER_BORDER}px solid rgba(255, 255, 255, .8);
+    background-color: transparent;
+    transition: all ${TRANSITION_DURATION}ms;
+    box-shadow: rgba(33, 33, 33, 0.5) 0px 0px 0px 5000px;
+    border-radius: 8px;
+  `,
+};
 
 export const TOOLTIP = {
   class: 'tour--tooltip-wrapper',
@@ -14,21 +30,7 @@ export const TOOLTIP = {
     box-shadow: 0 0 30px 0 rgba(0, 0, 0, .1);
     background-color: rgba(255, 255,255, .9);
     transition: all ${TRANSITION_DURATION}ms;
-  `,
-};
-
-export const HIGHLIGHTER = {
-  class: 'tour--highlighter-wrapper',
-  css: `
-    position: absolute;
-    background-color: rgba(255, 255, 255, 0.8);
-    z-index: 998;
-    opacity: 0;
-    visibility: hidden;
-    padding: ${HIGHLIGHTER_PADDING}px;
-    transition: all ${TRANSITION_DURATION}ms;
-    box-shadow: rgba(33, 33, 33, 0.5) 0px 0px 0px 5000px;
-    border-radius: 8px;
+    line-height: 1.5;
   `,
 };
 
@@ -37,6 +39,8 @@ export const TOOLTIP_TITLE = {
   css: `
     font-weight: 700;
     font-size: 24px;
+    overflow-wrap: break-word;
+    line-height: 1.5;
   `,
 };
 
@@ -47,6 +51,8 @@ export const TOOLTIP_CONTENT = {
     margin-top: 4px;
     line-height: 24px;
     font-size: 16px;
+    overflow-wrap: break-word;
+    line-height: 1.5;
   `,
 };
 
@@ -58,6 +64,7 @@ export const TOOLTIP_FOOTER = {
     flex-wrap: wrap;
     justify-content: space-between;
     margin-top: 12px;
+    overflow-wrap: break-word;
   `,
 };
 
@@ -71,8 +78,9 @@ export const TOOLTIP_BUTTON = {
     font-size: 14px;
     box-shadow: 0 5px 20px 10px rgba(0, 0, 0, .1);
     color: #ecf0f1;
-    white-space: nowrap;
     background-color: #4834d4;
+    overflow-wrap: break-word;
+    line-height: 1.5;
   `,
 };
 

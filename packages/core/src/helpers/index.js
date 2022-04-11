@@ -37,12 +37,12 @@ export const injectDefaultStyles = () => {
     .tour--js-target { z-index: 99999; transition: z-index 300ms; }
   `;
 
-  document.body.appendChild(style);
+  document.head.appendChild(style);
 };
 
 export const removeDefaultStyles = () => {
   const styleElement = document.querySelector('#tour--js-styles');
-  document.body.removeChild(styleElement);
+  document.head.removeChild(styleElement);
 };
 
 export const CSS_MIXINS = {
