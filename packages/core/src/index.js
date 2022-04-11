@@ -130,9 +130,9 @@ const Tour = ({ steps = [] }) => {
 
   const tooltip = Tooltip({
     // eslint-disable-next-line no-use-before-define
-    onNext: () => changeStep('NEXT'),
+    onNext: () => changeStep(currentIndex + 1),
     // eslint-disable-next-line no-use-before-define
-    onPrev: () => changeStep('PREV'),
+    onPrev: () => changeStep(currentIndex - 1),
     // eslint-disable-next-line no-use-before-define
     onFinish: handleFinishButton,
   });
@@ -166,17 +166,10 @@ const Tour = ({ steps = [] }) => {
     elements[oldIndex].classList.remove('tour--js-target');
   };
 
-  const changeStep = (move) => {
-    const oldIndex = currentIndex;
-
-    if (move === 'NEXT') {
-      currentIndex += 1;
-    } else if (move === 'PREV') {
-      currentIndex -= 1;
-    }
-
-    placeWorker();
-    clearPreviousWorker(oldIndex);
+  const changeStep = (newCurrentIndex) => {
+    clearPreviousWorker(currentIndex);
+    currentIndex = newCurrentIndex;
+    placeWorker(currentIndex);
   };
 
   const start = () => {
