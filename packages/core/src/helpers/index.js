@@ -13,11 +13,6 @@ export const createElementFromHTML = (html) => {
 
 export const getElementMeta = (element) => element.getBoundingClientRect();
 
-export const addStyles = (element, newStyles) => {
-  // eslint-disable-next-line no-param-reassign
-  element.style.cssText = `${element.style.cssText}${newStyles}`;
-};
-
 export const injectDefaultStyles = () => {
   const style = document.createElement('style');
 
@@ -43,15 +38,4 @@ export const injectDefaultStyles = () => {
 export const removeDefaultStyles = () => {
   const styleElement = document.querySelector('#tour--js-styles');
   document.head.removeChild(styleElement);
-};
-
-export const CSS_MIXINS = {
-  position: ({ top, left }) => `
-    top: ${top}px;
-    left: ${left}px;
-  `,
-  dimension: ({ width, height }) => `
-    width: ${width}px;
-    height: ${height}px;
-  `,
 };

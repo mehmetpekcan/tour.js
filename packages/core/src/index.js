@@ -1,10 +1,8 @@
 import * as templates from './constants/templates';
 import { HIGHLIGHTER_BORDER } from './constants/styles';
 import {
-  CSS_MIXINS,
   createElementFromHTML,
   getElementMeta,
-  addStyles,
   injectDefaultStyles,
   removeDefaultStyles,
 } from './helpers';
@@ -75,16 +73,13 @@ const Tooltip = ({ onNext, onPrev, onFinish }) => {
     }
 
     const { height, top, left } = getElementMeta(targetElement);
-    tooltipElement.classList.add('visible');
 
-    addStyles(
-      tooltipElement,
-      `${CSS_MIXINS.position({
-        top: top + height + HIGHLIGHTER_BORDER + 16,
-        left: left - HIGHLIGHTER_BORDER,
-      })}
-        `
-    );
+    const leftValue = `${left - HIGHLIGHTER_BORDER}px`;
+    const topValue = `${top + height + HIGHLIGHTER_BORDER + 16}px`;
+
+    tooltipElement.classList.add('visible');
+    tooltipElement.style.setProperty('top', topValue);
+    tooltipElement.style.setProperty('left', leftValue);
   };
 
   return { render, remove };
@@ -105,18 +100,17 @@ const Highlighter = () => {
     }
 
     const { width, height, top, left } = getElementMeta(targetElement);
-    highlighterElement.classList.add('visible');
 
-    addStyles(
-      highlighterElement,
-      `
-        ${CSS_MIXINS.dimension({ width, height })}
-        ${CSS_MIXINS.position({
-          top: top - HIGHLIGHTER_BORDER,
-          left: left - HIGHLIGHTER_BORDER,
-        })}
-      `
-    );
+    const widthValue = `${width}px`;
+    const heightValue = `${height}px`;
+    const topValue = `${top - HIGHLIGHTER_BORDER}px`;
+    const leftValue = `${left - HIGHLIGHTER_BORDER}px`;
+
+    highlighterElement.classList.add('visible');
+    highlighterElement.style.setProperty('width', widthValue);
+    highlighterElement.style.setProperty('height', heightValue);
+    highlighterElement.style.setProperty('top', topValue);
+    highlighterElement.style.setProperty('left', leftValue);
   };
 
   const remove = () => {
