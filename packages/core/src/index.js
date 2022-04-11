@@ -74,19 +74,17 @@ const Tooltip = ({ onNext, onPrev, onFinish }) => {
       });
     }
 
-    setTimeout(() => {
-      const { height, top, left } = getElementMeta(targetElement);
-      tooltipElement.classList.add('visible');
+    const { height, top, left } = getElementMeta(targetElement);
+    tooltipElement.classList.add('visible');
 
-      addStyles(
-        tooltipElement,
-        `${CSS_MIXINS.position({
-          top: top + height + HIGHLIGHTER_BORDER + 16,
-          left: left - HIGHLIGHTER_BORDER,
-        })}
+    addStyles(
+      tooltipElement,
+      `${CSS_MIXINS.position({
+        top: top + height + HIGHLIGHTER_BORDER + 16,
+        left: left - HIGHLIGHTER_BORDER,
+      })}
         `
-      );
-    }, 0);
+    );
   };
 
   return { render, remove };
@@ -106,21 +104,19 @@ const Highlighter = () => {
       document.body.append(highlighterElement);
     }
 
-    setTimeout(() => {
-      const { width, height, top, left } = getElementMeta(targetElement);
-      highlighterElement.classList.add('visible');
+    const { width, height, top, left } = getElementMeta(targetElement);
+    highlighterElement.classList.add('visible');
 
-      addStyles(
-        highlighterElement,
-        `
+    addStyles(
+      highlighterElement,
+      `
         ${CSS_MIXINS.dimension({ width, height })}
         ${CSS_MIXINS.position({
           top: top - HIGHLIGHTER_BORDER,
           left: left - HIGHLIGHTER_BORDER,
         })}
       `
-      );
-    }, 0);
+    );
   };
 
   const remove = () => {
