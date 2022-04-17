@@ -1,14 +1,13 @@
 import Tooltip from './components/Tooltip';
 import Highlighter from './components/Highlighter';
 
-import { injectDefaultStyles, removeDefaultStyles } from './helpers';
+import {
+  getElementMeta,
+  injectDefaultStyles,
+  removeDefaultStyles,
+} from './helpers';
 
-const Tour = ({ steps = [] }) => {
-  if (steps.length === 0) {
-    throw new Error('Steps cannot be empty');
-  }
-
-  let elements;
+const Tour = ({ steps = [] } = {}) => {
   let currentIndex = 0;
 
   const highlighter = Highlighter();
@@ -21,21 +20,24 @@ const Tour = ({ steps = [] }) => {
     onFinish: handleFinishButton,
   });
 
-  const placeWorker = () => {
+  const placeWorker = (stepIndex) => {
+    const { selector, ...content } = steps[stepIndex];
+    const targetElement = document.querySelector(selector);
+    const targetPosition = getElementMeta(targetElement);
+
     tooltip.render(
-      elements[currentIndex],
-      steps[currentIndex],
-      currentIndex,
-      steps.length
+      targetPosition,
+      content,
+      stepIndex !== 0,
+      stepIndex !== steps.length - 1
     );
-    highlighter.render(elements[currentIndex]);
-    elements[currentIndex].classList.add('tour--js-target');
+    highlighter.render(targetPosition, {});
+    targetElement.classList.add('tour--js-target');
   };
 
   const initialize = () => {
     injectDefaultStyles();
-    elements = steps.map((step) => document.querySelector(step.selector));
-    placeWorker();
+    placeWorker(0);
   };
 
   function handleFinishButton() {
@@ -46,24 +48,43 @@ const Tour = ({ steps = [] }) => {
   }
 
   const clearPreviousWorker = (oldIndex) => {
-    elements[oldIndex].classList.remove('tour--js-target');
+    document
+      .querySelector(steps[oldIndex].selector)
+      .classList.remove('tour--js-target');
   };
 
   const changeStep = (newCurrentIndex) => {
     clearPreviousWorker(currentIndex);
     currentIndex = newCurrentIndex;
-    placeWorker(currentIndex);
+    placeWorker(newCurrentIndex);
   };
 
   const start = () => {
+    if (steps.length === 0) {
+      throw new Error('Steps cannot be empty');
+    }
+
     initialize();
-    window.addEventListener('resize', placeWorker);
+    window.addEventListener('resize', () => {
+      placeWorker(currentIndex);
+    });
+  };
+
+  const createStep = (selector) => {
+    steps.push({
+      selector,
+      title: 'Click to change title 📌',
+      content: 'Click for changing content...',
+      isEditMode: true,
+    });
+    start();
   };
 
   return {
     // options: {},
     steps,
     start,
+    createStep,
   };
 };
 

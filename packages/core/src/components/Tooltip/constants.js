@@ -8,9 +8,6 @@ export const TOOLTIP_TITLE = {
     overflow-wrap: break-word;
     line-height: 1.5;
   `,
-  element(data) {
-    return data ? `<div class='${TOOLTIP_TITLE.class}'>${data}</div>` : '';
-  },
 };
 
 export const TOOLTIP_CONTENT = {
@@ -23,9 +20,6 @@ export const TOOLTIP_CONTENT = {
     overflow-wrap: break-word;
     line-height: 1.5;
   `,
-  element(data) {
-    return data ? `<div class='${TOOLTIP_CONTENT.class}'>${data}</div>` : '';
-  },
 };
 
 export const TOOLTIP_BUTTON = {
@@ -48,22 +42,12 @@ export const TOOLTIP_PREV_BUTTON = {
   class: 'tour--tooltip-prev',
   css: `
   `,
-  element(data) {
-    return data
-      ? `<button class='${TOOLTIP_BUTTON.class} ${TOOLTIP_PREV_BUTTON.class}'>${data}</button>`
-      : '';
-  },
 };
 
 export const TOOLTIP_NEXT_BUTTON = {
   class: 'tour--tooltip-next',
   css: `
   `,
-  element(data) {
-    return data
-      ? `<button class='${TOOLTIP_BUTTON.class} ${TOOLTIP_NEXT_BUTTON.class}'>${data}</button>`
-      : '';
-  },
 };
 
 export const TOOLTIP_FINISH_BUTTON = {
@@ -71,11 +55,6 @@ export const TOOLTIP_FINISH_BUTTON = {
   css: `
     background-color: #eb4d4b;
   `,
-  element(data) {
-    return data
-      ? `<button class='${TOOLTIP_BUTTON.class} ${TOOLTIP_FINISH_BUTTON.class}'>${data}</button>`
-      : '';
-  },
 };
 
 export const TOOLTIP_FOOTER = {
@@ -88,15 +67,6 @@ export const TOOLTIP_FOOTER = {
     margin-top: 12px;
     overflow-wrap: break-word;
   `,
-  element(data) {
-    return `
-      <div class='${TOOLTIP_FOOTER.class}'>
-        ${TOOLTIP_PREV_BUTTON.element(data.prev)}
-        ${TOOLTIP_NEXT_BUTTON.element(data.next)}
-        ${TOOLTIP_FINISH_BUTTON.element(data.finish)}
-       </div>
-    `;
-  },
 };
 
 export const TOOLTIP = {
@@ -114,17 +84,49 @@ export const TOOLTIP = {
     transition: all ${TRANSITION_DURATION}ms;
     line-height: 1.5;
   `,
-  innerElement({ title, content, next, prev, finish }) {
+  innerElement({ title, content, next, prev, finish, isEditMode }) {
     return `
-      ${TOOLTIP_TITLE.element(title)}
-      ${TOOLTIP_CONTENT.element(content)}
-      ${TOOLTIP_FOOTER.element({ next, prev, finish })}
+      ${
+        title
+          ? `<div class='${TOOLTIP_TITLE.class}' contenteditable='${isEditMode}'>${title}</div>`
+          : ''
+      }
+      ${
+        content
+          ? `<div class='${TOOLTIP_CONTENT.class}' contenteditable='${isEditMode}'>${content}</div>`
+          : ''
+      }
+      <div class='${TOOLTIP_FOOTER.class}' contenteditable='${isEditMode}'>
+        ${
+          prev
+            ? `<button class='${TOOLTIP_BUTTON.class} ${TOOLTIP_PREV_BUTTON.class}' contenteditable='${isEditMode}'>${prev}</button>`
+            : ''
+        }
+        ${
+          next
+            ? `<button class='${TOOLTIP_BUTTON.class} ${TOOLTIP_NEXT_BUTTON.class}' contenteditable='${isEditMode}'>${next}</button>`
+            : ''
+        }
+        ${
+          finish
+            ? `<button class='${TOOLTIP_BUTTON.class} ${TOOLTIP_FINISH_BUTTON.class}' contenteditable='${isEditMode}'>${finish}</button>`
+            : ''
+        }
+      </div>
     `;
   },
-  element({ prev, next, title, content }) {
+  element(args) {
     return `
       <div class='${this.class}'>
-        ${this.innerElement({ prev, next, title, content })}
+        ${this.innerElement(args)}
+        ${
+          args.isEditMode
+            ? `
+              <button id='tour--toultip-edit-success' style='position:absolute;bottom:-62px;left:0;'>Done</button>
+              <button id='tour--toultip-edit-failed' style='position:absolute;bottom:-62px;left:84px;'>Cancel</button>
+              `
+            : ''
+        }
       </div>
     `;
   },
