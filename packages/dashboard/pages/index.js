@@ -2,39 +2,41 @@ import { useEffect } from "react";
 
 import Tour from "@tour.js/core";
 
-// const tour = Tour({
-//   steps: [
-//     {
-//       selector: ".box-1",
-//       title: "First Title 🚀",
-//       content:
-//         "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-//     },
-//     {
-//       selector: ".box-2",
-//       title: "Second Title 🔥",
-//       content:
-//         "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-//       next: "Custom next ",
-//       prev: "Custom prev",
-//     },
-//     {
-//       selector: "h1",
-//       title: "H1 Title 🔥",
-//       content:
-//         "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-//     },
-//     {
-//       selector: ".box-3",
-//       title: "Third Title ✨",
-//       content:
-//         "but also the leasp into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of",
-//       finish: "Custom Finish",
-//     },
-//   ],
-// });
-
-const tour = Tour();
+const tour = Tour({
+  steps: [
+    {
+      selector: ".box-1",
+      title: "First Title 🚀",
+      content:
+        "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+      next: "Custom next ",
+    },
+    {
+      selector: ".box-2",
+      title: "Second Title 🔥",
+      content:
+        "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+      next: "Custom next ",
+      prev: "Custom prev",
+    },
+    {
+      selector: "h1",
+      title: "H1 Title 🔥",
+      content:
+        "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+      next: "Custom next ",
+      prev: "Custom prev",
+    },
+    {
+      selector: ".box-3",
+      title: "Third Title ✨",
+      content:
+        "but also the leasp into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of",
+      prev: "Custom prev",
+      finish: "Custom Finish",
+    },
+  ],
+});
 
 const Home = () => {
   useEffect(() => {}, []);

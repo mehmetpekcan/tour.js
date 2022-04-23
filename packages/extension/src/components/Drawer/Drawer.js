@@ -11,22 +11,30 @@ const HTML_ROOTS = ["HTML", "BODY"];
 
 const getElementMeta = (element) => element.getBoundingClientRect();
 
+const tour = Tour();
+
 function Drawer({ isVisible }) {
   // TODO: should be false by default, `true` just for test purpose
   const [isHighlighterVisible, setHighlighterVisible] = useState(true);
   const highlighterRef = useRef();
 
   useEffect(() => {
-    // TODO: shouldn't be called by default, called just for test purpose
-    addStep();
-
     return () => {
       // TODO: clean the listeners if exist
     };
   }, []);
 
+  // To prevent existing events of elements inside the webpage
+  const removeAllEvents = (event) => {
+    event.stopPropagation();
+    event.preventDefault();
+  };
+
   const openEditor = (event) => {
-    console.log(event);
+    tour.createStep(event.target);
+    setHighlighterVisible(false);
+    window.removeEventListener("mouseover", listenWindowElements);
+    document.removeEventListener("click", removeAllEvents, true);
   };
 
   const listenWindowElements = ({ target }) => {
@@ -70,12 +78,6 @@ function Drawer({ isVisible }) {
   };
 
   const addStep = () => {
-    // To prevent existing events of elements inside the webpage
-    const removeAllEvents = (event) => {
-      event.stopPropagation();
-      event.preventDefault();
-    };
-
     document.addEventListener("click", removeAllEvents, true);
     window.addEventListener("mouseover", listenWindowElements);
   };

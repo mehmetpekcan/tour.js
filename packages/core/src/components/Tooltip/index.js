@@ -3,72 +3,75 @@ import { HIGHLIGHTER_BORDER } from '../Highlighter/constants';
 import { createElementFromHTML } from '../../helpers';
 
 const defaultTooltipContent = {
-  next: 'Next',
-  prev: 'Previous',
   header: 'Header',
   body: 'Hulog',
-  finish: 'Finish',
 };
 
-function Tooltip({ onNext, onPrev, onFinish }) {
-  let tooltipElement;
+const noop = () => {};
 
-  const remove = () => {
-    tooltipElement.outerHTML = null;
-  };
+class Tooltip {
+  constructor({
+    onNext,
+    onPrev,
+    onFinish,
+    onEditNegative,
+    onEditPositive,
+  } = {}) {
+    this.onNext = onNext || noop;
+    this.onPrev = onPrev || noop;
+    this.onFinish = onFinish || noop;
+    this.onEditNegative = onEditNegative || noop;
+    this.onEditPositive = onEditPositive || noop;
+  }
 
-  const render = (
-    targetPosition = null,
-    content = {},
-    hasPrev = false,
-    hasNext = 0
-  ) => {
-    tooltipElement = document.querySelector('.tour--tooltip-wrapper');
+  bindEvents() {
+    const prefix = '.tour--tooltip';
+    const events = [
+      { selector: `${prefix}-next`, handler: this.onNext },
+      { selector: `${prefix}-prev`, handler: this.onPrev },
+      { selector: `${prefix}-finish`, handler: this.onFinish },
+      { selector: `${prefix}-edit-positive`, handler: this.onEditPositive },
+      { selector: `${prefix}-edit-negative`, handler: this.onEditNegative },
+    ];
+
+    events.forEach(({ selector, handler }) => {
+      const button = document.querySelector(selector);
+
+      if (button) {
+        button.addEventListener('click', handler, { once: true });
+      }
+    });
+  }
+
+  remove() {
+    this.tooltipElement.outerHTML = null;
+  }
+
+  render(targetPosition = null, content = {}) {
+    this.tooltipElement = document.querySelector('.tour--tooltip-wrapper');
     const args = { ...defaultTooltipContent, ...content };
 
-    if (!hasPrev) args.prev = null;
-    if (!hasNext) args.next = null;
-    else args.finish = null;
-
-    if (!tooltipElement) {
+    if (!this.tooltipElement) {
       const tooltipHTML = TOOLTIP.element(args);
 
-      tooltipElement = createElementFromHTML(tooltipHTML);
-      document.body.append(tooltipElement);
+      this.tooltipElement = createElementFromHTML(tooltipHTML);
+      document.body.append(this.tooltipElement);
     } else {
-      tooltipElement.innerHTML = TOOLTIP.innerElement(args);
+      this.tooltipElement.innerHTML = TOOLTIP.innerElement(args);
     }
 
-    if (!args.isEditMode) {
-      const nextButton = document.querySelector('.tour--tooltip-next');
-      const prevButton = document.querySelector('.tour--tooltip-prev');
-      const finishButton = document.querySelector('.tour--tooltip-finish');
-
-      if (nextButton) {
-        nextButton.addEventListener('click', onNext, { once: true });
-      }
-
-      if (prevButton) {
-        prevButton.addEventListener('click', onPrev, { once: true });
-      }
-
-      if (finishButton) {
-        finishButton.addEventListener('click', onFinish, { once: true });
-      }
-    }
+    this.bindEvents();
 
     setTimeout(() => {
       const { height, top, left } = targetPosition;
       const leftValue = `${left - HIGHLIGHTER_BORDER}px`;
       const topValue = `${top + height + HIGHLIGHTER_BORDER + 16}px`;
 
-      tooltipElement.classList.add('visible');
-      tooltipElement.style.setProperty('top', topValue);
-      tooltipElement.style.setProperty('left', leftValue);
+      this.tooltipElement.classList.add('visible');
+      this.tooltipElement.style.setProperty('top', topValue);
+      this.tooltipElement.style.setProperty('left', leftValue);
     }, 0);
-  };
-
-  return { render, remove };
+  }
 }
 
 export default Tooltip;

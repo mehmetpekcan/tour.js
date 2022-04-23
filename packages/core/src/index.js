@@ -11,7 +11,7 @@ const Tour = ({ steps = [] } = {}) => {
   let currentIndex = 0;
 
   const highlighter = Highlighter();
-  const tooltip = Tooltip({
+  const tooltip = new Tooltip({
     // eslint-disable-next-line no-use-before-define
     onNext: () => changeStep(currentIndex + 1),
     // eslint-disable-next-line no-use-before-define
@@ -20,24 +20,22 @@ const Tour = ({ steps = [] } = {}) => {
     onFinish: handleFinishButton,
   });
 
-  const placeWorker = (stepIndex) => {
-    const { selector, ...content } = steps[stepIndex];
-    const targetElement = document.querySelector(selector);
+  const placeWorker = ({ selector, target, ...content }) => {
+    let targetElement;
+
+    if (target) {
+      targetElement = target;
+    } else if (selector) {
+      targetElement = document.querySelector(selector);
+    } else {
+      throw new Error('Please provide at least target element or selector');
+    }
+
     const targetPosition = getElementMeta(targetElement);
 
-    tooltip.render(
-      targetPosition,
-      content,
-      stepIndex !== 0,
-      stepIndex !== steps.length - 1
-    );
+    tooltip.render(targetPosition, content);
     highlighter.render(targetPosition, {});
     targetElement.classList.add('tour--js-target');
-  };
-
-  const initialize = () => {
-    injectDefaultStyles();
-    placeWorker(0);
   };
 
   function handleFinishButton() {
@@ -56,7 +54,7 @@ const Tour = ({ steps = [] } = {}) => {
   const changeStep = (newCurrentIndex) => {
     clearPreviousWorker(currentIndex);
     currentIndex = newCurrentIndex;
-    placeWorker(newCurrentIndex);
+    placeWorker(steps[newCurrentIndex]);
   };
 
   const start = () => {
@@ -64,20 +62,36 @@ const Tour = ({ steps = [] } = {}) => {
       throw new Error('Steps cannot be empty');
     }
 
-    initialize();
+    injectDefaultStyles();
+    placeWorker(steps[0]);
+
     window.addEventListener('resize', () => {
-      placeWorker(currentIndex);
+      placeWorker(steps[currentIndex]);
     });
   };
 
-  const createStep = (selector) => {
-    steps.push({
-      selector,
+  const createStep = (target) => {
+    const basicStep = {
+      target,
       title: 'Click to change title 📌',
       content: 'Click for changing content...',
       isEditMode: true,
+    };
+
+    tooltip.onEditPositive = () => {
+      console.log('Positive');
+    };
+
+    tooltip.onEditNegative = () => {
+      console.log('Negative');
+    };
+
+    injectDefaultStyles();
+    placeWorker(basicStep);
+
+    window.addEventListener('resize', () => {
+      placeWorker(basicStep);
     });
-    start();
   };
 
   return {
