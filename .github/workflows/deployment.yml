@@ -19,7 +19,7 @@ jobs:
           node-version: "14"
 
       - name: Build 🚀
-        run: yarn extension:deploy
+        run: yarn extension:build
 
       - name: Create .nojekyll file
         run: touch ./packages/extension/build/.nojekyll
