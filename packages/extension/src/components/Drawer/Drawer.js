@@ -42,7 +42,7 @@ function Drawer({ isVisible }) {
     tour.createStep(event.target, callback);
     setHighlighterVisible(false);
     window.removeEventListener("mouseover", listenWindowElements);
-    document.removeEventListener("click", removeAllEvents, true);
+    // document.removeEventListener("click", removeAllEvents, true);
   };
 
   const listenWindowElements = ({ target }) => {
@@ -85,7 +85,7 @@ function Drawer({ isVisible }) {
 
   const addStep = () => {
     setHighlighterVisible(true);
-    document.addEventListener("click", removeAllEvents, true);
+    // document.addEventListener("click", removeAllEvents, true);
     window.addEventListener("mouseover", listenWindowElements);
   };
 

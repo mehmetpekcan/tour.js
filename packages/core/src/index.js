@@ -50,9 +50,16 @@ const Tour = ({ steps = [] } = {}) => {
   }
 
   const clearPreviousWorker = (oldIndex) => {
-    document
-      .querySelector(steps[oldIndex].selector)
-      .classList.remove('tour--js-target');
+    const oldStep = steps[oldIndex];
+    let element;
+
+    if (oldStep.selector) {
+      element = document.querySelector(oldStep.selector);
+    } else {
+      element = oldStep.target;
+    }
+
+    element.classList.remove('tour--js-target');
   };
 
   const changeStep = (newCurrentIndex) => {

@@ -25,6 +25,7 @@ export const CONTENT = {
 export const BUTTON = {
   class: 'tour--tooltip-button',
   css: `
+    cursor: pointer;
     letter-spacing: .2px;
     border: 0;
     outline: 0;
@@ -42,12 +43,22 @@ export const PREV_BUTTON = {
   class: 'tour--tooltip-prev',
   css: `
   `,
+  element({ prev, isEditMode = false }) {
+    return prev
+      ? `<button class='${BUTTON.class} ${this.class}' contenteditable='${isEditMode}' style='${this.css}'>${prev}</button>`
+      : '';
+  },
 };
 
 export const NEXT_BUTTON = {
   class: 'tour--tooltip-next',
   css: `
   `,
+  element({ next, isEditMode = false }) {
+    return next
+      ? `<button class='${BUTTON.class} ${this.class}' contenteditable='${isEditMode}' style='${this.css}'>${next}</button>`
+      : '';
+  },
 };
 
 export const FINISH_BUTTON = {
@@ -55,6 +66,11 @@ export const FINISH_BUTTON = {
   css: `
     background-color: #eb4d4b;
   `,
+  element({ finish, isEditMode = false }) {
+    return finish
+      ? `<button class='${BUTTON.class} tour--tooltip-finish ${this.class}' contenteditable='${isEditMode}' style='${this.css}'>${finish}</button>`
+      : '';
+  },
 };
 
 export const FOOTER = {
@@ -115,21 +131,9 @@ export const TOOLTIP = {
       <div class='${FOOTER.class}' contenteditable='${isEditMode}' style='${
       FOOTER.css
     }'>
-        ${
-          prev
-            ? `<button class='${BUTTON.class} ${PREV_BUTTON.class}' contenteditable='${isEditMode}' style='${PREV_BUTTON.css}'>${prev}</button>`
-            : ''
-        }
-        ${
-          next
-            ? `<button class='${BUTTON.class} ${NEXT_BUTTON.class}' contenteditable='${isEditMode}' style='${NEXT_BUTTON.css}'>${next}</button>`
-            : ''
-        }
-        ${
-          finish
-            ? `<button class='${BUTTON.class} ${FINISH_BUTTON.class}' contenteditable='${isEditMode}' style='${FINISH_BUTTON.css}'>${finish}</button>`
-            : ''
-        }
+        ${PREV_BUTTON.element({ prev, isEditMode })}
+        ${NEXT_BUTTON.element({ next, isEditMode })}
+        ${FINISH_BUTTON.element({ finish, isEditMode })}
       </div>
     `;
   },
