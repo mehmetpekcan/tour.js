@@ -9,7 +9,6 @@ export const HIGHLIGHTER = {
     position: absolute;
     z-index: 998;
     opacity: 0;
-    visibility: hidden;
     border: ${HIGHLIGHTER_BORDER}px solid rgba(255, 255, 255, .8);
     background-color: transparent;
     transition: all ${TRANSITION_DURATION}ms;
@@ -17,6 +16,6 @@ export const HIGHLIGHTER = {
     border-radius: 8px;
   `,
   element() {
-    return `<div class='${this.class}'></div>`;
+    return `<div class='${this.class}' style='${this.css}'></div>`;
   },
 };

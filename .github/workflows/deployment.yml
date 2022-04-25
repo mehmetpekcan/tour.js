@@ -19,7 +19,8 @@ jobs:
           node-version: "14"
 
       - name: Build 🚀
-        run: yarn dashboard:build
+        run: yarn extension:build
+        run: yarn extension:start
 
       - name: Create .nojekyll file
         run: touch ./packages/dashboard/out/.nojekyll

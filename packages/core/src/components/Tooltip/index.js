@@ -1,81 +1,115 @@
-import { TOOLTIP } from './constants';
+import * as constant from './constants';
 import { HIGHLIGHTER_BORDER } from '../Highlighter/constants';
-import { createElementFromHTML, getElementMeta } from '../../helpers';
+import { createElementFromHTML } from '../../helpers';
 
-const defaultTooltipOptions = {
-  next: 'Next',
-  prev: 'Previous',
+const defaultTooltipContent = {
   header: 'Header',
   body: 'Hulog',
 };
 
-function Tooltip({ onNext, onPrev, onFinish }) {
-  let tooltipElement;
+const noop = () => {};
 
-  const remove = () => {
-    tooltipElement.outerHTML = null;
-  };
+class Tooltip {
+  constructor({
+    onNext,
+    onPrev,
+    onFinish,
+    onEditNegative,
+    onEditPositive,
+  } = {}) {
+    this.onNext = onNext || noop;
+    this.onPrev = onPrev || noop;
+    this.onFinish = onFinish || noop;
+    this.onEditNegative = onEditNegative || noop;
+    this.onEditPositive = onEditPositive || noop;
+    this.constant = constant;
+  }
 
-  const render = (
-    targetElement = null,
-    options = {},
-    index = 0,
-    length = 0
-  ) => {
-    tooltipElement = document.querySelector('.tour--tooltip-wrapper');
-    const args = { ...defaultTooltipOptions, ...options };
+  onEditNextButtonClick() {
+    const footer = document.querySelector(`.${constant.FOOTER.class}`);
+    const button = createElementFromHTML(
+      constant.NEXT_BUTTON.element({ next: 'Next', isEditMode: true })
+    );
+    footer.appendChild(button);
 
-    if (index === 0) {
-      args.prev = null;
-    } else if (index === length - 1) {
-      args.next = null;
-    }
+    return this;
+  }
 
-    if (!tooltipElement) {
-      const tooltipHTML = TOOLTIP.element(args);
+  onEditPrevButtonClick() {
+    const footer = document.querySelector(`.${constant.FOOTER.class}`);
+    const button = createElementFromHTML(
+      constant.PREV_BUTTON.element({ prev: 'Prev', isEditMode: true })
+    );
+    footer.appendChild(button);
 
-      tooltipElement = createElementFromHTML(tooltipHTML);
-      document.body.append(tooltipElement);
+    return this;
+  }
+
+  onEditFinishButtonClick() {
+    const footer = document.querySelector(`.${constant.FOOTER.class}`);
+    const button = createElementFromHTML(
+      constant.FINISH_BUTTON.element({ finish: 'Finish', isEditMode: true })
+    );
+
+    footer.appendChild(button);
+
+    return this;
+  }
+
+  bindEvents() {
+    const prefix = '.tour--tooltip';
+    const events = [
+      { selector: `${prefix}-next`, handler: this.onNext },
+      { selector: `${prefix}-prev`, handler: this.onPrev },
+      { selector: `${prefix}-finish`, handler: this.onFinish },
+      { selector: `${prefix}-edit-positive`, handler: this.onEditPositive },
+      { selector: `${prefix}-edit-negative`, handler: this.onEditNegative },
+      { selector: `${prefix}-edit-next`, handler: this.onEditNextButtonClick },
+      { selector: `${prefix}-edit-prev`, handler: this.onEditPrevButtonClick },
+      {
+        selector: `${prefix}-edit-finish`,
+        handler: this.onEditFinishButtonClick,
+      },
+    ];
+
+    events.forEach(({ selector, handler }) => {
+      const button = document.querySelector(selector);
+
+      if (button) {
+        button.addEventListener('click', handler, { once: true });
+      }
+    });
+  }
+
+  remove() {
+    this.tooltipElement.outerHTML = null;
+  }
+
+  render(targetPosition = null, content = {}) {
+    this.tooltipElement = document.querySelector('.tour--tooltip-wrapper');
+    const args = { ...defaultTooltipContent, ...content };
+
+    if (!this.tooltipElement) {
+      const tooltipHTML = constant.TOOLTIP.element(args);
+
+      this.tooltipElement = createElementFromHTML(tooltipHTML);
+      document.body.append(this.tooltipElement);
     } else {
-      tooltipElement.innerHTML = TOOLTIP.innerElement(args);
+      this.tooltipElement.innerHTML = constant.TOOLTIP.innerElement(args);
     }
 
-    const nextButton = document.querySelector('.tour--tooltip-next');
-    const prevButton = document.querySelector('.tour--tooltip-prev');
-    const finishButton = document.querySelector('.tour--tooltip-finish');
+    this.bindEvents();
 
-    if (nextButton) {
-      nextButton.addEventListener('click', function onClick() {
-        onNext();
-        nextButton.removeEventListener('click', onClick);
-      });
-    }
+    setTimeout(() => {
+      const { height, top, left } = targetPosition;
+      const leftValue = `${left - HIGHLIGHTER_BORDER}px`;
+      const topValue = `${top + height + HIGHLIGHTER_BORDER + 16}px`;
 
-    if (prevButton) {
-      prevButton.addEventListener('click', function onClick() {
-        onPrev();
-        prevButton.removeEventListener('click', onClick);
-      });
-    }
-
-    if (finishButton) {
-      finishButton.addEventListener('click', function onClick() {
-        onFinish();
-        finishButton.removeEventListener('click', onClick);
-      });
-    }
-
-    const { height, top, left } = getElementMeta(targetElement);
-
-    const leftValue = `${left - HIGHLIGHTER_BORDER}px`;
-    const topValue = `${top + height + HIGHLIGHTER_BORDER + 16}px`;
-
-    tooltipElement.classList.add('visible');
-    tooltipElement.style.setProperty('top', topValue);
-    tooltipElement.style.setProperty('left', leftValue);
-  };
-
-  return { render, remove };
+      this.tooltipElement.classList.add('visible');
+      this.tooltipElement.style.setProperty('top', topValue);
+      this.tooltipElement.style.setProperty('left', leftValue);
+    }, 0);
+  }
 }
 
 export default Tooltip;

@@ -1,0 +1,26 @@
+.drawer {
+  position: fixed;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 20rem;
+  background-color: #eee;
+}
+
+.drawer.visible {
+  display: block;
+}
+
+.drawer.hidden {
+  display: none;
+  visibility: none;
+}
+
+.highlighter {
+  display: inline-block;
+  position: absolute;
+  background: transparent;
+  border: 2px solid blue;
+  z-index: -1;
+  transition: all 300ms;
+}

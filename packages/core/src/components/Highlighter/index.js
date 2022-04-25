@@ -1,34 +1,36 @@
 import { HIGHLIGHTER_BORDER, HIGHLIGHTER } from './constants';
-import { createElementFromHTML, getElementMeta } from '../../helpers';
+import { createElementFromHTML } from '../../helpers';
 
-const defaultHighlighterOptions = {};
+const defaultHighlighterContent = {};
 
 function Highlighter() {
   let highlighterElement;
 
-  const render = (targetElement, options = {}) => {
+  const render = (targetPosition, content = {}) => {
     highlighterElement = document.querySelector('.tour--highlighter-wrapper');
 
     if (!highlighterElement) {
-      const args = { ...defaultHighlighterOptions, ...options };
+      const args = { ...defaultHighlighterContent, ...content };
       const highlighterHTML = HIGHLIGHTER.element(args);
 
       highlighterElement = createElementFromHTML(highlighterHTML);
       document.body.append(highlighterElement);
     }
 
-    const { width, height, top, left } = getElementMeta(targetElement);
+    setTimeout(() => {
+      const { width, height, top, left } = targetPosition;
 
-    const widthValue = `${width}px`;
-    const heightValue = `${height}px`;
-    const topValue = `${top - HIGHLIGHTER_BORDER}px`;
-    const leftValue = `${left - HIGHLIGHTER_BORDER}px`;
+      const widthValue = `${width}px`;
+      const heightValue = `${height}px`;
+      const topValue = `${top - HIGHLIGHTER_BORDER}px`;
+      const leftValue = `${left - HIGHLIGHTER_BORDER}px`;
 
-    highlighterElement.classList.add('visible');
-    highlighterElement.style.setProperty('width', widthValue);
-    highlighterElement.style.setProperty('height', heightValue);
-    highlighterElement.style.setProperty('top', topValue);
-    highlighterElement.style.setProperty('left', leftValue);
+      highlighterElement.classList.add('visible');
+      highlighterElement.style.setProperty('width', widthValue);
+      highlighterElement.style.setProperty('height', heightValue);
+      highlighterElement.style.setProperty('top', topValue);
+      highlighterElement.style.setProperty('left', leftValue);
+    }, 0);
   };
 
   const remove = () => {

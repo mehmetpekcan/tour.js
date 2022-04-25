@@ -1,6 +1,6 @@
 import { TRANSITION_DURATION } from '../../constants';
 
-export const TOOLTIP_TITLE = {
+export const TITLE = {
   class: 'tour--tooltip-title',
   css: `
     font-weight: 700;
@@ -8,12 +8,9 @@ export const TOOLTIP_TITLE = {
     overflow-wrap: break-word;
     line-height: 1.5;
   `,
-  element(data) {
-    return data ? `<div class='${TOOLTIP_TITLE.class}'>${data}</div>` : '';
-  },
 };
 
-export const TOOLTIP_CONTENT = {
+export const CONTENT = {
   class: 'tour--tooltip-content',
   css: `
     color: #2c3e50;
@@ -23,14 +20,12 @@ export const TOOLTIP_CONTENT = {
     overflow-wrap: break-word;
     line-height: 1.5;
   `,
-  element(data) {
-    return data ? `<div class='${TOOLTIP_CONTENT.class}'>${data}</div>` : '';
-  },
 };
 
-export const TOOLTIP_BUTTON = {
+export const BUTTON = {
   class: 'tour--tooltip-button',
   css: `
+    cursor: pointer;
     letter-spacing: .2px;
     border: 0;
     outline: 0;
@@ -44,41 +39,41 @@ export const TOOLTIP_BUTTON = {
   `,
 };
 
-export const TOOLTIP_PREV_BUTTON = {
+export const PREV_BUTTON = {
   class: 'tour--tooltip-prev',
   css: `
   `,
-  element(data) {
-    return data
-      ? `<button class='${TOOLTIP_BUTTON.class} ${TOOLTIP_PREV_BUTTON.class}'>${data}</button>`
+  element({ prev, isEditMode = false }) {
+    return prev
+      ? `<button class='${BUTTON.class} ${this.class}' contenteditable='${isEditMode}' style='${this.css}'>${prev}</button>`
       : '';
   },
 };
 
-export const TOOLTIP_NEXT_BUTTON = {
+export const NEXT_BUTTON = {
   class: 'tour--tooltip-next',
   css: `
   `,
-  element(data) {
-    return data
-      ? `<button class='${TOOLTIP_BUTTON.class} ${TOOLTIP_NEXT_BUTTON.class}'>${data}</button>`
+  element({ next, isEditMode = false }) {
+    return next
+      ? `<button class='${BUTTON.class} ${this.class}' contenteditable='${isEditMode}' style='${this.css}'>${next}</button>`
       : '';
   },
 };
 
-export const TOOLTIP_FINISH_BUTTON = {
+export const FINISH_BUTTON = {
   class: 'tour--tooltip-finish',
   css: `
     background-color: #eb4d4b;
   `,
-  element(data) {
-    return data
-      ? `<button class='${TOOLTIP_BUTTON.class} ${TOOLTIP_FINISH_BUTTON.class}'>${data}</button>`
+  element({ finish, isEditMode = false }) {
+    return finish
+      ? `<button class='${BUTTON.class} tour--tooltip-finish ${this.class}' contenteditable='${isEditMode}' style='${this.css}'>${finish}</button>`
       : '';
   },
 };
 
-export const TOOLTIP_FOOTER = {
+export const FOOTER = {
   class: 'tour--tooltip-footer',
   css: `
     display: flex;
@@ -88,13 +83,20 @@ export const TOOLTIP_FOOTER = {
     margin-top: 12px;
     overflow-wrap: break-word;
   `,
-  element(data) {
+};
+
+export const EDITOR = {
+  class: 'tour-tooltip-editor',
+  css: ``,
+  element() {
     return `
-      <div class='${TOOLTIP_FOOTER.class}'>
-        ${TOOLTIP_PREV_BUTTON.element(data.prev)}
-        ${TOOLTIP_NEXT_BUTTON.element(data.next)}
-        ${TOOLTIP_FINISH_BUTTON.element(data.finish)}
-       </div>
+      <div class="${this.class}}">
+        <button class="tour--tooltip-edit-positive">Done</button>
+        <button class="tour--tooltip-edit-negative">Cancel</button>
+        <button class="tour--tooltip-edit-next">Add Next Button</button>
+        <button class="tour--tooltip-edit-prev">Add Prev Button</button>
+        <button class="tour--tooltip-edit-finish">Add Finish Button</button>
+      </div>
     `;
   },
 };
@@ -114,17 +116,32 @@ export const TOOLTIP = {
     transition: all ${TRANSITION_DURATION}ms;
     line-height: 1.5;
   `,
-  innerElement({ title, content, next, prev, finish }) {
+  innerElement({ title, content, next, prev, finish, isEditMode }) {
     return `
-      ${TOOLTIP_TITLE.element(title)}
-      ${TOOLTIP_CONTENT.element(content)}
-      ${TOOLTIP_FOOTER.element({ next, prev, finish })}
+      ${
+        title
+          ? `<div class='${TITLE.class}' contenteditable='${isEditMode}' style='${TITLE.css}'>${title}</div>`
+          : ''
+      }
+      ${
+        content
+          ? `<div class='${CONTENT.class}' contenteditable='${isEditMode}' style='${CONTENT.css}'>${content}</div>`
+          : ''
+      }
+      <div class='${FOOTER.class}' contenteditable='${isEditMode}' style='${
+      FOOTER.css
+    }'>
+        ${PREV_BUTTON.element({ prev, isEditMode })}
+        ${NEXT_BUTTON.element({ next, isEditMode })}
+        ${FINISH_BUTTON.element({ finish, isEditMode })}
+      </div>
     `;
   },
-  element({ prev, next, title, content }) {
+  element(args) {
     return `
-      <div class='${this.class}'>
-        ${this.innerElement({ prev, next, title, content })}
+      <div class='${this.class}' style='${this.css}'>
+        ${this.innerElement(args)}
+        ${args.isEditMode ? EDITOR.element() : ''}
       </div>
     `;
   },
