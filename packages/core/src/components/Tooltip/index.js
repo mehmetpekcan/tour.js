@@ -1,4 +1,4 @@
-import { TOOLTIP } from './constants';
+import * as constant from './constants';
 import { HIGHLIGHTER_BORDER } from '../Highlighter/constants';
 import { createElementFromHTML } from '../../helpers';
 
@@ -22,6 +22,7 @@ class Tooltip {
     this.onFinish = onFinish || noop;
     this.onEditNegative = onEditNegative || noop;
     this.onEditPositive = onEditPositive || noop;
+    this.constant = constant;
   }
 
   bindEvents() {
@@ -52,12 +53,12 @@ class Tooltip {
     const args = { ...defaultTooltipContent, ...content };
 
     if (!this.tooltipElement) {
-      const tooltipHTML = TOOLTIP.element(args);
+      const tooltipHTML = constant.TOOLTIP.element(args);
 
       this.tooltipElement = createElementFromHTML(tooltipHTML);
       document.body.append(this.tooltipElement);
     } else {
-      this.tooltipElement.innerHTML = TOOLTIP.innerElement(args);
+      this.tooltipElement.innerHTML = constant.TOOLTIP.innerElement(args);
     }
 
     this.bindEvents();

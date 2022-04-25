@@ -1,14 +1,4 @@
-import { HIGHLIGHTER } from '../components/Highlighter/constants';
-import {
-  TOOLTIP,
-  TOOLTIP_BUTTON,
-  TOOLTIP_NEXT_BUTTON,
-  TOOLTIP_PREV_BUTTON,
-  TOOLTIP_FINISH_BUTTON,
-  TOOLTIP_FOOTER,
-  TOOLTIP_CONTENT,
-  TOOLTIP_TITLE,
-} from '../components/Tooltip/constants';
+import { BUTTON } from '../components/Tooltip/constants';
 
 export const insertElement = (newNode, existingNode) => {
   existingNode.parentNode.insertBefore(newNode, existingNode.nextSibling);
@@ -29,7 +19,7 @@ export const injectDefaultStyles = () => {
   // TODO: inject component styles with in their components
   style.id = 'tour--js-styles';
   style.innerHTML = `
-    .${TOOLTIP_BUTTON.class} { ${TOOLTIP_BUTTON.css} }
+    .${BUTTON.class} { ${BUTTON.css} }
     .visible { opacity: 1 !important; }
     .hidden { opacity: 0 !important; }
     .tour--js-target { z-index: 99999 !important; }

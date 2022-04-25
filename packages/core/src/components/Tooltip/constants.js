@@ -1,6 +1,6 @@
 import { TRANSITION_DURATION } from '../../constants';
 
-export const TOOLTIP_TITLE = {
+export const TITLE = {
   class: 'tour--tooltip-title',
   css: `
     font-weight: 700;
@@ -10,7 +10,7 @@ export const TOOLTIP_TITLE = {
   `,
 };
 
-export const TOOLTIP_CONTENT = {
+export const CONTENT = {
   class: 'tour--tooltip-content',
   css: `
     color: #2c3e50;
@@ -22,7 +22,7 @@ export const TOOLTIP_CONTENT = {
   `,
 };
 
-export const TOOLTIP_BUTTON = {
+export const BUTTON = {
   class: 'tour--tooltip-button',
   css: `
     letter-spacing: .2px;
@@ -38,26 +38,26 @@ export const TOOLTIP_BUTTON = {
   `,
 };
 
-export const TOOLTIP_PREV_BUTTON = {
+export const PREV_BUTTON = {
   class: 'tour--tooltip-prev',
   css: `
   `,
 };
 
-export const TOOLTIP_NEXT_BUTTON = {
+export const NEXT_BUTTON = {
   class: 'tour--tooltip-next',
   css: `
   `,
 };
 
-export const TOOLTIP_FINISH_BUTTON = {
+export const FINISH_BUTTON = {
   class: 'tour--tooltip-finish',
   css: `
     background-color: #eb4d4b;
   `,
 };
 
-export const TOOLTIP_FOOTER = {
+export const FOOTER = {
   class: 'tour--tooltip-footer',
   css: `
     display: flex;
@@ -69,7 +69,7 @@ export const TOOLTIP_FOOTER = {
   `,
 };
 
-export const TOOLTIP_EDITOR = {
+export const EDITOR = {
   class: 'tour-tooltip-editor',
   css: ``,
   element() {
@@ -104,30 +104,30 @@ export const TOOLTIP = {
     return `
       ${
         title
-          ? `<div class='${TOOLTIP_TITLE.class}' contenteditable='${isEditMode}' style='${TOOLTIP_TITLE.css}'>${title}</div>`
+          ? `<div class='${TITLE.class}' contenteditable='${isEditMode}' style='${TITLE.css}'>${title}</div>`
           : ''
       }
       ${
         content
-          ? `<div class='${TOOLTIP_CONTENT.class}' contenteditable='${isEditMode}' style='${TOOLTIP_CONTENT.css}'>${content}</div>`
+          ? `<div class='${CONTENT.class}' contenteditable='${isEditMode}' style='${CONTENT.css}'>${content}</div>`
           : ''
       }
-      <div class='${
-        TOOLTIP_FOOTER.class
-      }' contenteditable='${isEditMode}' style='${TOOLTIP_FOOTER.css}'>
+      <div class='${FOOTER.class}' contenteditable='${isEditMode}' style='${
+      FOOTER.css
+    }'>
         ${
           prev
-            ? `<button class='${TOOLTIP_BUTTON.class} ${TOOLTIP_PREV_BUTTON.class}' contenteditable='${isEditMode}' style='${TOOLTIP_PREV_BUTTON.css}'>${prev}</button>`
+            ? `<button class='${BUTTON.class} ${PREV_BUTTON.class}' contenteditable='${isEditMode}' style='${PREV_BUTTON.css}'>${prev}</button>`
             : ''
         }
         ${
           next
-            ? `<button class='${TOOLTIP_BUTTON.class} ${TOOLTIP_NEXT_BUTTON.class}' contenteditable='${isEditMode}' style='${TOOLTIP_NEXT_BUTTON.css}'>${next}</button>`
+            ? `<button class='${BUTTON.class} ${NEXT_BUTTON.class}' contenteditable='${isEditMode}' style='${NEXT_BUTTON.css}'>${next}</button>`
             : ''
         }
         ${
           finish
-            ? `<button class='${TOOLTIP_BUTTON.class} ${TOOLTIP_FINISH_BUTTON.class}' contenteditable='${isEditMode}' style='${TOOLTIP_FINISH_BUTTON.css}'>${finish}</button>`
+            ? `<button class='${BUTTON.class} ${FINISH_BUTTON.class}' contenteditable='${isEditMode}' style='${FINISH_BUTTON.css}'>${finish}</button>`
             : ''
         }
       </div>
@@ -137,7 +137,7 @@ export const TOOLTIP = {
     return `
       <div class='${this.class}' style='${this.css}'>
         ${this.innerElement(args)}
-        ${args.isEditMode ? TOOLTIP_EDITOR.element() : ''}
+        ${args.isEditMode ? EDITOR.element() : ''}
       </div>
     `;
   },

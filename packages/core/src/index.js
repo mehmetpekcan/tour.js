@@ -38,11 +38,15 @@ const Tour = ({ steps = [] } = {}) => {
     targetElement.classList.add('tour--js-target');
   };
 
-  function handleFinishButton() {
+  const clearTourWorker = () => {
     tooltip.remove();
     highlighter.remove();
-    currentIndex = 0;
     removeDefaultStyles();
+  };
+
+  function handleFinishButton() {
+    clearTourWorker();
+    currentIndex = 0;
   }
 
   const clearPreviousWorker = (oldIndex) => {
@@ -70,7 +74,7 @@ const Tour = ({ steps = [] } = {}) => {
     });
   };
 
-  const createStep = (target) => {
+  const createStep = (target, callback) => {
     const basicStep = {
       target,
       title: 'Click to change title 📌',
@@ -79,11 +83,36 @@ const Tour = ({ steps = [] } = {}) => {
     };
 
     tooltip.onEditPositive = () => {
-      console.log('Positive');
+      const { TITLE, CONTENT, PREV_BUTTON, NEXT_BUTTON, FINISH_BUTTON } =
+        tooltip.constant;
+
+      const title = document.querySelector(`.${TITLE.class}`)?.innerText;
+      const content = document.querySelector(`.${CONTENT.class}`)?.innerText;
+      const prev = document.querySelector(`.${PREV_BUTTON.class}`)?.innerText;
+      const next = document.querySelector(`.${NEXT_BUTTON.class}`)?.innerText;
+      const finish = document.querySelector(
+        `.${FINISH_BUTTON.class}`
+      )?.innerText;
+
+      clearTourWorker();
+      callback({
+        positive: true,
+        step: {
+          target,
+          title,
+          content,
+          prev,
+          next,
+          finish,
+        },
+      });
     };
 
     tooltip.onEditNegative = () => {
-      console.log('Negative');
+      clearTourWorker();
+      callback({
+        negative: true,
+      });
     };
 
     injectDefaultStyles();

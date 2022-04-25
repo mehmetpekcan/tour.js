@@ -11,9 +11,10 @@ const HTML_ROOTS = ["HTML", "BODY"];
 
 const getElementMeta = (element) => element.getBoundingClientRect();
 
-const tour = Tour();
+let tour = Tour();
 
 function Drawer({ isVisible }) {
+  const [steps, setSteps] = useState([]);
   // TODO: should be false by default, `true` just for test purpose
   const [isHighlighterVisible, setHighlighterVisible] = useState(true);
   const highlighterRef = useRef();
@@ -30,8 +31,15 @@ function Drawer({ isVisible }) {
     event.preventDefault();
   };
 
+  const callback = ({ positive, negative, step }) => {
+    if (positive) {
+      setSteps([...steps, step]);
+    } else {
+    }
+  };
+
   const openEditor = (event) => {
-    tour.createStep(event.target);
+    tour.createStep(event.target, callback);
     setHighlighterVisible(false);
     window.removeEventListener("mouseover", listenWindowElements);
     document.removeEventListener("click", removeAllEvents, true);
@@ -49,8 +57,6 @@ function Drawer({ isVisible }) {
     ) {
       return;
     }
-
-    setHighlighterVisible(true);
 
     const { top, left, width, height } = getElementMeta(target);
 
@@ -78,14 +84,42 @@ function Drawer({ isVisible }) {
   };
 
   const addStep = () => {
+    setHighlighterVisible(true);
     document.addEventListener("click", removeAllEvents, true);
     window.addEventListener("mouseover", listenWindowElements);
+  };
+
+  const startTour = () => {
+    tour = Tour({ steps });
+    tour.start();
   };
 
   return (
     <div className={`${style.drawer} ${isVisible ? `visible` : "hidden"}`}>
       <p>Drawer</p>
       <button onClick={addStep}>Add Step</button>
+      {steps.length > 0 && (
+        <>
+          <ul>
+            {steps.map((step, index) => (
+              <li key={index.toString()}>
+                Order: {index + 1}
+                <br />
+                Title: {step.title}
+                <br />
+                Content: {step.content}
+                <br />
+                Next Button: {step.next}
+                <br />
+                Prev Button: {step.prev}
+                <br />
+                Finish Button: {step.finish}
+              </li>
+            ))}
+          </ul>
+          <button onClick={startTour}>Start Tour</button>
+        </>
+      )}
       {isHighlighterVisible &&
         createPortal(
           <span className={style.highlighter} ref={highlighterRef} />,
