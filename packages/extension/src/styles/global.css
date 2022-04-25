@@ -11,3 +11,42 @@ body {
     "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
 }
+
+/* TODO: these are just for testing, they are gonna be deleted */
+.grid {
+  display: grid;
+  grid-template-columns: 200px 200px 200px;
+  grid-gap: 32px;
+}
+
+.box {
+  width: 200px;
+  height: 200px;
+  display: grid;
+  place-items: center;
+  background-color: #333;
+  color: #fff;
+  border-radius: 4px;
+}
+
+button {
+  border: 1px solid #333;
+  background-color: #eee;
+  padding: 8px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.grid button {
+  grid-column: 2;
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .grid > * {
+    grid-column: 1 !important;
+  }
+}

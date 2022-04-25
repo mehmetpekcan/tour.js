@@ -11,6 +11,40 @@ const HTML_ROOTS = ["HTML", "BODY"];
 
 const getElementMeta = (element) => element.getBoundingClientRect();
 
+const demoSteps = [
+  {
+    selector: ".box-1",
+    title: "First Title 🚀",
+    content:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+    next: "Custom next ",
+  },
+  {
+    selector: ".box-2",
+    title: "Second Title 🔥",
+    content:
+      "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+    next: "Custom next ",
+    prev: "Custom prev",
+  },
+  {
+    selector: "h1",
+    title: "H1 Title 🔥",
+    content:
+      "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+    next: "Custom next ",
+    prev: "Custom prev",
+  },
+  {
+    selector: ".box-3",
+    title: "Third Title ✨",
+    content:
+      "but also the leasp into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of",
+    prev: "Custom prev",
+    finish: "Custom Finish",
+  },
+];
+
 let tour = Tour();
 
 function Drawer({ isVisible }) {
@@ -35,6 +69,7 @@ function Drawer({ isVisible }) {
     if (positive) {
       setSteps([...steps, step]);
     } else {
+      // TODO: fill the negative case
     }
   };
 
@@ -42,7 +77,7 @@ function Drawer({ isVisible }) {
     tour.createStep(event.target, callback);
     setHighlighterVisible(false);
     window.removeEventListener("mouseover", listenWindowElements);
-    // document.removeEventListener("click", removeAllEvents, true);
+    document.removeEventListener("click", removeAllEvents, true);
   };
 
   const listenWindowElements = ({ target }) => {
@@ -85,7 +120,7 @@ function Drawer({ isVisible }) {
 
   const addStep = () => {
     setHighlighterVisible(true);
-    // document.addEventListener("click", removeAllEvents, true);
+    document.addEventListener("click", removeAllEvents, true);
     window.addEventListener("mouseover", listenWindowElements);
   };
 
@@ -94,9 +129,17 @@ function Drawer({ isVisible }) {
     tour.start();
   };
 
+  const startDemoTour = () => {
+    tour = Tour({ steps: demoSteps });
+    tour.start();
+  };
+
   return (
     <div className={`${style.drawer} ${isVisible ? `visible` : "hidden"}`}>
       <p>Drawer</p>
+      <button onClick={startDemoTour}>Start demo tour</button>
+      <br />
+      <p>Or create one starting with adding step</p>
       <button onClick={addStep}>Add Step</button>
       {steps.length > 0 && (
         <>

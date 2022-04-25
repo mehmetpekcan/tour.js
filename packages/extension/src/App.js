@@ -8,7 +8,13 @@ function App() {
     <div>
       {/* <button>Open TourJS editor</button> */}
       <Drawer isVisible={true} />
+
       <div style={{ margin: 20 }}>
+        <div className="grid">
+          <div className="box box-1">First Box</div>
+          <div className="box box-2">Second Box</div>
+          <div className="box box-3">Third Box</div>
+        </div>
         <div>Element 1</div>
         <h1>Here is an H1</h1>
         <br />
