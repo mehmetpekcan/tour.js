@@ -141,6 +141,7 @@ function Drawer({ isVisible }) {
       <br />
       <p>Or create one starting with adding step</p>
       <button onClick={addStep}>Add Step</button>
+      <br />
       {steps.length > 0 && (
         <>
           <ul>
