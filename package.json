@@ -8,8 +8,7 @@
   ],
   "scripts": {
     "extension:dev": "concurrently \"yarn workspace @tour.js/core build watch=true\" \"yarn workspace @tour.js/extension start\"",
-    "extension:build": "yarn && yarn workspace @tour.js/extension build",
-    "extension:start": "yarn && yarn workspace @tour.js/extension start",
+    "extension:deploy": "yarn && yarn workspace @tour.js/extension deploy",
     "dashboard:dev": "concurrently \"yarn workspace @tour.js/core build watch=true\" \"yarn workspace @tour.js/dashboard dev\"",
     "dashboard:start": "concurrently \"yarn workspace @tour.js/core build\" \"yarn workspace @tour.js/dashboard dev\"",
     "dashboard:build": "yarn && yarn workspace @tour.js/dashboard build && yarn workspace @tour.js/dashboard export"
