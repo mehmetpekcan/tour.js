@@ -1,7 +1,18 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap");
 
+:root {
+  --black: #192023;
+  --black-blue: #2c4041;
+  --white: #ffffff;
+  --gray: #75777a;
+  --yellow: #ffb620;
+  --blue: #1c75fd;
+  --red: #ff4940;
+  --green: #4deb32;
+}
+
 html {
-  font-size: 16px;
+  font-size: 18px;
 }
 
 html,

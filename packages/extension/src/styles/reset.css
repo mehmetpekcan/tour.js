@@ -43,6 +43,8 @@ h4,
 h5,
 h6 {
   overflow-wrap: break-word;
+  margin-bottom: 0.5em;
+  margin-top: 0.5em;
 }
 
 #root {

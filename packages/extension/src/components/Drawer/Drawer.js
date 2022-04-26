@@ -2,7 +2,7 @@ import { createPortal } from "react-dom";
 import { useState, useEffect, useRef } from "react";
 import Tour from "@tour.js/core";
 
-import style from "./style.module.css";
+import * as S from "./style";
 
 const captureOnce = { once: true };
 
@@ -96,10 +96,24 @@ function Drawer({ isVisible }) {
   };
 
   return (
-    <div className={`${style.drawer} ${isVisible ? `visible` : "hidden"}`}>
-      <p>Drawer</p>
-      <p>Or create one starting with adding step</p>
-      <button onClick={addStep}>Add Step</button>
+    <S.Drawer isVisible={isVisible}>
+      <S.Window>
+        <S.Close />
+        <S.Minimize />
+      </S.Window>
+      <S.Introduction>
+        <S.Title>How to use?</S.Title>
+        <S.Text>
+          Start creating new onboarding by just one click. After clicking our
+          wizard starts listen you. You just need to hover and click the element
+          that you want to add as a walkthrough step.
+        </S.Text>
+      </S.Introduction>
+      <S.Line />
+      <S.Button onClick={addStep}>
+        <S.Icon>+</S.Icon>
+        Add Tour
+      </S.Button>
       <br />
       {steps.length > 0 && (
         <>
@@ -124,11 +138,8 @@ function Drawer({ isVisible }) {
         </>
       )}
       {isHighlighterVisible &&
-        createPortal(
-          <span className={style.highlighter} ref={highlighterRef} />,
-          document.body
-        )}
-    </div>
+        createPortal(<S.Highlighter ref={highlighterRef} />, document.body)}
+    </S.Drawer>
   );
 }
 
