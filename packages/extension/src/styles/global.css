@@ -1,10 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap");
 
 :root {
-  --black: #192023;
+  --black: #383b46;
   --black-blue: #2c4041;
   --white: #ffffff;
   --gray: #75777a;
+  --gray-light: #d7d8da;
   --yellow: #ffb620;
   --blue: #1c75fd;
   --red: #ff4940;
@@ -12,7 +13,7 @@
 }
 
 html {
-  font-size: 18px;
+  font-size: 16px;
 }
 
 html,
@@ -38,18 +39,6 @@ body {
   background-color: #333;
   color: #fff;
   border-radius: 4px;
-}
-
-button {
-  border: 1px solid #333;
-  background-color: #eee;
-  padding: 8px;
-  cursor: pointer;
-  border-radius: 4px;
-}
-
-.grid button {
-  grid-column: 2;
 }
 
 @media (max-width: 768px) {

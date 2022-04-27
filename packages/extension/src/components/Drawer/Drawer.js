@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from "react";
 import Tour from "@tour.js/core";
 
 import * as S from "./style";
+import List from "../List/List";
 
 const captureOnce = { once: true };
 
@@ -11,10 +12,35 @@ const HTML_ROOTS = ["HTML", "BODY"];
 
 const getElementMeta = (element) => element.getBoundingClientRect();
 
+const testSteps = [
+  {
+    title: "Title",
+    content: "Lorem ipsum dolor sit amet",
+    next: "Next",
+    prev: "Previous",
+    finish: "Finish",
+  },
+  {
+    title: "Title",
+    content: "Lorem ipsum dolor sit amet",
+    next: "Next",
+    prev: "Previous",
+    finish: "Finish",
+  },
+  {
+    title: "Title",
+    content: "Lorem ipsum dolor sit amet",
+    next: "Next",
+    prev: "Previous",
+    finish: "Finish",
+  },
+];
+
 let tour = new Tour();
 
 function Drawer({ isVisible }) {
-  const [steps, setSteps] = useState([]);
+  const [steps, setSteps] = useState(testSteps);
+  // const [steps, setSteps] = useState([]);
   // TODO: should be false by default, `true` just for test purpose
   const [isHighlighterVisible, setHighlighterVisible] = useState(true);
   const highlighterRef = useRef();
@@ -117,23 +143,7 @@ function Drawer({ isVisible }) {
       <br />
       {steps.length > 0 && (
         <>
-          <ul>
-            {steps.map((step, index) => (
-              <li key={index.toString()}>
-                Order: {index + 1}
-                <br />
-                Title: {step.title}
-                <br />
-                Content: {step.content}
-                <br />
-                Next Button: {step.next}
-                <br />
-                Prev Button: {step.prev}
-                <br />
-                Finish Button: {step.finish}
-              </li>
-            ))}
-          </ul>
+          <List steps={steps} />
           <button onClick={startTour}>Start Tour</button>
         </>
       )}

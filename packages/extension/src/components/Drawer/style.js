@@ -5,9 +5,9 @@ const Drawer = styled.div`
   top: 0;
   bottom: 0;
   width: 25rem;
-  box-shadow: rgba(var(--black-blue)) 0px 8px 24px;
+  box-shadow: 0px 0px 36px rgba(0, 0, 0, 0.05);
   padding: 16px;
-  background-color: var(--black);
+  background-color: var(--white);
   transition: all 300ms;
 
   ${({ isVisible }) =>
@@ -64,7 +64,9 @@ const Introduction = styled.div`
 `;
 
 const Title = styled.h3`
-  color: var(--white);
+  color: var(--black);
+  font-size: 36px;
+  font-weight: 700;
 `;
 
 const Text = styled.p``;
@@ -75,7 +77,7 @@ const Button = styled.button`
   justify-content: center;
   width: 100%;
   background-color: transparent;
-  color: var(--white);
+  color: var(--black);
   padding: 16px;
   border: 1px dashed var(--gray);
 `;
@@ -85,12 +87,9 @@ const Icon = styled.span`
   padding-bottom: 2px;
   display: inline-flex;
   justify-content: center;
-  height: 24px;
-  width: 24px;
   align-items: center;
   font-size: 24px;
   line-height: 24px;
-  background-color: var(--blue);
   border-radius: 999px;
 `;
 
@@ -100,7 +99,7 @@ const Line = styled.span`
   margin-bottom: 24px;
   width: 100%;
   height: 0.5px;
-  background-color: var(--white);
+  background-color: var(--black);
 `;
 
 export {
