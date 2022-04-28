@@ -1,45 +1,27 @@
+import { Typography, Button, Row, Col } from "antd";
+import { PlusOutlined } from "@ant-design/icons";
 import { createPortal } from "react-dom";
 import { useState, useEffect, useRef } from "react";
 import Tour from "@tour.js/core";
 
 import * as S from "./style";
-import List from "../List/List";
+import List from "../List";
+import Container from "../Container";
+import Logo from "../Logo";
 
 const captureOnce = { once: true };
 
 const FRAMEWORK_ROOTS = ["root", "_next"];
 const HTML_ROOTS = ["HTML", "BODY"];
 
-const getElementMeta = (element) => element.getBoundingClientRect();
+const { Title } = Typography;
 
-const testSteps = [
-  {
-    title: "Title",
-    content: "Lorem ipsum dolor sit amet",
-    next: "Next",
-    prev: "Previous",
-    finish: "Finish",
-  },
-  {
-    title: "Title",
-    content: "Lorem ipsum dolor sit amet",
-    next: "Next",
-    prev: "Previous",
-    finish: "Finish",
-  },
-  {
-    title: "Title",
-    content: "Lorem ipsum dolor sit amet",
-    next: "Next",
-    prev: "Previous",
-    finish: "Finish",
-  },
-];
+const getElementMeta = (element) => element.getBoundingClientRect();
 
 let tour = new Tour();
 
 function Drawer({ isVisible }) {
-  const [steps, setSteps] = useState(testSteps);
+  const [steps, setSteps] = useState([]);
   // const [steps, setSteps] = useState([]);
   // TODO: should be false by default, `true` just for test purpose
   const [isHighlighterVisible, setHighlighterVisible] = useState(true);
@@ -117,36 +99,38 @@ function Drawer({ isVisible }) {
   };
 
   const startTour = () => {
-    tour = Tour({ steps });
+    tour = new Tour({ steps });
     tour.start();
   };
 
   return (
     <S.Drawer isVisible={isVisible}>
-      <S.Window>
-        <S.Close />
-        <S.Minimize />
-      </S.Window>
-      <S.Introduction>
+      <Container>
+        <Logo />
+      </Container>
+      <Container>
+        {/* <S.Introduction>
         <S.Title>How to use?</S.Title>
         <S.Text>
           Start creating new onboarding by just one click. After clicking our
           wizard starts listen you. You just need to hover and click the element
           that you want to add as a walkthrough step.
         </S.Text>
-      </S.Introduction>
-      <S.Line />
-      <S.Button onClick={addStep}>
-        <S.Icon>+</S.Icon>
-        Add Tour
-      </S.Button>
-      <br />
-      {steps.length > 0 && (
-        <>
-          <List steps={steps} />
-          <button onClick={startTour}>Start Tour</button>
-        </>
-      )}
+      </S.Introduction> */}
+        <S.NewElements>
+          <Button type="dashed" icon={<PlusOutlined />} onClick={addStep}>
+            Add new tour
+          </Button>
+        </S.NewElements>
+      </Container>
+      <Container>
+        {steps.length > 0 && (
+          <>
+            <List steps={steps} />
+            <button onClick={startTour}>Start Tour</button>
+          </>
+        )}
+      </Container>
       {isHighlighterVisible &&
         createPortal(<S.Highlighter ref={highlighterRef} />, document.body)}
     </S.Drawer>

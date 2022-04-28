@@ -1,6 +1,9 @@
 import { useState } from "react";
+import { Collapse } from "antd";
 
 import * as S from "./style";
+
+const { Panel } = Collapse;
 
 function List({ steps }) {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -10,29 +13,22 @@ function List({ steps }) {
   };
 
   return (
-    <S.List>
+    <Collapse accordion>
       {steps.map((step, index) => (
-        <S.Item
+        <Panel
+          header={step.title}
           key={index}
-          isActive={activeIndex === index}
           onClick={() => changeActiveItem(index)}
         >
-          <S.Title>
-            <S.Index>{index + 1}</S.Index>
-            {step.title}
-          </S.Title>
           <S.Body>
-            Content: {step.content}
-            <br />
-            Next Button: {step.next}
-            <br />
-            Prev Button: {step.prev}
-            <br />
-            Finish Button: {step.finish}
+            <S.BodyItem>Content: {step.content}</S.BodyItem>
+            <S.BodyItem>Next Button: {step.next}</S.BodyItem>
+            <S.BodyItem>Prev Button: {step.prev}</S.BodyItem>
+            <S.BodyItem>Finish Button: {step.finish}</S.BodyItem>
           </S.Body>
-        </S.Item>
+        </Panel>
       ))}
-    </S.List>
+    </Collapse>
   );
 }
 

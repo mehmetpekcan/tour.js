@@ -1,15 +1,25 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap");
 
 :root {
-  --black: #383b46;
-  --black-blue: #2c4041;
-  --white: #ffffff;
-  --gray: #75777a;
-  --gray-light: #d7d8da;
-  --yellow: #ffb620;
-  --blue: #1c75fd;
-  --red: #ff4940;
-  --green: #4deb32;
+  --black: rgb(26, 26, 26);
+
+  --white: rgb(254, 254, 255);
+
+  --gray: rgb(191, 191, 191);
+  --gray-light: rgb(242, 242, 242);
+  --gray-dark: rgb(89, 89, 89);
+
+  --yellow: rgb(255, 204, 0);
+  --yellow-light: rgb(255, 250, 230);
+
+  --green: rgb(51, 204, 51);
+  --green-light: rgb(235, 250, 235);
+
+  --red: rgb(255, 51, 0);
+  --red-light: rgb(255, 235, 230);
+
+  --blue: rgb(0, 85, 255);
+  --blue-light: rgb(230, 238, 255);
 }
 
 html {

@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+import { Button as AntdButton } from "antd";
 
 const Drawer = styled.div`
   position: fixed;
@@ -6,7 +7,6 @@ const Drawer = styled.div`
   bottom: 0;
   width: 25rem;
   box-shadow: 0px 0px 36px rgba(0, 0, 0, 0.05);
-  padding: 16px;
   background-color: var(--white);
   transition: all 300ms;
 
@@ -37,26 +37,7 @@ const Highlighter = styled.span`
 
 const Window = styled.div`
   display: flex;
-  margin-bottom: 12px;
-
-  & > * {
-    display: inline-block;
-    width: 16px;
-    height: 16px;
-    border-radius: 999px;
-
-    &:not(:last-child) {
-      margin-right: 8px;
-    }
-  }
-`;
-
-const Close = styled.button`
-  background-color: var(--red);
-`;
-
-const Minimize = styled.button`
-  background-color: var(--yellow);
+  align-items: center;
 `;
 
 const Introduction = styled.div`
@@ -69,49 +50,41 @@ const Title = styled.h3`
   font-weight: 700;
 `;
 
-const Text = styled.p``;
+const Text = styled.p`
+  font-size: 14px;
+  margin-bottom: 0;
+`;
 
-const Button = styled.button`
+const Button = styled(AntdButton)`
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 100%;
   background-color: transparent;
   color: var(--black);
-  padding: 16px;
-  border: 1px dashed var(--gray);
+  cursor: pointer;
 `;
 
-const Icon = styled.span`
-  margin-right: 8px;
-  padding-bottom: 2px;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 24px;
-  line-height: 24px;
-  border-radius: 999px;
+const LogoText = styled.h2`
+  color: var(--black);
+  margin-bottom: 0;
+  margin-top: 0;
+  letter-spacing: -0.9px;
 `;
 
-const Line = styled.span`
-  display: inline-block;
-  margin-top: 24px;
-  margin-bottom: 24px;
-  width: 100%;
-  height: 0.5px;
-  background-color: var(--black);
+const NewElements = styled.div`
+  display: flex;
+  justify-content: space-between;
 `;
 
 export {
   Drawer,
   Highlighter,
   Window,
-  Close,
-  Minimize,
   Introduction,
   Title,
   Text,
   Button,
-  Icon,
-  Line,
+  LogoText,
+  NewElements,
 };

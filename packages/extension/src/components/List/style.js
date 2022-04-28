@@ -1,57 +1,15 @@
 import styled, { css } from "styled-components";
 
-const List = styled.ul`
-  list-style: none;
-`;
+const List = styled.ul``;
 
-const Item = styled.li`
-  overflow: hidden;
-  cursor: pointer;
+const Item = styled.li``;
 
-  ${({ isActive }) =>
-    isActive &&
-    css`
-      ${Index} {
-        background-color: var(--blue);
-        color: var(--white);
-      }
+const Index = styled.span``;
 
-      ${Title} {
-        color: var(--blue);
-      }
+const Title = styled.h3``;
 
-      ${Body} {
-        max-height: 100rem;
-        border-color: var(--blue);
-        margin-left: 11px;
-        padding: 16px 0 16px 12px;
-      }
-    `}
-`;
+const Body = styled.div``;
 
-const Index = styled.span`
-  width: 24px;
-  height: 24px;
-  line-height: 24px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 999px;
-  margin-right: 8px;
-  background-color: var(--gray);
-  color: var(--white);
-`;
+const BodyItem = styled.div``;
 
-const Title = styled.h3`
-  font-weight: 500;
-  color: var(--gray);
-`;
-
-const Body = styled.div`
-  max-height: 0;
-
-  font-size: 14px;
-  border-left: 1.5px solid var(--gray);
-`;
-
-export { List, Item, Index, Title, Body };
+export { List, Item, Index, Title, Body, BodyItem };

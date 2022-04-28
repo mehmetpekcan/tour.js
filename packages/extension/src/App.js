@@ -1,4 +1,5 @@
 import Tour from "@tour.js/core";
+import "antd/dist/antd.css";
 
 import "./styles/reset.css";
 import "./styles/global.css";
@@ -50,6 +51,7 @@ function App() {
     <div>
       {/* <button>Open TourJS editor</button> */}
       <Drawer isVisible={true} />
+
       <button onClick={startDemoTour}>Start demo tour</button>
       <br />
 
