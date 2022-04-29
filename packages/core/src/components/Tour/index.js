@@ -5,6 +5,7 @@ import {
   getElementMeta,
   injectDefaultStyles,
   removeDefaultStyles,
+  getInnerText,
 } from '../../helpers';
 
 const defaultOptions = { steps: [] };
@@ -66,11 +67,41 @@ class Tour {
       throw new Error('Steps cannot be empty');
     }
 
-    this.steps = this.steps.map((step) => {
+    this.steps = this.steps.map((step, index) => {
       const tempStep = step;
 
+      // Set `target` property for every step that has selector
       if (tempStep.selector) {
         tempStep.target = document.querySelector(tempStep.selector);
+      }
+
+      if (
+        (tempStep.next === null || tempStep.next === undefined) &&
+        index < this.steps.length - 1
+      ) {
+        tempStep.next = 'Next';
+      }
+
+      if (
+        (tempStep.prev === null || tempStep.prev === undefined) &&
+        index !== 0
+      ) {
+        tempStep.prev = 'Prev';
+      }
+
+      if (
+        (tempStep.finish === null || tempStep.finish === undefined) &&
+        index === this.steps.length - 1
+      ) {
+        tempStep.finish = 'Finish';
+      }
+
+      if (index === this.steps.length - 1) {
+        tempStep.next = null;
+      }
+
+      if (index === 0) {
+        tempStep.prev = null;
       }
 
       return tempStep;
@@ -96,33 +127,22 @@ class Tour {
       const { TITLE, CONTENT, PREV_BUTTON, NEXT_BUTTON, FINISH_BUTTON } =
         this.tooltip.constant;
 
-      const title = document.querySelector(`.${TITLE.class}`)?.innerText;
-      const content = document.querySelector(`.${CONTENT.class}`)?.innerText;
-      const prev = document.querySelector(`.${PREV_BUTTON.class}`)?.innerText;
-      const next = document.querySelector(`.${NEXT_BUTTON.class}`)?.innerText;
-      const finish = document.querySelector(
-        `.${FINISH_BUTTON.class}`
-      )?.innerText;
+      const title = getInnerText(`.${TITLE.class}`);
+      const content = getInnerText(`.${CONTENT.class}`);
+      const prev = getInnerText(`.${PREV_BUTTON.class}`);
+      const next = getInnerText(`.${NEXT_BUTTON.class}`);
+      const finish = getInnerText(`.${FINISH_BUTTON.class}`);
 
       this.clearTourWorker();
       callback({
         positive: true,
-        step: {
-          target,
-          title,
-          content,
-          prev,
-          next,
-          finish,
-        },
+        step: { target, title, content, prev, next, finish },
       });
     };
 
     this.tooltip.onEditNegative = () => {
       this.clearTourWorker();
-      callback({
-        negative: true,
-      });
+      callback({ negative: true });
     };
 
     injectDefaultStyles();

@@ -1,5 +1,8 @@
 import { BUTTON } from '../components/Tooltip/constants';
 
+export const getInnerText = (selector) =>
+  document.querySelector(selector)?.innerText || null;
+
 export const insertElement = (newNode, existingNode) => {
   existingNode.parentNode.insertBefore(newNode, existingNode.nextSibling);
 };
