@@ -149,6 +149,7 @@ function Drawer() {
       visible={isVisible}
       title="Tour.JS Crafter"
       bodyStyle={{ padding: 0 }}
+      onClose={() => setIsVisible(false)}
     >
       <Container>
         {steps.length > 0 ? (

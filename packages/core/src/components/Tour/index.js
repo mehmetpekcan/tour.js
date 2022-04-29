@@ -19,28 +19,18 @@ class Tour {
       // eslint-disable-next-line no-use-before-define
       onPrev: () => this.changeStep(this.currentIndex - 1),
       // eslint-disable-next-line no-use-before-define
-      onFinish: this.handleFinishButton,
+      onFinish: () => this.handleFinishButton(),
     });
     this.currentIndex = 0;
     this.steps = steps;
   }
 
-  placeWorker({ selector, target, ...content }) {
-    let targetElement;
-
-    if (target) {
-      targetElement = target;
-    } else if (selector) {
-      targetElement = document.querySelector(selector);
-    } else {
-      throw new Error('Please provide at least target element or selector');
-    }
-
-    const targetPosition = getElementMeta(targetElement);
+  placeWorker({ target, ...content }) {
+    const targetPosition = getElementMeta(target);
 
     this.tooltip.render(targetPosition, content);
     this.highlighter.render(targetPosition, {});
-    targetElement.classList.add('tour--js-target');
+    target.classList.add('tour--js-target');
   }
 
   clearTourWorker() {
@@ -55,15 +45,7 @@ class Tour {
   }
 
   clearPreviousWorker(oldIndex) {
-    const oldStep = this.steps[oldIndex];
-    let element;
-
-    if (oldStep.selector) {
-      element = document.querySelector(oldStep.selector);
-    } else {
-      element = oldStep.target;
-    }
-
+    const element = this.steps[oldIndex].target;
     element.classList.remove('tour--js-target');
   }
 
@@ -83,6 +65,16 @@ class Tour {
     if (this.steps.length === 0) {
       throw new Error('Steps cannot be empty');
     }
+
+    this.steps = this.steps.map((step) => {
+      const tempStep = step;
+
+      if (tempStep.selector) {
+        tempStep.target = document.querySelector(tempStep.selector);
+      }
+
+      return tempStep;
+    });
 
     injectDefaultStyles();
     this.placeWorker(this.steps[0]);
