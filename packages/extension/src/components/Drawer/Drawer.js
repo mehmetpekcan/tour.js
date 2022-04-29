@@ -54,8 +54,10 @@ const demoSteps = [
 
 let tour = new Tour();
 
-function Drawer({ isVisible }) {
+function Drawer() {
   const [steps, setSteps] = useState([]);
+  const [isVisible, setIsVisible] = useState(true); // should be false by default
+
   // const [steps, setSteps] = useState([]);
   // TODO: should be false by default, `true` just for test purpose
   const [isHighlighterVisible, setHighlighterVisible] = useState(true);
@@ -79,6 +81,8 @@ function Drawer({ isVisible }) {
     } else {
       // TODO: fill the negative case
     }
+
+    setIsVisible(true);
   };
 
   const openEditor = (event) => {
@@ -128,6 +132,8 @@ function Drawer({ isVisible }) {
 
   const addStep = () => {
     setHighlighterVisible(true);
+    setIsVisible(false);
+
     document.addEventListener("click", removeAllEvents, true);
     window.addEventListener("mouseover", listenWindowElements);
   };
@@ -135,6 +141,7 @@ function Drawer({ isVisible }) {
   const startTour = () => {
     tour = new Tour({ steps });
     tour.start();
+    setIsVisible(false);
   };
 
   return (

@@ -50,7 +50,7 @@ function App() {
   return (
     <div>
       {/* <button>Open TourJS editor</button> */}
-      <Drawer isVisible={true} />
+      <Drawer />
 
       <button onClick={startDemoTour}>Start demo tour</button>
       <br />
