@@ -159,6 +159,9 @@ function Drawer() {
             <Button type="primary" onClick={startTour}>
               Start Tour
             </Button>
+            <Button type="primary" onClick={addStep}>
+              Add new step
+            </Button>
           </>
         ) : (
           <Empty

@@ -2,7 +2,7 @@ import { useEffect } from "react";
 
 import Tour from "@tour.js/core";
 
-const tour = Tour({
+const tour = new Tour({
   steps: [
     {
       selector: ".box-1",

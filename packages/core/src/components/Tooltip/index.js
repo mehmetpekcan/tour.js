@@ -27,6 +27,7 @@ class Tooltip {
 
   onEditNextButtonClick() {
     const footer = document.querySelector(`.${constant.FOOTER.class}`);
+    footer.style.display = 'flex';
     const button = createElementFromHTML(
       constant.NEXT_BUTTON.element({ next: 'Next', isEditMode: true })
     );
@@ -37,6 +38,7 @@ class Tooltip {
 
   onEditPrevButtonClick() {
     const footer = document.querySelector(`.${constant.FOOTER.class}`);
+    footer.style.display = 'flex';
     const button = createElementFromHTML(
       constant.PREV_BUTTON.element({ prev: 'Prev', isEditMode: true })
     );
@@ -47,6 +49,7 @@ class Tooltip {
 
   onEditFinishButtonClick() {
     const footer = document.querySelector(`.${constant.FOOTER.class}`);
+    footer.style.display = 'flex';
     const button = createElementFromHTML(
       constant.FINISH_BUTTON.element({ finish: 'Finish', isEditMode: true })
     );

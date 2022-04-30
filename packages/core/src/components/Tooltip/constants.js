@@ -87,10 +87,15 @@ export const FOOTER = {
 
 export const EDITOR = {
   class: 'tour-tooltip-editor',
-  css: ``,
+  css: `
+    position: absolute;
+    bottom: -64px;
+    left: 0;
+    right: 0;
+  `,
   element() {
     return `
-      <div class="${this.class}}">
+      <div class="${this.class}" style="${this.css}">
         <button class="tour--tooltip-edit-positive">Done</button>
         <button class="tour--tooltip-edit-negative">Cancel</button>
         <button class="tour--tooltip-edit-next">Add Next Button</button>
@@ -130,7 +135,7 @@ export const TOOLTIP = {
       }
       <div class='${FOOTER.class}' contenteditable='${isEditMode}' style='${
       FOOTER.css
-    }'>
+    } ${isEditMode ? 'display:none' : ''}'>
         ${PREV_BUTTON.element({ prev, isEditMode })}
         ${NEXT_BUTTON.element({ next, isEditMode })}
         ${FINISH_BUTTON.element({ finish, isEditMode })}
