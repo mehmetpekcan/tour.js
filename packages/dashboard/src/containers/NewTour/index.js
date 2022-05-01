@@ -17,22 +17,24 @@ function NewTour() {
         described directly in the user interface.
       </Text>
       <S.Cards>
-        <Card>
-          <Card.Header>
-            <Title level={3}>Tooltip Modal</Title>
-          </Card.Header>
-          <Card.Body>
-            <Image src={TestImage} />
-            <Text align="center">
-              Regular tooltips when you want to offer contextual information.
-            </Text>
-          </Card.Body>
-          <Card.Footer>
-            <Button type="primary" href="asd">
-              Select
-            </Button>
-          </Card.Footer>
-        </Card>
+        {[1, 2, 3].map((_, index) => (
+          <Card key={index}>
+            <Card.Header>
+              <Title level={4}>Tooltip Modal</Title>
+            </Card.Header>
+            <Card.Body>
+              <Image src={TestImage} />
+              <Text align="center">
+                Regular tooltips when you want to offer contextual information.
+              </Text>
+            </Card.Body>
+            <Card.Footer>
+              <Button type="primary" href="/tour-editor?type=modal">
+                Select
+              </Button>
+            </Card.Footer>
+          </Card>
+        ))}
       </S.Cards>
     </S.NewTour>
   );

@@ -16,7 +16,7 @@ const Title = styled.div`
   }
 
   & > h4 {
-    font-size: 16px;
+    font-size: 18px;
   }
 `;
 

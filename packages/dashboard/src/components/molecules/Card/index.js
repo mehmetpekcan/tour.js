@@ -12,8 +12,8 @@ const Footer = ({ children }) => {
   return <S.Footer>{children}</S.Footer>;
 };
 
-function Card({ children }) {
-  return <S.Card>{children && children}</S.Card>;
+function Card({ children, ...props }) {
+  return <S.Card {...props}>{children && children}</S.Card>;
 }
 
 Card.Header = Header;
