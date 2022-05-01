@@ -9,7 +9,7 @@ const Empty = styled.div`
   justify-content: center;
 
   & > :nth-child(1) {
-    margin-bottom: 24px;
+    margin-bottom: 16px;
   }
 
   & > :nth-child(2) {
