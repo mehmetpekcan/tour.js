@@ -45,7 +45,12 @@ h6 {
   overflow-wrap: break-word;
 }
 
-#root,
-#__next {
+button {
+  outline: none;
+  border: 0;
+}
+
+#root {
   isolation: isolate;
+  height: 100%;
 }

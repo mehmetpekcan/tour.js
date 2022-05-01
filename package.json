@@ -9,9 +9,8 @@
   "scripts": {
     "extension:dev": "concurrently \"yarn workspace @tour.js/core build watch=true\" \"yarn workspace @tour.js/extension start\"",
     "extension:build": "yarn && yarn workspace @tour.js/extension build",
-    "dashboard:dev": "concurrently \"yarn workspace @tour.js/core build watch=true\" \"yarn workspace @tour.js/dashboard dev\"",
-    "dashboard:start": "concurrently \"yarn workspace @tour.js/core build\" \"yarn workspace @tour.js/dashboard dev\"",
-    "dashboard:build": "yarn && yarn workspace @tour.js/dashboard build && yarn workspace @tour.js/dashboard export"
+    "dashboard:start": "concurrently \"yarn workspace @tour.js/core build\" \"yarn workspace @tour.js/dashboard start\"",
+    "dashboard:build": "yarn && yarn workspace @tour.js/dashboard build"
   },
   "devDependencies": {
     "concurrently": "^7.0.0"
