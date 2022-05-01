@@ -29,7 +29,7 @@ function NewTour() {
               </Text>
             </Card.Body>
             <Card.Footer>
-              <Button type="primary" href="/tour-editor?type=modal">
+              <Button type="primary" href="/editor?type=modal">
                 Select
               </Button>
             </Card.Footer>
