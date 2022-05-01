@@ -1,6 +1,6 @@
 import * as S from "./style";
 
-function Text({ align, children, ...props }) {
+function Text({ align = "center", children, ...props }) {
   return (
     <S.Text {...props} align={align}>
       <p>{children}</p>

@@ -10,4 +10,5 @@ function Button({ href, children, type = "default" }) {
   );
 }
 
+Button.S = S;
 export default Button;
