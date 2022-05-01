@@ -9,7 +9,7 @@ function Home() {
         image={EmptyImage}
         text="You don't have any Tour yet."
         button={{
-          href: "/create-tour",
+          href: "/new-tour",
           text: "Create Tour",
         }}
       />

@@ -6,7 +6,7 @@
   --white: rgb(254, 254, 255);
 
   --gray: rgb(191, 191, 191);
-  --gray-light: rgb(242, 242, 242);
+  --gray-light: #f3f6fc;
   --gray-dark: rgb(89, 89, 89);
 
   --yellow: rgb(255, 204, 0);
@@ -32,4 +32,5 @@ body {
   font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
     "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
+  color: var(--black);
 }

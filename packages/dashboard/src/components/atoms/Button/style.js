@@ -13,7 +13,7 @@ const PrimaryCSS = css`
     border-radius: 4px;
     text-decoration: none;
     color: var(--white);
-    background-color: var(--blue)
+    background-color: var(--blue);
     padding: 12px 36px;
   }
 `;

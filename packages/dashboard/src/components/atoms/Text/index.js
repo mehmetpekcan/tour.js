@@ -1,8 +1,8 @@
 import * as S from "./style";
 
-function Text({ children }) {
+function Text({ align, children, ...props }) {
   return (
-    <S.Text>
+    <S.Text {...props} align={align}>
       <p>{children}</p>
     </S.Text>
   );
