@@ -8,7 +8,7 @@
 
   --gray: #6b7381;
   --gray-light: #f9fafb;
-  --gray-dark: #e5e6ea;
+  --gray-very-light: #e5e6ea;
 
   --yellow: rgb(255, 204, 0);
   --yellow-light: rgb(255, 250, 230);
@@ -20,7 +20,7 @@
   --red-light: rgb(255, 235, 230);
 
   --blue: #1a65f2;
-  --blue-light: rgb(230, 238, 255);
+  --blue-light: rgb(217, 229, 255);
 }
 
 html {

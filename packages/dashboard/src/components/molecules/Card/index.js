@@ -1,7 +1,7 @@
 import * as S from "./style";
 
-const Header = ({ children }) => {
-  return <S.Header>{children} </S.Header>;
+const Header = ({ children, ...props }) => {
+  return <S.Header {...props}>{children} </S.Header>;
 };
 
 const Body = ({ children }) => {
@@ -16,6 +16,7 @@ function Card({ children, ...props }) {
   return <S.Card {...props}>{children && children}</S.Card>;
 }
 
+Card.S = S;
 Card.Header = Header;
 Card.Body = Body;
 Card.Footer = Footer;

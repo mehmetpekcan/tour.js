@@ -2490,56 +2490,6 @@ antd@^4.20.1:
     rc-util "^5.20.0"
     scroll-into-view-if-needed "^2.2.25"
 
-antd@^4.20.2:
-  version "4.20.2"
-  resolved "https://registry.yarnpkg.com/antd/-/antd-4.20.2.tgz#1ed2042a091eecfebd9650c014a1a2e57430ff2b"
-  integrity sha512-b+Gq1EY8LmcS/ARei/dGI0bWQlJ/j3f3oJ6XjM+ryyT5YWxvf7X3mGc++bTGuLmjn6+/icRL1zItIgcvplcomg==
-  dependencies:
-    "@ant-design/colors" "^6.0.0"
-    "@ant-design/icons" "^4.7.0"
-    "@ant-design/react-slick" "~0.28.1"
-    "@babel/runtime" "^7.12.5"
-    "@ctrl/tinycolor" "^3.4.0"
-    classnames "^2.2.6"
-    copy-to-clipboard "^3.2.0"
-    lodash "^4.17.21"
-    memoize-one "^6.0.0"
-    moment "^2.29.2"
-    rc-cascader "~3.5.0"
-    rc-checkbox "~2.3.0"
-    rc-collapse "~3.1.0"
-    rc-dialog "~8.8.1"
-    rc-drawer "~4.4.2"
-    rc-dropdown "~3.5.0"
-    rc-field-form "~1.26.1"
-    rc-image "~5.6.0"
-    rc-input "~0.0.1-alpha.5"
-    rc-input-number "~7.3.0"
-    rc-mentions "~1.7.0"
-    rc-menu "~9.5.5"
-    rc-motion "^2.5.1"
-    rc-notification "~4.6.0"
-    rc-pagination "~3.1.9"
-    rc-picker "~2.6.4"
-    rc-progress "~3.2.1"
-    rc-rate "~2.9.0"
-    rc-resize-observer "^1.2.0"
-    rc-segmented "~2.1.0 "
-    rc-select "~14.1.1"
-    rc-slider "~10.0.0"
-    rc-steps "~4.1.0"
-    rc-switch "~3.2.0"
-    rc-table "~7.24.0"
-    rc-tabs "~11.13.0"
-    rc-textarea "~0.3.0"
-    rc-tooltip "~5.1.1"
-    rc-tree "~5.5.0"
-    rc-tree-select "~5.3.0"
-    rc-trigger "^5.2.10"
-    rc-upload "~4.3.0"
-    rc-util "^5.20.0"
-    scroll-into-view-if-needed "^2.2.25"
-
 anymatch@^3.0.3, anymatch@~3.1.2:
   version "3.1.2"
   resolved "https://registry.yarnpkg.com/anymatch/-/anymatch-3.1.2.tgz#c0557c096af32f106198f4f4e2a383537e378716"
@@ -7776,16 +7726,6 @@ rc-segmented@~2.0.0:
     rc-motion "^2.4.4"
     rc-util "^5.17.0"
 
-"rc-segmented@~2.1.0 ":
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/rc-segmented/-/rc-segmented-2.1.0.tgz#0e0afe646c1a0e44a0e18785f518c42633ec8efc"
-  integrity sha512-hUlonro+pYoZcwrH6Vm56B2ftLfQh046hrwif/VwLIw1j3zGt52p5mREBwmeVzXnSwgnagpOpfafspzs1asjGw==
-  dependencies:
-    "@babel/runtime" "^7.11.1"
-    classnames "^2.2.1"
-    rc-motion "^2.4.4"
-    rc-util "^5.17.0"
-
 rc-select@~14.1.0, rc-select@~14.1.1:
   version "14.1.1"
   resolved "https://registry.yarnpkg.com/rc-select/-/rc-select-14.1.1.tgz#87a51ce515aba5cfa083ae0f5be15e7c550ad93f"
@@ -7992,6 +7932,11 @@ react-error-overlay@^6.0.11:
   version "6.0.11"
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-6.0.11.tgz#92835de5841c5cf08ba00ddd2d677b6d17ff9adb"
   integrity sha512-/6UZ2qgEyH2aqzYZgQPxEnz33NJ2gNsnHA2o5+o4wW9bLM/JYQitNP9xPhsXwC08hMMovfGe/8retsdDsczPRg==
+
+react-icons@^4.3.1:
+  version "4.3.1"
+  resolved "https://registry.yarnpkg.com/react-icons/-/react-icons-4.3.1.tgz#2fa92aebbbc71f43d2db2ed1aed07361124e91ca"
+  integrity sha512-cB10MXLTs3gVuXimblAdI71jrJx8njrJZmNMEMC+sQu5B/BIOmlsAjskdqpn81y8UBVEGuHODd7/ci5DvoSzTQ==
 
 react-is@^16.12.0, react-is@^16.13.1, react-is@^16.7.0:
   version "16.13.1"

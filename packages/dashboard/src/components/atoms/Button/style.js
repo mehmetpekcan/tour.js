@@ -1,7 +1,11 @@
 import styled, { css } from "styled-components";
 
 const CommonCSS = css`
-  & > a {
+  & > a,
+  & > button {
+    position: relative;
+    cursor: pointer;
+    outline: none;
     display: flex;
     justify-content: center;
     font-weight: 500;
@@ -9,13 +13,15 @@ const CommonCSS = css`
 `;
 
 const PrimaryCSS = css`
-  & > a {
+  & > a,
+  & > button {
     border: 1px solid var(--blue);
     border-radius: 4px;
     text-decoration: none;
     color: var(--white);
     background-color: var(--blue);
     padding: 12px 36px;
+    box-shadow: 0 5px 10px var(--blue-light);
     transition: all 300ms;
 
     &:hover {
@@ -26,25 +32,26 @@ const PrimaryCSS = css`
 `;
 
 const DefaultCSS = css`
-  & > a {
-    border: 1px solid var(--black);
+  & > a,
+  & > button {
+    border: 1px solid var(--gray-very-light);
     border-radius: 4px;
     text-decoration: none;
-    color: var(--black);
+    color: var(--gray);
     padding: 12px 36px;
     background-color: var(--gray-light);
     transition: all 300ms;
 
     &:hover {
-      background-color: var(--black);
-      color: var(--gray-light);
+      background-color: var(--gray-very-light);
     }
   }
 `;
 
 const LinkCSS = css`
-  & > a {
-    border: 1px solid var(--black);
+  & > a,
+  & > button {
+    border: 1px solid var(--gray);
     border-radius: 4px;
     color: var(--blue);
   }
@@ -61,4 +68,10 @@ const Button = styled.div`
   ${({ type }) => LinkType[type]}
 `;
 
-export { Button };
+const Icon = styled.span`
+  svg {
+    font-size: 32px;
+  }
+`;
+
+export { Button, Icon };
