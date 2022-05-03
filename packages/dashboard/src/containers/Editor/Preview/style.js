@@ -2,8 +2,6 @@ import Card from "components/molecules/Card";
 
 import styled from "styled-components";
 
-const Preview = styled(Card)`
-  width: 100%;
-`;
+const Preview = styled(Card)``;
 
 export { Preview };
