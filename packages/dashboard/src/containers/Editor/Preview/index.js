@@ -1,20 +1,15 @@
-import { BiSave } from "react-icons/bi";
-import { useState } from "react";
 import { Tooltip } from "@tour.js/core";
+import { BiSave } from "react-icons/bi";
 
 import Title from "components/atoms/Title";
-
-import * as S from "./style";
 import Button from "components/atoms/Button";
 
+import { useEditorContext } from "../EditorProvider";
+
+import * as S from "./style";
+
 function Preview() {
-  const [title, setTitle] = useState("Publish your changes");
-  const [content, setContent] = useState(
-    "Your colleagues will see the changefs you made as soon as you publish them."
-  );
-  const [next, setNext] = useState("Next Tip");
-  const [prev, setPrev] = useState("");
-  const [finish, setFinish] = useState("");
+  const { draftTour } = useEditorContext();
 
   return (
     <S.Preview type="transparent">
@@ -29,11 +24,11 @@ function Preview() {
             // TODO: add skip button
             __html: Tooltip.constant.TOOLTIP.element({
               isEditMode: true,
-              title,
-              content,
-              next,
-              prev,
-              finish,
+              title: draftTour.title.isActive && draftTour.title.value,
+              content: draftTour.content.isActive && draftTour.content.value,
+              next: draftTour.next.isActive && draftTour.next.value,
+              prev: draftTour.prev.isActive && draftTour.prev.value,
+              finish: draftTour.finish.isActive && draftTour.finish.value,
             }),
           }}
         ></S.TooltipWrapper>

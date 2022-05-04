@@ -1,3 +1,4 @@
+import EditorProvider from "./EditorProvider";
 import Craft from "./Craft";
 import Flows from "./Flows";
 import Preview from "./Preview";
@@ -11,9 +12,11 @@ function Editor() {
 
   return (
     <S.Editor>
-      <Craft handleButtonAdd={handleButtonAdd} />
-      <Preview />
-      <Flows />
+      <EditorProvider>
+        <Craft handleButtonAdd={handleButtonAdd} />
+        <Preview />
+        <Flows />
+      </EditorProvider>
     </S.Editor>
   );
 }

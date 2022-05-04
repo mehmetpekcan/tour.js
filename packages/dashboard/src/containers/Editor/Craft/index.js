@@ -8,63 +8,77 @@ import {
 } from "react-icons/bi";
 
 import Title from "components/atoms/Title";
-import Button from "components/atoms/Button";
+
+import { useEditorContext } from "../EditorProvider";
 
 import * as S from "./style";
 
+const Section = ({ title, children }) => {
+  return (
+    <S.Section type="transparent">
+      <S.Section.Header align="start">
+        <Title level={4}>{title}</Title>
+      </S.Section.Header>
+      <S.Section.Body>{children}</S.Section.Body>
+    </S.Section>
+  );
+};
+
 function Craft({ handleButtonAdd }) {
+  const { changeActiveState, draftTour } = useEditorContext();
+
   return (
     <S.Craft>
-      <S.ButtonGroupCard type="transparent">
-        <S.ButtonGroupCard.Header align="start">
-          <Title level={4}>Type</Title>
-        </S.ButtonGroupCard.Header>
-        <S.ButtonGroupCard.Body>
-          <Button onClick={() => handleButtonAdd("previous")}>Tooltip</Button>
-          <Button onClick={() => handleButtonAdd("next")}>Modal</Button>
-        </S.ButtonGroupCard.Body>
-      </S.ButtonGroupCard>
-      <S.ButtonGroupCard type="transparent">
-        <S.ButtonGroupCard.Header align="start">
-          <Title level={4}>Buttons</Title>
-        </S.ButtonGroupCard.Header>
-        <S.ButtonGroupCard.Body>
-          <Button
-            icon={<BiSkipPrevious />}
-            onClick={() => handleButtonAdd("previous")}
-          >
-            Prev
-          </Button>
-          <Button icon={<BiSkipNext />} onClick={() => handleButtonAdd("next")}>
-            Next
-          </Button>
-          <Button icon={<BiCheck />} onClick={() => handleButtonAdd("finish")}>
-            Done
-          </Button>
-          <Button
-            icon={<BiFastForward />}
-            onClick={() => handleButtonAdd("skip")}
-          >
-            Skip
-          </Button>
-        </S.ButtonGroupCard.Body>
-      </S.ButtonGroupCard>
-      <S.ButtonGroupCard type="transparent">
-        <S.ButtonGroupCard.Header align="start">
-          <Title level={4}>Text Fields</Title>
-        </S.ButtonGroupCard.Header>
-        <S.ButtonGroupCard.Body>
-          <Button icon={<BiHeading />} onClick={() => handleButtonAdd("next")}>
-            Title
-          </Button>
-          <Button
-            icon={<BiParagraph />}
-            onClick={() => handleButtonAdd("previous")}
-          >
-            Body
-          </Button>
-        </S.ButtonGroupCard.Body>
-      </S.ButtonGroupCard>
+      <Section title="Type">
+        <S.Button onClick={() => handleButtonAdd("tooltip")}>Tooltip</S.Button>
+        <S.Button onClick={() => handleButtonAdd("modal")}>Modal</S.Button>
+      </Section>
+      <Section title="Text Fields">
+        <S.Button
+          isActive={draftTour.title.isActive}
+          icon={<BiHeading />}
+          onClick={() => changeActiveState("title")}
+        >
+          Title
+        </S.Button>
+        <S.Button
+          isActive={draftTour.content.isActive}
+          icon={<BiParagraph />}
+          onClick={() => changeActiveState("content")}
+        >
+          Body
+        </S.Button>
+      </Section>
+      <Section title="Buttons">
+        <S.Button
+          isActive={draftTour.prev.isActive}
+          icon={<BiSkipPrevious />}
+          onClick={() => changeActiveState("prev")}
+        >
+          Prev
+        </S.Button>
+        <S.Button
+          isActive={draftTour.next.isActive}
+          icon={<BiSkipNext />}
+          onClick={() => changeActiveState("next")}
+        >
+          Next
+        </S.Button>
+        <S.Button
+          isActive={draftTour.finish.isActive}
+          icon={<BiCheck />}
+          onClick={() => changeActiveState("finish")}
+        >
+          Done
+        </S.Button>
+        <S.Button
+          isActive={draftTour.skip.isActive}
+          icon={<BiFastForward />}
+          onClick={() => changeActiveState("skip")}
+        >
+          Skip
+        </S.Button>
+      </Section>
     </S.Craft>
   );
 }

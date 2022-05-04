@@ -2,16 +2,24 @@ import { Link as ReactLink } from "react-router-dom";
 
 import * as S from "./style";
 
-function Button({ href, icon, children, type = "default", onClick }) {
+function Button({
+  href,
+  icon,
+  children,
+  disabled,
+  type = "default",
+  onClick,
+  ...props
+}) {
   return (
-    <S.Button type={type}>
+    <S.Button type={type} {...props}>
       {href ? (
         <ReactLink to={href}>
           {icon && <S.Icon>{icon}</S.Icon>}
           {children}
         </ReactLink>
       ) : (
-        <button onClick={onClick}>
+        <button onClick={onClick} disabled={disabled}>
           {icon && <S.Icon>{icon}</S.Icon>}
           {children}
         </button>

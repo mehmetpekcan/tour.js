@@ -1,22 +1,22 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 import Card from "components/molecules/Card";
-import Button from "components/atoms/Button";
+import StyledButton from "components/atoms/Button";
 
 const Craft = styled.div``;
 
-const ButtonGroupCard = styled(Card)`
+const Section = styled(Card)`
   ${Card.S.Body} {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 12px;
   }
 
-  ${Button.S.Button} {
+  ${StyledButton.S.Button} {
     flex: 1;
   }
 
-  ${Button.S.Button} button {
+  ${StyledButton.S.Button} button {
     padding: 12px;
     flex-direction: column;
     align-items: center;
@@ -25,4 +25,15 @@ const ButtonGroupCard = styled(Card)`
   }
 `;
 
-export { Craft, ButtonGroupCard };
+const Button = styled(StyledButton)`
+  ${({ isActive }) =>
+    typeof isActive !== "undefined" &&
+    !isActive &&
+    css`
+      button {
+        background-color: var(--gray-very-light);
+      }
+    `}
+`;
+
+export { Craft, Section, Button };

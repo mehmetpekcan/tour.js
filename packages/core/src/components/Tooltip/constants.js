@@ -48,7 +48,7 @@ export const PREV_BUTTON = {
     return prev
       ? `
         <div>
-          <button class='${BUTTON.class} ${this.class}' contenteditable='${isEditMode}' style='${this.css}'>${prev}</button>
+          <button class='${this.class} ${BUTTON.class}' contenteditable='${isEditMode}' style='${this.css}'>${prev}</button>
         </div>
       `
       : '';
@@ -66,7 +66,7 @@ export const NEXT_BUTTON = {
     return next
       ? `
         <div style='${this.wrapperCSS}'>
-          <button class='${BUTTON.class} ${this.class}' contenteditable='${isEditMode}' style='${this.css}'>${next}</button>
+          <button class='${this.class} ${BUTTON.class}' contenteditable='${isEditMode}' style='${this.css}'>${next}</button>
         </div>
       `
       : '';
@@ -82,7 +82,7 @@ export const FINISH_BUTTON = {
     return finish
       ? `
         <div>
-          <button class='${BUTTON.class} tour--tooltip-finish ${this.class}' contenteditable='${isEditMode}' style='${this.css}'>${finish}</button>
+          <button class='${this.class} ${BUTTON.class}' contenteditable='${isEditMode}' style='${this.css}'>${finish}</button>
         </div>
       `
       : '';
@@ -96,28 +96,6 @@ export const FOOTER = {
     display: flex;
     gap: 8px;
   `,
-};
-
-// TODO: remove editor from core component
-export const EDITOR = {
-  class: 'tour-tooltip-editor',
-  css: `
-    position: absolute;
-    bottom: -64px;
-    left: 0;
-    right: 0;
-  `,
-  element() {
-    return `
-      <div class="${this.class}" style="${this.css}">
-        <button class="tour--tooltip-edit-positive">Done</button>
-        <button class="tour--tooltip-edit-negative">Cancel</button>
-        <button class="tour--tooltip-edit-next">Add Next Button</button>
-        <button class="tour--tooltip-edit-prev">Add Prev Button</button>
-        <button class="tour--tooltip-edit-finish">Add Finish Button</button>
-      </div>
-    `;
-  },
 };
 
 export const TOOLTIP = {
@@ -148,20 +126,23 @@ export const TOOLTIP = {
           ? `<div class='${CONTENT.class}' contenteditable='${isEditMode}' style='${CONTENT.css}'>${content}</div>`
           : ''
       }
-      <div class='${FOOTER.class}' contenteditable='${isEditMode}' style='${
-      FOOTER.css
-    } ${isEditMode ? 'display:none' : ''}'>
-        ${PREV_BUTTON.element({ prev, isEditMode })}
-        ${NEXT_BUTTON.element({ next, isEditMode })}
-        ${FINISH_BUTTON.element({ finish, isEditMode })}
-      </div>
+      ${
+        prev || next || finish
+          ? `
+          <div class='${FOOTER.class}' style='${FOOTER.css}'>
+            ${PREV_BUTTON.element({ prev, isEditMode })}
+            ${NEXT_BUTTON.element({ next, isEditMode })}
+            ${FINISH_BUTTON.element({ finish, isEditMode })}
+          </div>
+        `
+          : ''
+      }
     `;
   },
   element(args) {
     return `
       <div class='${this.class}' style='${this.css}'>
         ${this.innerElement(args)}
-        ${args.isEditMode ? EDITOR.element() : ''}
       </div>
     `;
   },
