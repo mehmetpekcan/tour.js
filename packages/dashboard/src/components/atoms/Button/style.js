@@ -1,14 +1,22 @@
 import styled, { css } from "styled-components";
 
 const CommonCSS = css`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   & > a,
   & > button {
     position: relative;
     cursor: pointer;
     outline: none;
     display: flex;
+    align-items: center;
     justify-content: center;
     font-weight: 500;
+    height: 100%;
+    width: 100%;
+    gap: 4px;
   }
 `;
 
@@ -64,13 +72,14 @@ const LinkType = {
 };
 
 const Button = styled.div`
-  ${CommonCSS}
-  ${({ type }) => LinkType[type]}
+  ${CommonCSS};
+  ${({ type }) => LinkType[type]};
 `;
 
 const Icon = styled.span`
   svg {
-    font-size: 32px;
+    width: 24px;
+    height: 24px;
   }
 `;
 

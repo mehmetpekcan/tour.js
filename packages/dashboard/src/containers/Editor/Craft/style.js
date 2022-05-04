@@ -2,14 +2,14 @@ import styled from "styled-components";
 
 import Card from "components/molecules/Card";
 import Button from "components/atoms/Button";
-import Input from "components/atoms/Input";
 
 const Craft = styled.div``;
 
 const ButtonGroupCard = styled(Card)`
   ${Card.S.Body} {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     gap: 12px;
-    flex-direction: row;
   }
 
   ${Button.S.Button} {
@@ -25,14 +25,4 @@ const ButtonGroupCard = styled(Card)`
   }
 `;
 
-const InputGroupCard = styled(Card)`
-  ${Card.S.Body} {
-    gap: 12px;
-  }
-
-  ${Input.S.Input} {
-    width: 100%;
-  }
-`;
-
-export { Craft, ButtonGroupCard, InputGroupCard };
+export { Craft, ButtonGroupCard };

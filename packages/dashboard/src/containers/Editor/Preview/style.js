@@ -1,7 +1,10 @@
 import styled from "styled-components";
 
-import Card from "components/molecules/Card";
 import { Tooltip } from "@tour.js/core";
+
+import Button from "components/atoms/Button";
+import Card from "components/molecules/Card";
+import Title from "components/atoms/Title";
 
 const Preview = styled(Card)`
   ${Card.S.Body} {
@@ -9,9 +12,28 @@ const Preview = styled(Card)`
     align-items: center;
     height: 100%;
   }
+
+  ${Card.S.Header} {
+    padding: 0 !important;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  ${Card.S.Header} ${Title.S.Title} {
+    padding: 12px;
+  }
+
+  ${Card.S.Header} ${Button.S.Button} button {
+    border: 0;
+    border-left: 1px solid var(--gray-very-light);
+    padding: 12px;
+    border-radius: 0;
+  }
 `;
 
 const TooltipWrapper = styled.div`
+  margin-top: 24px;
+
   &,
   * {
     opacity: 1 !important;

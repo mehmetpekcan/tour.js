@@ -1,3 +1,4 @@
+import Card from "components/molecules/Card";
 import styled from "styled-components";
 
 const NewTour = styled.section`
@@ -14,6 +15,10 @@ const Cards = styled.div`
   justify-content: space-between;
   gap: 32px;
   margin-top: 32px;
+
+  ${Card.S.Body} {
+    align-items: center;
+  }
 
   & > * {
     flex: 1;

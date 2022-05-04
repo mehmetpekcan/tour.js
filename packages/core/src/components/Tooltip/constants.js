@@ -29,6 +29,7 @@ export const BUTTON = {
     letter-spacing: .2px;
     border: 0;
     outline: 0;
+    border-radius: 4px;
     padding: 8px 16px;
     font-size: 14px;
     box-shadow: 0 5px 20px 10px rgba(0, 0, 0, .1);
@@ -46,7 +47,7 @@ export const PREV_BUTTON = {
   element({ prev, isEditMode = false }) {
     return prev
       ? `
-        <div style='flex:1;'>
+        <div>
           <button class='${BUTTON.class} ${this.class}' contenteditable='${isEditMode}' style='${this.css}'>${prev}</button>
         </div>
       `
@@ -56,12 +57,15 @@ export const PREV_BUTTON = {
 
 export const NEXT_BUTTON = {
   class: 'tour--tooltip-next',
+  wrapperCSS: `
+    margin-left: auto;
+  `,
   css: `
   `,
   element({ next, isEditMode = false }) {
     return next
       ? `
-        <div>
+        <div style='${this.wrapperCSS}'>
           <button class='${BUTTON.class} ${this.class}' contenteditable='${isEditMode}' style='${this.css}'>${next}</button>
         </div>
       `
@@ -88,7 +92,7 @@ export const FINISH_BUTTON = {
 export const FOOTER = {
   class: 'tour--tooltip-footer',
   css: `
-    margin-top: 12px;
+    margin-top: 16px;
     display: flex;
     gap: 8px;
   `,
@@ -120,9 +124,10 @@ export const TOOLTIP = {
   class: 'tour--tooltip-wrapper',
   css: `
     position: absolute;
-    width: 300px;
-    max-width: 300px;
-    padding: 16px;
+    width: 350px;
+    min-width: 350px;
+    max-width: 500px;
+    padding: 24px;
     z-index: 999;
     opacity: 0;
     border-radius: 8px;
@@ -135,7 +140,7 @@ export const TOOLTIP = {
     return `
       ${
         title
-          ? `<div class='${TITLE.class}' contenteditable='${isEditMode}' style='${TITLE.css}'>${title}</div>`
+          ? `<h3 class='${TITLE.class}' contenteditable='${isEditMode}' style='${TITLE.css}'>${title}</h3>`
           : ''
       }
       ${
