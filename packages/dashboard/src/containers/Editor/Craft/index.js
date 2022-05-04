@@ -35,7 +35,7 @@ function Craft({ handleButtonAdd }) {
       </S.ButtonGroupCard>
       <S.InputGroupCard type="transparent">
         <S.InputGroupCard.Header align="start">
-          <Title level={4}>Inputs</Title>
+          <Title level={4}>Text Fields</Title>
         </S.InputGroupCard.Header>
         <S.InputGroupCard.Body>
           <Input

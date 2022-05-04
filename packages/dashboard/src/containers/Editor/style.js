@@ -31,7 +31,7 @@ const Editor = styled.div`
   }
 
   ${Card.S.Body} {
-    padding: 24px 12px;
+    padding: 12px;
   }
 `;
 

@@ -115,4 +115,5 @@ class Tooltip {
   }
 }
 
+Tooltip.constant = constant;
 export default Tooltip;

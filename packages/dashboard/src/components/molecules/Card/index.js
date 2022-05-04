@@ -4,8 +4,8 @@ const Header = ({ children, ...props }) => {
   return <S.Header {...props}>{children} </S.Header>;
 };
 
-const Body = ({ children }) => {
-  return <S.Body>{children}</S.Body>;
+const Body = ({ children, ...props }) => {
+  return <S.Body {...props}>{children}</S.Body>;
 };
 
 const Footer = ({ children }) => {

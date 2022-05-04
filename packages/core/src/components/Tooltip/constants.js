@@ -35,6 +35,7 @@ export const BUTTON = {
     color: #ecf0f1;
     background-color: #4834d4;
     overflow-wrap: break-word;
+    word-break: break-word;
     line-height: 1.5;
   `,
 };
@@ -45,7 +46,11 @@ export const PREV_BUTTON = {
   `,
   element({ prev, isEditMode = false }) {
     return prev
-      ? `<button class='${BUTTON.class} ${this.class}' contenteditable='${isEditMode}' style='${this.css}'>${prev}</button>`
+      ? `
+        <div style='flex-shrink:0;'>
+          <button class='${BUTTON.class} ${this.class}' contenteditable='${isEditMode}' style='${this.css}'>${prev}</button>
+        </div>
+      `
       : '';
   },
 };
@@ -56,7 +61,11 @@ export const NEXT_BUTTON = {
   `,
   element({ next, isEditMode = false }) {
     return next
-      ? `<button class='${BUTTON.class} ${this.class}' contenteditable='${isEditMode}' style='${this.css}'>${next}</button>`
+      ? `
+        <div style='flex-shrink:0;'>
+          <button class='${BUTTON.class} ${this.class}' contenteditable='${isEditMode}' style='${this.css}'>${next}</button>
+        </div>
+      `
       : '';
   },
 };
@@ -68,7 +77,11 @@ export const FINISH_BUTTON = {
   `,
   element({ finish, isEditMode = false }) {
     return finish
-      ? `<button class='${BUTTON.class} tour--tooltip-finish ${this.class}' contenteditable='${isEditMode}' style='${this.css}'>${finish}</button>`
+      ? `
+        <div style='flex-shrink:0;'>
+          <button class='${BUTTON.class} tour--tooltip-finish ${this.class}' contenteditable='${isEditMode}' style='${this.css}'>${finish}</button>
+        </div>
+      `
       : '';
   },
 };
@@ -76,15 +89,14 @@ export const FINISH_BUTTON = {
 export const FOOTER = {
   class: 'tour--tooltip-footer',
   css: `
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    justify-content: space-between;
     margin-top: 12px;
-    overflow-wrap: break-word;
+    display: grid;
+    grid-template-columns 1fr auto auto;
+    gap: 8px;
   `,
 };
 
+// TODO: remove editor from core component
 export const EDITOR = {
   class: 'tour-tooltip-editor',
   css: `
