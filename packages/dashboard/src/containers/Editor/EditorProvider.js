@@ -21,32 +21,38 @@ function EditorProvider({ children }) {
     title: {
       value: title,
       set: setTitle,
+      isDisabled: false,
       isActive: true,
     },
     content: {
       value: content,
       set: setContent,
+      isDisabled: false,
       isActive: true,
     },
     next: {
       value: next,
       set: setNext,
+      isDisabled: false,
       isActive: true,
     },
     prev: {
       value: prev,
       set: setPrev,
+      isDisabled: false,
       isActive: false,
     },
     finish: {
       value: finish,
       set: setFinish,
+      isDisabled: false,
       isActive: false,
     },
     skip: {
       value: skip,
       set: setSkip,
       isActive: false,
+      isDisabled: true,
     },
   });
 
@@ -55,6 +61,7 @@ function EditorProvider({ children }) {
       ...draftTour,
       [field]: {
         ...draftTour[field],
+        isDisabled: !draftTour[field].isActive,
         isActive: !draftTour[field].isActive,
       },
     });

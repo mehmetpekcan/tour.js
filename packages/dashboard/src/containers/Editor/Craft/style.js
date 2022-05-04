@@ -34,6 +34,22 @@ const Button = styled(StyledButton)`
         background-color: var(--gray-very-light);
       }
     `}
+
+  ${({ disabled }) =>
+    typeof disabled !== "undefined" &&
+    disabled &&
+    css`
+      button {
+        background-color: var(--gray-light);
+        color: var(--gray-very-light);
+        cursor: not-allowed;
+
+        &:hover {
+          background-color: var(--gray-light);
+          color: var(--gray-very-light);
+        }
+      }
+    `}
 `;
 
 export { Craft, Section, Button };
