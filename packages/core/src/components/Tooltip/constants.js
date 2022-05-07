@@ -75,13 +75,16 @@ export const NEXT_BUTTON = {
 
 export const FINISH_BUTTON = {
   class: 'tour--tooltip-finish',
+  wrapperCSS: `
+    margin-left: auto;
+  `,
   css: `
     background-color: #eb4d4b;
   `,
   element({ finish, isEditMode = false }) {
     return finish
       ? `
-        <div>
+        <div style='${this.wrapperCSS}'>
           <button class='${this.class} ${BUTTON.class}' contenteditable='${isEditMode}' style='${this.css}'>${finish}</button>
         </div>
       `

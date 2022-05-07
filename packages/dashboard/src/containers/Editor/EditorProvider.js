@@ -61,7 +61,6 @@ function EditorProvider({ children }) {
       ...draftTour,
       [field]: {
         ...draftTour[field],
-        isDisabled: !draftTour[field].isActive,
         isActive: !draftTour[field].isActive,
       },
     });
