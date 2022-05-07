@@ -7,7 +7,7 @@ import { useEditorContext } from "../EditorProvider";
 import * as S from "./style";
 
 function Preview({ onSave }) {
-  const { draftTour, tours } = useEditorContext();
+  const { draftTour, tours, changeFieldValue } = useEditorContext();
 
   return (
     <S.Preview type="transparent">
@@ -29,12 +29,24 @@ function Preview({ onSave }) {
       <S.Preview.Body>
         <S.TooltipWrapper id="tooltip-wrapper">
           {draftTour.title.isActive && (
-            <S.TooltipTitle contentEditable>
+            <S.TooltipTitle
+              contentEditable
+              onInput={(e) => {
+                changeFieldValue("title", e.target.innerText);
+              }}
+              suppressContentEditableWarning={true}
+            >
               {draftTour.title.value}
             </S.TooltipTitle>
           )}
           {draftTour.content.isActive && (
-            <S.TooltipContent contentEditable>
+            <S.TooltipContent
+              onInput={(e) => {
+                changeFieldValue("content", e.target.innerText);
+              }}
+              contentEditable
+              suppressContentEditableWarning={true}
+            >
               {draftTour.content.value}
             </S.TooltipContent>
           )}
@@ -43,17 +55,35 @@ function Preview({ onSave }) {
             draftTour.finish.isActive) && (
             <S.TooltipFooter>
               {draftTour.prev.isActive && (
-                <S.TooltipPrevButton contentEditable>
+                <S.TooltipPrevButton
+                  onInput={(e) => {
+                    changeFieldValue("prev", e.target.innerText);
+                  }}
+                  contentEditable
+                  suppressContentEditableWarning={true}
+                >
                   {draftTour.prev.value}
                 </S.TooltipPrevButton>
               )}
               {draftTour.next.isActive && (
-                <S.TooltipNextButton contentEditable>
+                <S.TooltipNextButton
+                  onInput={(e) => {
+                    changeFieldValue("next", e.target.innerText);
+                  }}
+                  contentEditable
+                  suppressContentEditableWarning={true}
+                >
                   {draftTour.next.value}
                 </S.TooltipNextButton>
               )}
               {draftTour.finish.isActive && (
-                <S.TooltipFinishButton contentEditable>
+                <S.TooltipFinishButton
+                  onInput={(e) => {
+                    changeFieldValue("finish", e.target.innerText);
+                  }}
+                  contentEditable
+                  suppressContentEditableWarning={true}
+                >
                   {draftTour.finish.value}
                 </S.TooltipFinishButton>
               )}

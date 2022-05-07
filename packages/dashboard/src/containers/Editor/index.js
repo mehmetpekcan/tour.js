@@ -13,8 +13,7 @@ function Editor() {
 
     for (const field in draftTour) {
       if (draftTour[field].isActive) {
-        const fieldEl = document.querySelector(draftTour[field].selector);
-        newTour = { ...newTour, [field]: fieldEl.innerText };
+        newTour = { ...newTour, [field]: draftTour[field].value };
       }
     }
 
