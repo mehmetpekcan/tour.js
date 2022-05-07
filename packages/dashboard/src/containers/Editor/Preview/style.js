@@ -27,47 +27,23 @@ const Preview = styled(Card)`
 
 const TooltipWrapper = styled.div`
   margin-top: 24px;
+  ${Tooltip.constant.TOOLTIP.css};
+
+  & {
+    position: static !important;
+  }
 
   &,
   * {
     opacity: 1 !important;
   }
-
-  .tour--tooltip-wrapper {
-    position: static !important;
-  }
-
-  .${Tooltip.constant.TITLE.class} {
-    ${Tooltip.constant.TITLE.css};
-  }
-
-  .${Tooltip.constant.CONTENT.class} {
-    ${Tooltip.constant.CONTENT.css};
-  }
-
-  .${Tooltip.constant.FOOTER.class} {
-    ${Tooltip.constant.FOOTER.css};
-  }
-
-  .${Tooltip.constant.BUTTON.class} {
-    ${Tooltip.constant.BUTTON.css};
-    box-shadow: 0 5px 20px 10px rgba(0, 0, 0, 0.05) !important;
-  }
-
-  .${Tooltip.constant.NEXT_BUTTON.class} {
-    ${Tooltip.constant.NEXT_BUTTON.css};
-  }
-
-  .${Tooltip.constant.PREV_BUTTON.class} {
-    ${Tooltip.constant.PREV_BUTTON.css};
-  }
-
-  .${Tooltip.constant.FINISH_BUTTON.class} {
-    ${Tooltip.constant.FINISH_BUTTON.css};
-  }
 `;
 
-const SaveButton = styled(StyledButton)`
+const ActionButtons = styled.div`
+  display: flex;
+`;
+
+const Button = styled(StyledButton)`
   button {
     border: 0;
     border-left: 1px solid var(--gray-very-light);
@@ -76,4 +52,45 @@ const SaveButton = styled(StyledButton)`
   }
 `;
 
-export { Preview, TooltipWrapper, SaveButton };
+const TooltipTitle = styled.h3`
+  ${Tooltip.constant.TITLE.css};
+`;
+
+const TooltipContent = styled.div`
+  ${Tooltip.constant.CONTENT.css};
+`;
+
+const TooltipFooter = styled.div`
+  ${Tooltip.constant.FOOTER.css};
+`;
+
+const TooltipNextButton = styled.button`
+  ${Tooltip.constant.BUTTON.css};
+  box-shadow: 0 5px 20px 10px rgba(0, 0, 0, 0.05) !important;
+  ${Tooltip.constant.NEXT_BUTTON.css};
+`;
+
+const TooltipPrevButton = styled.button`
+  ${Tooltip.constant.BUTTON.css};
+  box-shadow: 0 5px 20px 10px rgba(0, 0, 0, 0.05) !important;
+  ${Tooltip.constant.PREV_BUTTON.css};
+`;
+
+const TooltipFinishButton = styled.button`
+  ${Tooltip.constant.BUTTON.css};
+  box-shadow: 0 5px 20px 10px rgba(0, 0, 0, 0.05) !important;
+  ${Tooltip.constant.FINISH_BUTTON.css};
+`;
+
+export {
+  Preview,
+  TooltipWrapper,
+  ActionButtons,
+  Button,
+  TooltipTitle,
+  TooltipContent,
+  TooltipFooter,
+  TooltipNextButton,
+  TooltipPrevButton,
+  TooltipFinishButton,
+};

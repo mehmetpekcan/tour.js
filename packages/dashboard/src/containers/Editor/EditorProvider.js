@@ -4,7 +4,8 @@ import { Tooltip } from "@tour.js/core";
 const EditorContext = createContext();
 
 const initialTour = {
-  selector: "body",
+  website: "",
+  selector: "",
   title: "Publish your changes",
   content:
     "Your colleagues will see the changes you made as soon as you publish them.",
@@ -19,7 +20,6 @@ function EditorProvider({ children }) {
   const [draftTour, setDraftTour] = useState({
     selector: {
       value: initialTour.selector,
-      selector: "input",
     },
     title: {
       value: initialTour.title,
@@ -69,18 +69,21 @@ function EditorProvider({ children }) {
     });
   };
 
-  const changeDraftValue = (field, newValue) => {
-    draftTour[field].set(newValue);
+  const changeFieldValue = (field, value) => {
+    setDraftTour({
+      ...draftTour,
+      [field]: { ...draftTour[field], value },
+    });
   };
 
   return (
     <EditorContext.Provider
       value={{
         draftTour,
-        changeDraftValue,
         changeActiveState,
         tours,
         setTours,
+        changeFieldValue,
       }}
     >
       {children}

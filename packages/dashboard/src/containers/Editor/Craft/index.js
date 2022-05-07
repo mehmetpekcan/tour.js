@@ -12,10 +12,11 @@ import Title from "components/atoms/Title";
 import { useEditorContext } from "../EditorProvider";
 
 import * as S from "./style";
+import Input from "components/atoms/Input";
 
-const Section = ({ title, children }) => {
+const Section = ({ title, children, ...props }) => {
   return (
-    <S.Section type="transparent">
+    <S.Section type="transparent" {...props}>
       <S.Section.Header align="start">
         <Title level={4}>{title}</Title>
       </S.Section.Header>
@@ -25,15 +26,25 @@ const Section = ({ title, children }) => {
 };
 
 function Craft() {
-  const { changeActiveState, draftTour } = useEditorContext();
+  const { changeActiveState, draftTour, changeFieldValue } = useEditorContext();
 
   return (
     <S.Craft>
-      <Section title="Type">
+      <Section title="Configs">
+        <Input
+          id="selector-input"
+          type="text"
+          placeholder="Selector e.g: #footer, .header"
+          onChange={(e) => {
+            changeFieldValue("selector", e.target.value);
+          }}
+        />
+      </Section>
+      <Section title="Type" id="type-section">
         <S.Button isActive={true}>Tooltip</S.Button>
         <S.Button disabled>Modal</S.Button>
       </Section>
-      <Section title="Text Fields">
+      <Section title="Text Fields" id="text-field-section">
         <S.Button
           disabled={draftTour.title.isDisabled || false}
           isActive={draftTour.title.isActive}
@@ -51,7 +62,7 @@ function Craft() {
           Body
         </S.Button>
       </Section>
-      <Section title="Buttons">
+      <Section title="Buttons" id="buttons-section">
         <S.Button
           disabled={draftTour.prev.isDisabled || false}
           isActive={draftTour.prev.isActive}

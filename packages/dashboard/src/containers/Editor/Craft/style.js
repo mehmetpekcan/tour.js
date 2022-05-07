@@ -7,9 +7,12 @@ const Craft = styled.div``;
 
 const Section = styled(Card)`
   ${Card.S.Body} {
+    gap: 12px;
+  }
+
+  &:not(:first-child) ${Card.S.Body} {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
   }
 
   ${StyledButton.S.Button} {
