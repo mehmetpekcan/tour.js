@@ -2,9 +2,10 @@ import styled from "styled-components";
 
 import { Tooltip } from "@tour.js/core";
 
-import Button from "components/atoms/Button";
 import Card from "components/molecules/Card";
 import Title from "components/atoms/Title";
+
+import { Button as StyledButton } from "../Craft/style";
 
 const Preview = styled(Card)`
   ${Card.S.Body} {
@@ -21,13 +22,6 @@ const Preview = styled(Card)`
 
   ${Card.S.Header} ${Title.S.Title} {
     padding: 12px;
-  }
-
-  ${Card.S.Header} ${Button.S.Button} button {
-    border: 0;
-    border-left: 1px solid var(--gray-very-light);
-    padding: 12px;
-    border-radius: 0;
   }
 `;
 
@@ -73,4 +67,13 @@ const TooltipWrapper = styled.div`
   }
 `;
 
-export { Preview, TooltipWrapper };
+const SaveButton = styled(StyledButton)`
+  button {
+    border: 0;
+    border-left: 1px solid var(--gray-very-light);
+    padding: 12px;
+    border-radius: 0;
+  }
+`;
+
+export { Preview, TooltipWrapper, SaveButton };

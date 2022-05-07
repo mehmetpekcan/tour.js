@@ -28,7 +28,7 @@ const Section = styled(Card)`
 const Button = styled(StyledButton)`
   ${({ isActive }) =>
     typeof isActive !== "undefined" &&
-    !isActive &&
+    isActive &&
     css`
       button {
         background-color: var(--gray-very-light);

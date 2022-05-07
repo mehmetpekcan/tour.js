@@ -24,16 +24,14 @@ const Section = ({ title, children }) => {
   );
 };
 
-function Craft({ handleButtonAdd }) {
+function Craft() {
   const { changeActiveState, draftTour } = useEditorContext();
 
   return (
     <S.Craft>
       <Section title="Type">
-        <S.Button onClick={() => handleButtonAdd("tooltip")}>Tooltip</S.Button>
-        <S.Button disabled onClick={() => handleButtonAdd("modal")}>
-          Modal
-        </S.Button>
+        <S.Button isActive={true}>Tooltip</S.Button>
+        <S.Button disabled>Modal</S.Button>
       </Section>
       <Section title="Text Fields">
         <S.Button

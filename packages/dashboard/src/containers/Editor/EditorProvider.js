@@ -1,58 +1,61 @@
 import { createContext, useContext, useState } from "react";
+import { Tooltip } from "@tour.js/core";
 
 const EditorContext = createContext();
 
-function EditorProvider({ children }) {
-  const [selector, setSelector] = useState();
-  const [title, setTitle] = useState("Publish your changes");
-  const [content, setContent] = useState(
-    "Your colleagues will see the changefs you made as soon as you publish them."
-  );
-  const [next, setNext] = useState("Next Tip");
-  const [prev, setPrev] = useState("Prev Tip");
-  const [finish, setFinish] = useState("Finish");
-  const [skip, setSkip] = useState("Skip");
+const initialTour = {
+  selector: "body",
+  title: "Publish your changes",
+  content:
+    "Your colleagues will see the changes you made as soon as you publish them.",
+  next: "Next Tip",
+  prev: "Prev Tip",
+  finish: "Finish",
+  skip: "Skip",
+};
 
+function EditorProvider({ children }) {
+  const [tours, setTours] = useState([]);
   const [draftTour, setDraftTour] = useState({
     selector: {
-      value: selector,
-      set: setSelector,
+      value: initialTour.selector,
+      selector: "input",
     },
     title: {
-      value: title,
-      set: setTitle,
+      value: initialTour.title,
       isDisabled: false,
       isActive: true,
+      selector: `.${Tooltip.constant.TITLE.class}`,
     },
     content: {
-      value: content,
-      set: setContent,
+      value: initialTour.content,
       isDisabled: false,
       isActive: true,
+      selector: `.${Tooltip.constant.CONTENT.class}`,
     },
     next: {
-      value: next,
-      set: setNext,
+      value: initialTour.next,
       isDisabled: false,
       isActive: true,
+      selector: `.${Tooltip.constant.NEXT_BUTTON.class}`,
     },
     prev: {
-      value: prev,
-      set: setPrev,
+      value: initialTour.prev,
       isDisabled: false,
       isActive: false,
+      selector: `.${Tooltip.constant.PREV_BUTTON.class}`,
     },
     finish: {
-      value: finish,
-      set: setFinish,
+      value: initialTour.finish,
       isDisabled: false,
       isActive: false,
+      selector: `.${Tooltip.constant.FINISH_BUTTON.class}`,
     },
     skip: {
-      value: skip,
-      set: setSkip,
+      value: initialTour.skip,
       isActive: false,
       isDisabled: true,
+      // selector: `.${Tooltip.constant.SKIP.selector}`
     },
   });
 
@@ -66,7 +69,7 @@ function EditorProvider({ children }) {
     });
   };
 
-  const changeValue = (field, newValue) => {
+  const changeDraftValue = (field, newValue) => {
     draftTour[field].set(newValue);
   };
 
@@ -74,9 +77,10 @@ function EditorProvider({ children }) {
     <EditorContext.Provider
       value={{
         draftTour,
-        setDraftTour,
-        changeValue,
+        changeDraftValue,
         changeActiveState,
+        tours,
+        setTours,
       }}
     >
       {children}

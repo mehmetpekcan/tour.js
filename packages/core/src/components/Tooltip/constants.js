@@ -58,7 +58,6 @@ export const PREV_BUTTON = {
 export const NEXT_BUTTON = {
   class: 'tour--tooltip-next',
   wrapperCSS: `
-    margin-left: auto;
   `,
   css: `
   `,
@@ -76,7 +75,6 @@ export const NEXT_BUTTON = {
 export const FINISH_BUTTON = {
   class: 'tour--tooltip-finish',
   wrapperCSS: `
-    margin-left: auto;
   `,
   css: `
     background-color: #eb4d4b;

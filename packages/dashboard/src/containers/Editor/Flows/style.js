@@ -27,8 +27,12 @@ const FlowOrder = styled.span`
 
 const FlowTitle = styled(Title)`
   margin-left: 16px;
+  max-width: 75%;
 
   ${Title.S.TitleElement} {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     font-size: 16px;
     font-weight: 500;
     color: var(--gray);

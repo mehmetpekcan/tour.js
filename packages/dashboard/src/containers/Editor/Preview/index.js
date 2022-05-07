@@ -2,20 +2,25 @@ import { Tooltip } from "@tour.js/core";
 import { BiSave } from "react-icons/bi";
 
 import Title from "components/atoms/Title";
-import Button from "components/atoms/Button";
 
 import { useEditorContext } from "../EditorProvider";
 
 import * as S from "./style";
 
-function Preview() {
+function Preview({ onSave }) {
   const { draftTour } = useEditorContext();
 
   return (
     <S.Preview type="transparent">
       <S.Preview.Header align="start">
         <Title level={4}>Preview</Title>
-        <Button icon={<BiSave />}>Save</Button>
+        <S.SaveButton
+          disabled={!draftTour.title.isActive}
+          onClick={onSave}
+          icon={<BiSave />}
+        >
+          Save
+        </S.SaveButton>
       </S.Preview.Header>
       <S.Preview.Body>
         <S.TooltipWrapper
