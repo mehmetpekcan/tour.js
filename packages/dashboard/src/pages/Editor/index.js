@@ -11,6 +11,7 @@ const editorTourSteps = [
     title: "Add target element 🚀",
     content:
       "You can type your target element selector here like #text, .input",
+    finish: "Finish the tour",
   },
   {
     selector: "#type-section",

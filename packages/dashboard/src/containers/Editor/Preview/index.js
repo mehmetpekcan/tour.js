@@ -1,4 +1,3 @@
-import { Tooltip } from "@tour.js/core";
 import { BiShareAlt, BiSave } from "react-icons/bi";
 
 import Title from "components/atoms/Title";
@@ -11,8 +10,8 @@ function Preview({ onSave }) {
   const { draftTour, tours } = useEditorContext();
 
   return (
-    <S.Preview type="transparent" id="preview-section">
-      <S.Preview.Header align="start">
+    <S.Preview type="transparent">
+      <S.Preview.Header align="start" id="preview-section">
         <Title level={4}>Preview</Title>
         <S.ActionButtons>
           <S.Button disabled={!tours.length} icon={<BiShareAlt />}>
@@ -30,27 +29,31 @@ function Preview({ onSave }) {
       <S.Preview.Body>
         <S.TooltipWrapper id="tooltip-wrapper">
           {draftTour.title.isActive && (
-            <S.TooltipTitle>{draftTour.title.value}</S.TooltipTitle>
+            <S.TooltipTitle contentEditable>
+              {draftTour.title.value}
+            </S.TooltipTitle>
           )}
           {draftTour.content.isActive && (
-            <S.TooltipContent>{draftTour.content.value}</S.TooltipContent>
+            <S.TooltipContent contentEditable>
+              {draftTour.content.value}
+            </S.TooltipContent>
           )}
           {(draftTour.prev.isActive ||
             draftTour.next.isActive ||
             draftTour.finish.isActive) && (
             <S.TooltipFooter>
               {draftTour.prev.isActive && (
-                <S.TooltipPrevButton>
+                <S.TooltipPrevButton contentEditable>
                   {draftTour.prev.value}
                 </S.TooltipPrevButton>
               )}
               {draftTour.next.isActive && (
-                <S.TooltipNextButton>
+                <S.TooltipNextButton contentEditable>
                   {draftTour.next.value}
                 </S.TooltipNextButton>
               )}
               {draftTour.finish.isActive && (
-                <S.TooltipFinishButton>
+                <S.TooltipFinishButton contentEditable>
                   {draftTour.finish.value}
                 </S.TooltipFinishButton>
               )}
