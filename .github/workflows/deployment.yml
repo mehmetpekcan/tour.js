@@ -19,10 +19,10 @@ jobs:
           node-version: "14"
 
       - name: Build 🚀
-        run: yarn extension:build
+        run: yarn dashboard:build
 
       - name: Create .nojekyll file
-        run: touch ./packages/extension/build/.nojekyll
+        run: touch ./packages/dashboard/build/.nojekyll
 
       - name: Deploy 🔥
         uses: JamesIves/github-pages-deploy-action@v4.3.0
