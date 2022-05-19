@@ -1,5 +1,5 @@
 {
-  "private": false,
+  "private": true,
   "name": "tour.js",
   "version": "0.0.1",
   "license": "MIT",
