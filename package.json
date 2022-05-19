@@ -1,12 +1,13 @@
 {
-  "private": true,
+  "private": false,
   "name": "tour.js",
-  "version": "0.0.2",
+  "version": "0.0.1",
   "license": "MIT",
   "workspaces": [
     "packages/*"
   ],
   "scripts": {
+    "publish": "npm publish packages/core",
     "extension:dev": "concurrently \"yarn workspace @tour.js/core build watch=true\" \"yarn workspace @tour.js/extension start\"",
     "extension:build": "yarn && yarn workspace @tour.js/extension build",
     "dashboard:start": "concurrently \"yarn workspace @tour.js/core build\" \"yarn workspace @tour.js/dashboard start\"",
