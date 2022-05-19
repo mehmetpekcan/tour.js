@@ -1,0 +1,12 @@
+{
+  "name": "Tour.JS extension",
+  "version": "0.0.1",
+  "manifest_version": 3,
+  "description": "Some descp here",
+  "content_scripts": [
+    {
+      "js": ["dist/index.js"],
+      "matches": ["https://*/*"]
+    }
+  ]
+}
