@@ -74,7 +74,7 @@ function Preview({ onSave }) {
         ],
       },
     ],
-    []
+    [draftTour]
   );
 
   return (
