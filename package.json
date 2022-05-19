@@ -1,19 +1,22 @@
 {
-  "private": true,
   "name": "tour.js",
-  "version": "0.0.1",
+  "description": "A walkthrough maker for your web apps",
+  "repository": "https://github.com/mehmetpekcan/tour.js.git",
+  "author": "pekcanmehmett@gmail.com",
   "license": "MIT",
-  "workspaces": [
-    "packages/*"
-  ],
+  "private": false,
+  "version": "0.0.4",
   "scripts": {
-    "publish": "npm publish packages/core",
-    "extension:dev": "concurrently \"yarn workspace @tour.js/core build watch=true\" \"yarn workspace @tour.js/extension start\"",
-    "extension:build": "yarn && yarn workspace @tour.js/extension build",
-    "dashboard:start": "concurrently \"yarn workspace @tour.js/core build\" \"yarn workspace @tour.js/dashboard start\"",
-    "dashboard:build": "yarn && yarn workspace @tour.js/dashboard build"
+    "build": "rm -rf ./dist && node build.js",
+    "watch": "rm -rf ./dist && node build.js watch=true"
   },
   "devDependencies": {
-    "concurrently": "^7.0.0"
-  }
+    "esbuild": "^0.14.28",
+    "eslint": "^8.12.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.25.4",
+    "prettier": "^2.6.2"
+  },
+  "main": "src/index.js"
 }
