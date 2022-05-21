@@ -1,0 +1,33 @@
+:root {
+  --primary: #59d499;
+  --black: #000;
+  --white: #fff;
+  --gray-dark: #555;
+  --gray: #888;
+
+  --gap: 1.5rem;
+  --gap-sm: 0.5rem;
+}
+
+* {
+  font-family: 'Inter', sans-serif;
+}
+
+body {
+  background-color: var(--black);
+  color: var(--gray);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  position: relative;
+  min-height: 100%;
+  max-width: 100vw;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--white);
+}
