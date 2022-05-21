@@ -35,33 +35,41 @@ class Tooltip {
   }
 
   remove() {
-    this.tooltipElement.outerHTML = null;
+    this.element.outerHTML = null;
   }
 
-  render(targetPosition = null, content = {}) {
-    this.tooltipElement = document.querySelector('.tour--tooltip-wrapper');
+  render(content = {}) {
+    this.element = document.querySelector('.tour--tooltip-wrapper');
     const args = { ...defaultTooltipContent, ...content };
 
-    if (!this.tooltipElement) {
+    if (!this.element) {
       const tooltipHTML = constant.TOOLTIP.element(args);
 
-      this.tooltipElement = createElementFromHTML(tooltipHTML);
-      document.body.append(this.tooltipElement);
+      this.element = createElementFromHTML(tooltipHTML);
+      document.body.append(this.element);
     } else {
-      this.tooltipElement.innerHTML = constant.TOOLTIP.innerElement(args);
+      this.element.innerHTML = constant.TOOLTIP.innerElement(args);
     }
 
     this.bindEvents();
+  }
 
-    setTimeout(() => {
-      const { height, top, left } = targetPosition;
-      const leftValue = `${left - HIGHLIGHTER_BORDER}px`;
-      const topValue = `${top + height + HIGHLIGHTER_BORDER + 16}px`;
+  changePosition(targetPosition) {
+    const { height, top, left } = targetPosition;
+    const { scrollX, scrollY } = window;
 
-      this.tooltipElement.classList.add('visible');
-      this.tooltipElement.style.setProperty('top', topValue);
-      this.tooltipElement.style.setProperty('left', leftValue);
-    }, 0);
+    const leftValue = scrollX + left - HIGHLIGHTER_BORDER;
+    let topValue = scrollY + top;
+
+    if (top + this.element.clientHeight > window.innerHeight) {
+      topValue -= this.element.clientHeight + HIGHLIGHTER_BORDER + 16;
+    } else {
+      topValue += height + HIGHLIGHTER_BORDER + 16;
+    }
+
+    this.element.classList.add('visible');
+    this.element.style.setProperty('top', `${topValue}px`);
+    this.element.style.setProperty('left', `${leftValue}px`);
   }
 }
 

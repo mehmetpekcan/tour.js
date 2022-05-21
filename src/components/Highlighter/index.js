@@ -3,41 +3,38 @@ import { createElementFromHTML } from '../../helpers';
 
 const defaultHighlighterContent = {};
 
-function Highlighter() {
-  let highlighterElement;
+class Highlighter {
+  remove() {
+    this.element.outerHTML = null;
+  }
 
-  const render = (targetPosition, content = {}) => {
-    highlighterElement = document.querySelector('.tour--highlighter-wrapper');
+  render(content = {}) {
+    this.element = document.querySelector('.tour--highlighter-wrapper');
 
-    if (!highlighterElement) {
+    if (!this.element) {
       const args = { ...defaultHighlighterContent, ...content };
       const highlighterHTML = HIGHLIGHTER.element(args);
 
-      highlighterElement = createElementFromHTML(highlighterHTML);
-      document.body.append(highlighterElement);
+      this.element = createElementFromHTML(highlighterHTML);
+      document.body.append(this.element);
     }
+  }
 
-    setTimeout(() => {
-      const { width, height, top, left } = targetPosition;
+  changePosition(targetPosition) {
+    const { width, height, top, left } = targetPosition;
+    const { scrollX, scrollY } = window;
 
-      const widthValue = `${width}px`;
-      const heightValue = `${height}px`;
-      const topValue = `${top - HIGHLIGHTER_BORDER}px`;
-      const leftValue = `${left - HIGHLIGHTER_BORDER}px`;
+    const widthValue = width;
+    const heightValue = height;
+    const topValue = scrollY + top - HIGHLIGHTER_BORDER;
+    const leftValue = scrollX + left - HIGHLIGHTER_BORDER;
 
-      highlighterElement.classList.add('visible');
-      highlighterElement.style.setProperty('width', widthValue);
-      highlighterElement.style.setProperty('height', heightValue);
-      highlighterElement.style.setProperty('top', topValue);
-      highlighterElement.style.setProperty('left', leftValue);
-    }, 0);
-  };
-
-  const remove = () => {
-    highlighterElement.outerHTML = null;
-  };
-
-  return { render, remove };
+    this.element.classList.add('visible');
+    this.element.style.setProperty('width', `${widthValue}px`);
+    this.element.style.setProperty('height', `${heightValue}px`);
+    this.element.style.setProperty('top', `${topValue}px`);
+    this.element.style.setProperty('left', `${leftValue}px`);
+  }
 }
 
 export default Highlighter;

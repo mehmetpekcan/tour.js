@@ -25,16 +25,20 @@ class Tour {
   }
 
   placeWorker({ target, ...content }) {
+    this.tooltip.render(content);
+    this.highlighter.render();
+
     const targetPosition = getElementMeta(target);
 
-    this.tooltip.render(targetPosition, content);
-    this.highlighter.render(targetPosition, {});
     target.classList.add('tour--js-target');
     target.scrollIntoView({
       behavior: 'smooth',
       block: 'center',
       inline: 'center',
     });
+
+    this.tooltip.changePosition(targetPosition);
+    this.highlighter.changePosition(targetPosition);
   }
 
   clearTourWorker() {
