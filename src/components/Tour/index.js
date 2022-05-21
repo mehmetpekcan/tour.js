@@ -1,12 +1,7 @@
 import Tooltip from '../Tooltip';
 import Highlighter from '../Highlighter';
 
-import {
-  getElementMeta,
-  injectDefaultStyles,
-  removeDefaultStyles,
-  getInnerText,
-} from '../../helpers';
+import { getElementMeta } from '../../helpers';
 
 const defaultOptions = { steps: [] };
 
@@ -37,7 +32,6 @@ class Tour {
   clearTourWorker() {
     this.tooltip.remove();
     this.highlighter.remove();
-    removeDefaultStyles();
   }
 
   handleFinishButton() {
@@ -66,8 +60,6 @@ class Tour {
     if (this.steps.length === 0) {
       throw new Error('Steps cannot be empty');
     }
-
-    console.log('here');
 
     this.steps = this.steps.map((step, index) => {
       const tempStep = step;
@@ -109,49 +101,10 @@ class Tour {
       return tempStep;
     });
 
-    injectDefaultStyles();
     this.placeWorker(this.steps[0]);
 
     window.addEventListener('resize', () => {
       this.placeWorker(this.steps[this.currentIndex]);
-    });
-  }
-
-  createStep(target, callback) {
-    const basicStep = {
-      target,
-      title: 'Click to change title 📌',
-      content: 'Click for changing content...',
-      isEditMode: true,
-    };
-
-    this.tooltip.onEditPositive = () => {
-      const { TITLE, CONTENT, PREV_BUTTON, NEXT_BUTTON, FINISH_BUTTON } =
-        this.tooltip.constant;
-
-      const title = getInnerText(`.${TITLE.class}`);
-      const content = getInnerText(`.${CONTENT.class}`);
-      const prev = getInnerText(`.${PREV_BUTTON.class}`);
-      const next = getInnerText(`.${NEXT_BUTTON.class}`);
-      const finish = getInnerText(`.${FINISH_BUTTON.class}`);
-
-      this.clearTourWorker();
-      callback({
-        positive: true,
-        step: { target, title, content, prev, next, finish },
-      });
-    };
-
-    this.tooltip.onEditNegative = () => {
-      this.clearTourWorker();
-      callback({ negative: true });
-    };
-
-    injectDefaultStyles();
-    this.placeWorker(basicStep);
-
-    window.addEventListener('resize', () => {
-      this.placeWorker(basicStep);
     });
   }
 }

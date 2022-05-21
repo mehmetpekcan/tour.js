@@ -1,4 +1,4 @@
-import './css/style.css';
+import './css/style.scss';
 
 // eslint-disable-next-line no-restricted-exports
 export { default as Tooltip } from './components/Tooltip';

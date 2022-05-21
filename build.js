@@ -1,3 +1,6 @@
+const esbuild = require('esbuild');
+const { sassPlugin } = require('esbuild-sass-plugin');
+
 const args = process.argv.slice(2);
 
 const parseArgs = (args) =>
@@ -5,7 +8,7 @@ const parseArgs = (args) =>
 
 const { watch = false } = parseArgs(args);
 
-require('esbuild')
+esbuild
   .build({
     entryPoints: ['src/index.js'],
     outdir: 'dist',
@@ -15,6 +18,7 @@ require('esbuild')
     format: 'cjs',
     target: ['esnext'],
     watch: Boolean(watch),
+    plugins: [sassPlugin()],
   })
   .then((result) => {
     if (Boolean(watch)) {
