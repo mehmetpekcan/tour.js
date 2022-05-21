@@ -1,5 +1,6 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 const esbuild = require('esbuild');
+// eslint-disable-next-line import/no-extraneous-dependencies
 const { sassPlugin } = require('esbuild-sass-plugin');
 
 const parseArgs = (args) =>

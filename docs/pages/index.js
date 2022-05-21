@@ -3,22 +3,39 @@ import Head from 'next/head';
 import Image from 'next/image';
 import styles from '../styles/Home.module.css';
 
-import 'tour.js/index.css';
-import Tour from 'tour.js';
-
-const tour = new Tour({
-  steps: [
-    {
-      selector: 'h1',
-      title: 'Heelo',
-      content: 'asdsad',
-    },
-  ],
-});
+import Tour from 'tour.js/dist/index.js';
 
 export default function Home() {
   useEffect(() => {
-    console.log(tour);
+    const tour = new Tour({
+      steps: [
+        {
+          selector: 'h1',
+          title: 'Heelo',
+          content: 'asdsad',
+        },
+        {
+          selector: '#__next > div > main > div > a:nth-child(2)',
+          title: 'asdasd',
+          content: 'asdasd',
+        },
+        {
+          selector: '#__next > div > main > div > a:nth-child(3)',
+          title: 'asdasd',
+          content: 'asdasd',
+        },
+        {
+          selector: '#__next > div > main > div > a:nth-child(4)',
+          title: 'asdasd',
+          content: 'asdasd',
+        },
+        {
+          selector: 'footer',
+          title: 'Heelo',
+          content: 'asdsad',
+        },
+      ],
+    });
     tour.start();
   }, []);
 

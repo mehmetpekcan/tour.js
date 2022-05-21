@@ -1,3 +1,6 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
+import smoothscroll from 'smoothscroll-polyfill';
+
 import Tooltip from '../Tooltip';
 import Highlighter from '../Highlighter';
 
@@ -27,6 +30,11 @@ class Tour {
     this.tooltip.render(targetPosition, content);
     this.highlighter.render(targetPosition, {});
     target.classList.add('tour--js-target');
+    target.scrollIntoView({
+      behavior: 'smooth',
+      block: 'center',
+      inline: 'center',
+    });
   }
 
   clearTourWorker() {
@@ -60,6 +68,8 @@ class Tour {
     if (this.steps.length === 0) {
       throw new Error('Steps cannot be empty');
     }
+
+    smoothscroll.polyfill();
 
     this.steps = this.steps.map((step, index) => {
       const tempStep = step;
