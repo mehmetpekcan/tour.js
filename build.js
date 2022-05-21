@@ -1,27 +1,26 @@
 const args = process.argv.slice(2);
 
 const parseArgs = (args) =>
-  Object.fromEntries(args.map((arg) => arg.split("=")));
+  Object.fromEntries(args.map((arg) => arg.split('=')));
 
 const { watch = false } = parseArgs(args);
 
-require("esbuild")
+require('esbuild')
   .build({
-    entryPoints: ["src/index.js"],
-    outdir: "dist",
+    entryPoints: ['src/index.js'],
+    outdir: 'dist',
     bundle: true,
     sourcemap: true,
     minify: true,
-    splitting: true,
-    format: "esm",
-    target: ["esnext"],
+    format: 'cjs',
+    target: ['esnext'],
     watch: Boolean(watch),
   })
   .then((result) => {
     if (Boolean(watch)) {
-      console.log("Watching for your changes...");
+      console.log('Watching for your changes...');
     } else {
-      console.log("Build done...");
+      console.log('Build done...');
     }
   })
   .catch(() => process.exit(1));

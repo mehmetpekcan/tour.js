@@ -67,6 +67,8 @@ class Tour {
       throw new Error('Steps cannot be empty');
     }
 
+    console.log('here');
+
     this.steps = this.steps.map((step, index) => {
       const tempStep = step;
 

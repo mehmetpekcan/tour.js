@@ -1,8 +1,27 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+import { useEffect } from 'react';
+import Head from 'next/head';
+import Image from 'next/image';
+import styles from '../styles/Home.module.css';
+
+import 'tour.js/index.css';
+import Tour from 'tour.js';
+
+const tour = new Tour({
+  steps: [
+    {
+      selector: 'h1',
+      title: 'Heelo',
+      content: 'asdsad',
+    },
+  ],
+});
 
 export default function Home() {
+  useEffect(() => {
+    console.log(tour);
+    tour.start();
+  }, []);
+
   return (
     <div className={styles.container}>
       <Head>
@@ -65,5 +84,5 @@ export default function Home() {
         </a>
       </footer>
     </div>
-  )
+  );
 }
