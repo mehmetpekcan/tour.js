@@ -6,8 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "update": "rm -rf node_modules && yarn"
+    "lint": "next lint"
   },
   "dependencies": {
     "next": "12.1.6",
