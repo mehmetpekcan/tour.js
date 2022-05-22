@@ -11,7 +11,7 @@ function Header() {
       <Logo />
       <S.Navigation>
         <S.NavItem>
-          <Button kind="link" href="/docs">
+          <Button kind="link" href="/docs" id="header-docs-button">
             Docs
           </Button>
         </S.NavItem>

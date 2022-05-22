@@ -1,5 +1,6 @@
 const Sections = [
   {
+    id: 'new-users',
     color: 'var(--primary)',
     title: 'New Users',
     subtitle: 'Reliability',
@@ -8,6 +9,7 @@ const Sections = [
       'Keep your candidate users on the website by pointing out to key feature of your app/dashboard.',
   },
   {
+    id: 'new-hidden-features',
     color: '#007CF0',
     title: 'New/Hidden Features',
     subtitle: 'Visibility',
@@ -16,6 +18,7 @@ const Sections = [
       'Show all of your hidden features to be able to make more efficient users. In that way, some of the pain use cases may be transform to easy things!',
   },
   {
+    id: 'shortcuts',
     color: '#00DFD8',
     title: 'Shortcuts',
     subtitle: 'Adaptivity',

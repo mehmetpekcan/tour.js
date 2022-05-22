@@ -18,6 +18,7 @@ function Footer() {
         </S.NavItem>
         <S.NavItem>
           <Button
+            id="footer-docs-button"
             target="_blank"
             rel="noopener noreferrer"
             kind="link"

@@ -1,4 +1,5 @@
 import { AiOutlineCopy } from 'react-icons/ai';
+import Tour from 'tour.js/dist/index.js';
 
 import Section from '../../components/Section';
 
@@ -7,17 +8,54 @@ import * as C from './constants';
 
 import Footer from '../../components/Footer';
 
+const tour = new Tour({
+  steps: [
+    {
+      selector: '#page-title',
+      title: 'Heelo',
+      content: 'asdsad',
+    },
+    {
+      selector: '#new-users',
+      title: 'Heelo',
+      content: 'asdsad',
+    },
+    {
+      selector: '#new-hidden-features',
+      title: 'Heelo',
+      content: 'asdsad',
+    },
+    {
+      selector: '#shortcuts',
+      title: 'Heelo',
+      content: 'asdsad',
+    },
+    {
+      selector: '#npm-button',
+      title: 'Heelo',
+      content: 'asdsad',
+    },
+    {
+      selector: '#footer-docs-button',
+      title: 'Heelo',
+      content: 'asdsad',
+    },
+  ],
+});
+
 function LandingContainer() {
   const handleNpmButton = () => {
     navigator.clipboard.writeText('npm i tour.js');
   };
 
-  const handleDemoButton = () => {};
+  const handleDemoButton = () => {
+    tour.start();
+  };
 
   return (
     <S.LandingContainer>
       <S.Hero>
-        <S.Title>Show Your Product</S.Title>
+        <S.Title id="page-title">Show Your Product</S.Title>
         <S.Description>
           Don't let the users figure out your product,
           <br />
@@ -27,7 +65,11 @@ function LandingContainer() {
           <S.DemoButton kind="primary" onClick={handleDemoButton}>
             Demo Tour
           </S.DemoButton>
-          <S.NpmButton icon={<AiOutlineCopy />} onClick={handleNpmButton}>
+          <S.NpmButton
+            id="npm-button"
+            icon={<AiOutlineCopy />}
+            onClick={handleNpmButton}
+          >
             npm i tour.js
           </S.NpmButton>
         </S.ActionButtons>
@@ -41,6 +83,7 @@ function LandingContainer() {
       </S.Hero>
       {C.Sections.map((section) => (
         <Section
+          id={section.id}
           key={section.title}
           color={section.color}
           title={section.title}

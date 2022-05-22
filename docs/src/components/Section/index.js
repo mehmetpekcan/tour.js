@@ -1,8 +1,8 @@
 import * as S from './style';
 
-function Section({ prefix, title, subtitle, color, children }) {
+function Section({ prefix, title, subtitle, color, children, ...props }) {
   return (
-    <S.Section>
+    <S.Section {...props}>
       <S.SubTitle color={color}>
         <S.Prefix color={color}>{prefix}</S.Prefix>
         {subtitle}
