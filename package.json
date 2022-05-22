@@ -11,7 +11,8 @@
   ],
   "scripts": {
     "build": "rm -rf ./dist && node build.js",
-    "watch": "rm -rf ./dist && node build.js watch=true"
+    "watch": "rm -rf ./dist && node build.js watch=true",
+    "build:doc": "cd docs && yarn build"
   },
   "devDependencies": {
     "esbuild": "^0.14.28",
