@@ -5,14 +5,15 @@
   "author": "pekcanmehmett@gmail.com",
   "license": "MIT",
   "private": false,
-  "version": "0.1.0",
+  "version": "0.1.7",
   "files": [
     "dist"
   ],
   "scripts": {
     "build": "rm -rf ./dist && node build.js",
     "watch": "rm -rf ./dist && node build.js watch=true",
-    "build:doc": "cd docs && yarn build"
+    "dev:docs": "cd docs && yarn dev",
+    "build:docs": "cd docs && yarn build"
   },
   "devDependencies": {
     "esbuild": "^0.14.28",
@@ -24,5 +25,8 @@
     "prettier": "^2.6.2",
     "smoothscroll-polyfill": "^0.4.4"
   },
-  "main": "dist/index.js"
+  "main": "dist/index.js",
+  "dependencies": {
+    "tour.js": "^0.1.0"
+  }
 }

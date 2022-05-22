@@ -1,4 +1,3 @@
-import Head from 'next/head';
 import Document from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
 

@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-page-custom-font */
 import Head from 'next/head';
 
 import '../styles/reset.css';
@@ -11,7 +12,7 @@ function MyApp({ Component, pageProps }) {
       <Head>
         <title>Tour.js | Easy onboarding</title>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
         <link
           href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap"
           rel="stylesheet"

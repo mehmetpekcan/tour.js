@@ -1,5 +1,5 @@
 import { AiOutlineCopy } from 'react-icons/ai';
-import Tour from 'tour.js/dist/index.js';
+import Tour from 'tour.js';
 
 import Section from '../../components/Section';
 
