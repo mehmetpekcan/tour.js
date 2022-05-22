@@ -58,13 +58,14 @@ class Tooltip {
     const { height, top, left } = targetPosition;
     const { scrollX, scrollY } = window;
 
-    const leftValue = scrollX + left - HIGHLIGHTER_BORDER;
+    const leftValue = scrollX + left - HIGHLIGHTER_BORDER - 16;
     let topValue = scrollY + top;
 
+    // TODO: handle left-right alignment problem by testing header-docs-button
     if (top + this.element.clientHeight > window.innerHeight) {
-      topValue -= this.element.clientHeight + HIGHLIGHTER_BORDER + 16;
+      topValue -= this.element.clientHeight + HIGHLIGHTER_BORDER + 16 + 16;
     } else {
-      topValue += height + HIGHLIGHTER_BORDER + 16;
+      topValue += height + HIGHLIGHTER_BORDER + 16 + 16;
     }
 
     this.element.classList.add('visible');

@@ -1,4 +1,4 @@
-export const HIGHLIGHTER_BORDER = 8;
+export const HIGHLIGHTER_BORDER = 2;
 
 export const HIGHLIGHTER = {
   element() {

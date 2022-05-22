@@ -26,8 +26,8 @@ class Highlighter {
 
     const widthValue = width;
     const heightValue = height;
-    const topValue = scrollY + top - HIGHLIGHTER_BORDER;
-    const leftValue = scrollX + left - HIGHLIGHTER_BORDER;
+    const topValue = scrollY + top - HIGHLIGHTER_BORDER - 16;
+    const leftValue = scrollX + left - HIGHLIGHTER_BORDER - 16;
 
     this.element.classList.add('visible');
     this.element.style.setProperty('width', `${widthValue}px`);
