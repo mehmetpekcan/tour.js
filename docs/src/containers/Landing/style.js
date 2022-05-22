@@ -9,7 +9,10 @@ const Hero = styled.section`
   flex-direction: column;
   align-items: center;
   text-align: center;
-  padding: 3.5rem 0;
+  justify-content: center;
+  padding-bottom: 96px;
+  overflow: hidden;
+  min-height: calc(100vh - 96px);
 `;
 
 const Title = styled.h1`
@@ -20,7 +23,7 @@ const Title = styled.h1`
 `;
 
 const Description = styled.p`
-  font-size: 2rem;
+  font-size: var(--gap-m);
 `;
 
 const ActionButtons = styled.div`
@@ -39,7 +42,7 @@ const DemoButton = styled(Button)``;
 const NpmButton = styled(Button)``;
 
 const Details = styled.div`
-  margin-top: var(--gap);
+  margin: var(--gap) 0;
   display: flex;
   gap: var(--gap);
 `;

@@ -1,27 +1,27 @@
 const Sections = [
   {
     color: 'var(--primary)',
-    title: 'Start with the developer',
-    subtitle: 'Develop',
+    title: 'New Users',
+    subtitle: 'Reliability',
     prefix: '1',
     content:
-      'Developers love Next.js, the open source React framework Vercel built together with Google and Facebook. Next.js powers the biggest websites like Patreon, for use cases in e-commerce, travel, news, and marketing.',
+      'Keep your candidate users on the website by pointing out to key feature of your app/dashboard.',
   },
   {
     color: '#007CF0',
-    title: 'Start with the developer',
-    subtitle: 'Develop',
+    title: 'New/Hidden Features',
+    subtitle: 'Visibility',
     prefix: '2',
     content:
-      'Developers love Next.js, the open source React framework Vercel built together with Google and Facebook. Next.js powers the biggest websites like Patreon, for use cases in e-commerce, travel, news, and marketing.',
+      'Show all of your hidden features to be able to make more efficient users. In that way, some of the pain use cases may be transform to easy things!',
   },
   {
     color: '#00DFD8',
-    title: 'Start with the developer',
-    subtitle: 'Develop',
+    title: 'Shortcuts',
+    subtitle: 'Adaptivity',
     prefix: '3',
     content:
-      'Developers love Next.js, the open source React framework Vercel built together with Google and Facebook. Next.js powers the biggest websites like Patreon, for use cases in e-commerce, travel, news, and marketing.',
+      'Explain your long feature flows that can be manage more easily in short ways. Best for explaining shortcuts/automations.',
   },
 ];
 

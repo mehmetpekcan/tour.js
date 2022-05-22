@@ -1,8 +1,10 @@
 import { AiOutlineCopy } from 'react-icons/ai';
+
 import Section from '../../components/Section';
 
 import * as S from './style';
 import * as C from './constants';
+
 import Footer from '../../components/Footer';
 
 function LandingContainer() {

@@ -13,7 +13,7 @@ const Navigation = styled.nav`
 
 const NavItem = styled.div`
   &:not(:last-child) {
-    margin-right: 2rem;
+    margin-right: var(--gap-m);
   }
 `;
 

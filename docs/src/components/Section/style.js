@@ -19,7 +19,7 @@ const SubTitle = styled.h3`
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-size: 2rem;
+  font-size: var(--gap-m);
   color: ${({ color }) => color};
   margin-bottom: var(--gap);
 `;

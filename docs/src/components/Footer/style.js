@@ -3,8 +3,12 @@ import styled from 'styled-components';
 const Footer = styled.footer`
   height: 96px;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
+
+  & > * {
+    margin-right: var(--gap);
+  }
 `;
 
 const Navigation = styled.nav`
@@ -12,9 +16,7 @@ const Navigation = styled.nav`
 `;
 
 const NavItem = styled.div`
-  &:not(:last-child) {
-    margin-right: 2rem;
-  }
+  margin-left: var(--gap-m);
 `;
 
 export { Footer, Navigation, NavItem };

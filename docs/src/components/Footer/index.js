@@ -9,6 +9,7 @@ function Footer() {
   return (
     <S.Footer>
       <Logo />
+      &#9679;
       <S.Navigation>
         <S.NavItem>
           <Button kind="link" href="/docs">
@@ -19,7 +20,7 @@ function Footer() {
           <Button
             target="_blank"
             rel="noopener noreferrer"
-            kind="link-default"
+            kind="link"
             href="https://github.com/mehmetpekcan/tour.js"
             icon={<AiFillGithub />}
           >
