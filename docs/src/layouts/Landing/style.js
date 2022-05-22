@@ -9,4 +9,6 @@ const LandingLayout = styled.div`
   padding-right: 24px;
 `;
 
-export { LandingLayout };
+const Main = styled.main``;
+
+export { LandingLayout, Main };

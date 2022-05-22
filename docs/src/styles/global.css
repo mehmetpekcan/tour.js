@@ -5,8 +5,10 @@
   --gray-dark: #555;
   --gray: #888;
 
-  --gap: 1.5rem;
   --gap-sm: 0.5rem;
+  --gap: 1.5rem;
+  --gap-m: 2rem;
+  --gap-xl: 3rem;
 }
 
 * {
@@ -14,6 +16,11 @@
 }
 
 body {
+  background: linear-gradient(
+    90deg,
+    hsla(0, 0%, 100%, 0.08),
+    hsla(0, 0%, 100%, 0)
+  );
   background-color: var(--black);
   color: var(--gray);
   text-rendering: optimizeLegibility;

@@ -5,6 +5,7 @@ const buttonKind = {
     color: var(--gray);
     background-color: transparent;
     border: 1px solid var(--gray);
+    padding: 8px 24px;
 
     &:hover {
       color: var(--white);
@@ -15,15 +16,24 @@ const buttonKind = {
     color: var(--black);
     background-color: var(--white);
     border: 1px solid var(--white);
+    padding: 0 24px;
 
     &:hover {
       color: var(--white);
       background-color: var(--black);
     }
   `,
+  link: css`
+    color: var(--gray);
+    height: 100%;
+
+    &:hover {
+      color: var(--white);
+    }
+  `,
 };
 
-const Button = styled.button`
+const common = css`
   appearance: none;
   position: relative;
   display: inline-flex;
@@ -33,10 +43,6 @@ const Button = styled.button`
   text-decoration: none;
   white-space: nowrap;
   font-weight: 500;
-  width: 100%;
-  min-width: 200px;
-  height: 50px;
-  padding: 0 25px 0 25px;
   border-radius: 6px;
   font-size: 1rem;
   flex-shrink: 0;
@@ -46,16 +52,22 @@ const Button = styled.button`
   cursor: pointer;
   overflow: hidden;
   outline: none;
+`;
 
-  ${({ kind }) => {
-    console.log('kind ', kind);
+const Link = styled.a`
+  ${common};
+  ${({ kind }) => buttonKind[kind]};
+`;
 
-    return buttonKind[kind];
-  }}
+const Button = styled.button`
+  ${common};
+  ${({ kind }) => buttonKind[kind]};
+  min-width: 200px;
+  height: 48px;
 `;
 
 const IconWrapper = styled.div`
   margin-right: var(--gap-sm);
 `;
 
-export { Button, IconWrapper };
+export { Button, Link, IconWrapper };

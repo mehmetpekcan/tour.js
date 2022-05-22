@@ -1,6 +1,9 @@
 import { AiOutlineCopy } from 'react-icons/ai';
+import Section from '../../components/Section';
 
 import * as S from './style';
+import * as C from './constants';
+import Footer from '../../components/Footer';
 
 function LandingContainer() {
   const handleNpmButton = () => {
@@ -12,10 +15,11 @@ function LandingContainer() {
   return (
     <S.LandingContainer>
       <S.Hero>
-        <S.Title>Tell Your Product</S.Title>
+        <S.Title>Show Your Product</S.Title>
         <S.Description>
-          Don't let your users figure out your product, give a tour for your
-          features befor they ask!
+          Don't let the users figure out your product,
+          <br />
+          give a tour for your features befor they ask!
         </S.Description>
         <S.ActionButtons>
           <S.DemoButton kind="primary" onClick={handleDemoButton}>
@@ -33,6 +37,18 @@ function LandingContainer() {
           <S.Text>All browsers expect IE</S.Text>
         </S.Details>
       </S.Hero>
+      {C.Sections.map((section) => (
+        <Section
+          key={section.title}
+          color={section.color}
+          title={section.title}
+          subtitle={section.subtitle}
+          prefix={section.prefix}
+        >
+          {section.content}
+        </Section>
+      ))}
+      <Footer />
     </S.LandingContainer>
   );
 }
