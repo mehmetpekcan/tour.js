@@ -1876,10 +1876,17 @@ to-regex-range@^5.0.1:
   dependencies:
     is-number "^7.0.0"
 
-tour.js@^0.1.0, tour.js@^0.1.7:
-  version "0.1.7"
-  resolved "https://registry.yarnpkg.com/tour.js/-/tour.js-0.1.7.tgz#8334dfe50b1e60338e56c1d5f5cefb726ebff172"
-  integrity sha512-hKGTxCgU7y7SXReKMmWFL1NwNKuarELCPzCR/Y+TRh/L7ImhMzXxCWAM2s2axZb4LXJIq+h5Te/KbPtSL23ntQ==
+tour.js@^0.1.0:
+  version "0.1.8"
+  resolved "https://registry.yarnpkg.com/tour.js/-/tour.js-0.1.8.tgz#22b5b29ec943827141e21211921a0066ac63273f"
+  integrity sha512-s8FJHIiGtF3eWXCtMolrZiNBT9Qdus3MouqjudVa87fCDyPEqnQKLiHOIBwgXHHkKhjL3QRWUGQlugomHxhxFA==
+  dependencies:
+    tour.js "^0.1.0"
+
+tour.js@^0.1.13:
+  version "0.1.13"
+  resolved "https://registry.yarnpkg.com/tour.js/-/tour.js-0.1.13.tgz#0cdd48f9d1e223e1563b4780aef72e368bb522bd"
+  integrity sha512-J8gVTCPY6ugBjekMLo5SFyxmaFMHCqO0gVpxGhLZJTZmvbleXyL3L5payhmXJfPu+atvKLlhkZX29BmxLoEuww==
   dependencies:
     tour.js "^0.1.0"
 

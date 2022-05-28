@@ -4,7 +4,7 @@ import Head from 'next/head';
 import '../styles/reset.css';
 import '../styles/global.css';
 
-import 'tour.js/dist/index.css';
+import 'tour.js/dist/style.css';
 
 function MyApp({ Component, pageProps }) {
   return (
