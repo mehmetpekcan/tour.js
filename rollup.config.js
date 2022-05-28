@@ -8,10 +8,16 @@ import packageJSON from './package.json';
 
 export default {
   input: 'src/index.js',
-  output: [{ name: 'tour.js', file: packageJSON.browser, format: 'umd' }],
+  output: [
+    { name: 'tour.js', file: packageJSON.browser, format: 'umd' },
+    { file: packageJSON.module, format: 'esm' },
+  ],
   plugins: [
     commonjs(),
-    babel({ babelHelpers: 'bundled', presets: ['@babel/preset-env'] }),
+    babel({
+      babelHelpers: 'bundled',
+      presets: [['@babel/preset-env', { loose: true }]],
+    }),
     nodeResolve(),
     terser(),
     sass({ output: 'dist/style.css', outputStyle: 'compressed' }),

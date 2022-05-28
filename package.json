@@ -4,16 +4,16 @@
   "repository": "https://github.com/mehmetpekcan/tour.js.git",
   "author": "pekcanmehmett@gmail.com",
   "license": "MIT",
-  "module": "dist/index.js",
-  "browser": "dist/index.js",
   "main": "dist/index.js",
+  "module": "dist/index.esm.js",
   "private": false,
-  "version": "0.1.13",
+  "version": "0.1.15",
   "files": [
     "dist"
   ],
   "scripts": {
     "build": "rm -rf ./dist && yarn rollup -c",
+    "build:watch": "rm -rf ./dist && yarn rollup -c -w",
     "dev:docs": "cd docs && yarn dev",
     "build:docs": "cd docs && yarn build"
   },
