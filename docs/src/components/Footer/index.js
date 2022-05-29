@@ -12,7 +12,7 @@ function Footer() {
       &#9679;
       <S.Navigation>
         <S.NavItem>
-          <Button kind="link" href="/docs">
+          <Button kind="link" href="/docs/introduction">
             Docs
           </Button>
         </S.NavItem>

@@ -175,13 +175,7 @@ const DocumentationLayout = styled.section`
   }
 
   .main-section {
-    margin-top: 2rem;
     margin-bottom: 2rem;
-  }
-
-  .inner-section {
-    margin-top: 1.25rem;
-    margin-bottom: 1.25rem;
   }
 
   table * {
@@ -207,7 +201,31 @@ const DocumentationLayout = styled.section`
     border-radius: 4px;
     padding: 4px;
     background-color: var(--black-900);
+    color: var(--gray-light);
+  }
+
+  a {
+    color: var(--white);
   }
 `;
 
-export { DocumentationLayout };
+const Sidebar = styled.nav`
+  grid-column: 1/-1;
+  padding-top: 24px;
+  padding-bottom: 24px;
+  display: flex;
+  margin-bottom: 48px;
+  border-bottom: 1px solid var(--white);
+
+  & > * {
+    flex: 1;
+    flex-shrink: 0;
+    text-align: center;
+  }
+`;
+
+const Link = styled.a`
+  color: var(--white);
+`;
+
+export { DocumentationLayout, Sidebar, Link };

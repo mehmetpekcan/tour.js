@@ -1,0 +1,84 @@
+import DocumentationLayout from '../../layouts/Documentation';
+
+<section className='main-section'>
+
+#### Step Api
+
+##### selector
+
+Selector of the element that you want to highlight. To see how to get any element of selector in any website please read [here](https://support.helpdocs.io/article/eh3pzxNwYf-grabbing-css-selectors-from-your-browser#:~:text=Simply%20right%20click%20and%20click,CSS%20selectors%20for%20that%20element.)
+
+##### target
+
+`target` is an alternative of `selector` property. You could give the `target` element directly without specifying its selector.
+
+```javascript
+const targetEl = document.getElementById('#my-great-element');
+const tour = new Tour({
+  steps: [
+    {
+      target: targetEl,
+      // other properties will be here
+    },
+  ],
+});
+```
+
+!Note that if you provide `selector` and `target` both in a step. `selector`
+will be used for getting the element by Tour.js.
+
+##### title
+
+Title of the step element
+
+##### content
+
+Body of your step element. It could be just text or any HTML content that you provide.
+
+```javascript
+This is a valid content text.
+
+<p>
+	This is also valid <strong>context</strong>.
+</p>
+
+<div>
+	<h2>
+		This is even valid <i>context</I>
+	<h2/>
+	<p>
+		This is an extra element.
+	</p>
+</div>
+```
+
+##### next
+
+To change text of `next` button.
+
+##### prev
+
+To change text of `prev` button.
+
+##### finish
+
+To change text of `finish` button.
+
+!Tour.js creates your access buttons under the hood according to steps count but if you wish to remove a button in a certain step please pass `false` to it.
+
+```javascript
+const tour = new Tour({
+  steps: [
+    {
+      next: false, // `next` button will not be disappear in this individual step.
+      // rest of your properties
+    },
+  ],
+});
+```
+
+</section>
+
+export default ({ children }) => (
+  <DocumentationLayout>{children}</DocumentationLayout>
+);

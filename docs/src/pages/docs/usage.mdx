@@ -1,0 +1,47 @@
+import DocumentationLayout from '../../layouts/Documentation';
+
+<section className='main-section'>
+#### Usage
+
+Tour.js consists of js and CSS files. The CSS file must be linked/imported throughout your app.
+If you use any bundler for your app you can use it directly by importing in your js file.
+
+```javascript
+import Tour from 'tour.js';
+```
+
+First crate a new `Tour` instance for your tours with steps.
+
+```javascript
+const tour = new Tour({
+	/// Tour options will be here
+	steps: [
+		{
+			selector: #my-great-title
+			title: 'Learn how to use tour.js'
+			content: 'Here this is the great explanation'
+		},
+		// add more steps here
+	]
+});
+```
+
+Then fire it whenever you wish
+
+```javascript
+tour.start();
+```
+
+Alternatively you could manipulate the steps any time even that you can create instance without explicitly giving the steps while initializing.
+
+```javascript
+tour.changeSteps([
+  /// steps array will be here
+]);
+```
+
+</section>
+
+export default ({ children }) => (
+  <DocumentationLayout>{children}</DocumentationLayout>
+);
