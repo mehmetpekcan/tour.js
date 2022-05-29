@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import React from 'react';
 import Link from 'next/link';
 
@@ -32,15 +33,17 @@ const navigationLinks = [
 ];
 
 function DocumentationLayout({ children }) {
+  const router = useRouter();
+
   return (
     <S.DocumentationLayout>
-      <S.Sidebar>
+      <S.Navigation>
         {navigationLinks.map((link) => (
           <Link key={link.title} href={link.href} passHref>
-            <S.Link>{link.title}</S.Link>
+            <S.Link active={link.href === router.pathname}>{link.title}</S.Link>
           </Link>
         ))}
-      </S.Sidebar>
+      </S.Navigation>
       {children}
     </S.DocumentationLayout>
   );

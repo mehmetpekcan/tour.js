@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 const DocumentationLayout = styled.section`
   /*!
@@ -209,13 +209,12 @@ const DocumentationLayout = styled.section`
   }
 `;
 
-const Sidebar = styled.nav`
+const Navigation = styled.nav`
   grid-column: 1/-1;
-  padding-top: 24px;
-  padding-bottom: 24px;
   display: flex;
   margin-bottom: 48px;
-  border-bottom: 1px solid var(--white);
+  border-bottom: 1px solid var(--gray-dark);
+  background-color: var(--black-950);
 
   & > * {
     flex: 1;
@@ -226,6 +225,14 @@ const Sidebar = styled.nav`
 
 const Link = styled.a`
   color: var(--white);
+  padding-top: 24px;
+  padding-bottom: 24px;
+
+  ${({ active }) =>
+    active &&
+    css`
+      border-bottom: 1px solid var(--white);
+    `}
 `;
 
-export { DocumentationLayout, Sidebar, Link };
+export { DocumentationLayout, Navigation, Link };
